@@ -20,3 +20,11 @@ export const SortType = {
   HIGH_TO_LOW: `Price: high to low`,
   TOP_RATED_FIRST: `Top rated first`,
 };
+
+export const STARS = [
+  {value: 5, title: `perfect`},
+  {value: 4, title: `good`},
+  {value: 3, title: `not bad`},
+  {value: 2, title: `badly`},
+  {value: 1, title: `terribly`},
+];
