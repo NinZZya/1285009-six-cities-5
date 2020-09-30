@@ -1,5 +1,5 @@
 import React from 'react';
-import GalleryItem from './components/gallery-item';
+import GalleryItem from './components/gallery-item/gallery-item';
 
 const OfferGallery = () => {
   return (

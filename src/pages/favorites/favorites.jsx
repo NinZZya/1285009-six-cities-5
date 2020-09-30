@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from '../../components/header';
-import FavoritesList from '../../components/favorites-list';
+import Header from '../../components/header/header';
+import FavoritesList from '../../components/favorites-list/favorites-list';
 
 const Favorites = () => {
   return (

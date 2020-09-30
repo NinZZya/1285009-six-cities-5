@@ -1,9 +1,9 @@
 import React from 'react';
-import Header from '../../components/header';
-import Tabs from '../../components/tabs';
-import Sort from '../../components/sort';
-import OffersList from '../../components/offers-list';
-import Map from '../../components/map';
+import Header from '../../components/header/header';
+import Tabs from '../../components/tabs/tabs';
+import Sort from '../../components/sort/sort';
+import OffersList from '../../components/offers-list/offers-list';
+import Map from '../../components/map/map';
 import {CITIES} from '../../const';
 import {TCityId} from '../../types';
 
