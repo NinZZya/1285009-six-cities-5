@@ -2,7 +2,8 @@ import React from 'react';
 import Header from '../../components/header';
 import Tabs from '../../components/tabs';
 import Sort from '../../components/sort';
-import OffersList from '../../components/offers-list/offers-list';
+import OffersList from '../../components/offers-list';
+import Map from '../../components/map';
 import {CITIES} from '../../const';
 import {TCityId} from '../../types';
 
@@ -24,7 +25,7 @@ const Main = ({activeCityId}) => {
               <OffersList />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <Map />
             </div>
           </div>
         </div>
