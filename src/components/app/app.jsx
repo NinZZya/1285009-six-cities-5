@@ -21,7 +21,7 @@ const App = ({activeCityId}) => {
           <Main activeCityId={activeCityId} />
         </Route>
         <Route exact path={AppRoute.LOGIN} component={Login} />
-        <Route exact path={AppRoute.OFFER} component={Offer} />
+        <Route exact path={`${AppRoute.OFFER}:id?`} component={Offer} />
         <Route exact path={AppRoute.FAVORITES} component={Favorites} />
         <Redirect to={AppRoute.ROOT} />
       </Switch>

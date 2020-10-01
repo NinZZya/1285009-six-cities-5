@@ -12,7 +12,7 @@ const Header = () => {
               className="header__logo-link header__logo-link--active"
               to={AppRoute.ROOT}
             >
-              <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"></img>
+              <img className="header__logo" src="/img/logo.svg" alt="6 cities logo" width="81" height="41"></img>
             </Link>
           </div>
           <nav className="header__nav">
