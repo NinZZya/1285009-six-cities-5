@@ -1,5 +1,5 @@
 import React from 'react';
-import FavoriteOfferCard from '../favorite-offer-card';
+import FavoriteOfferCard from '../favorite-offer-card/favorite-offer-card';
 
 const FavoritesItem = () => {
   return (

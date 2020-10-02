@@ -1,6 +1,6 @@
 import React from 'react';
-import Review from './components/review';
-import NewReview from './components/new-review';
+import Review from './components/review/review';
+import NewReview from './components/new-review/new-review';
 
 const REVIEWS_COUNT = 1;
 

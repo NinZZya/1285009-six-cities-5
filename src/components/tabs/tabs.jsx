@@ -1,5 +1,5 @@
 import React from 'react';
-import Tab from './components/tab';
+import Tab from './components/tab/tab';
 import {CITIES} from '../../const';
 import {TCityId} from '../../types';
 
