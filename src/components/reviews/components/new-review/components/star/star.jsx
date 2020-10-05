@@ -27,7 +27,7 @@ const Star = ({star}) => {
 };
 
 Star.propTypes = {
-  star: Type.star,
+  star: Type.STAR,
 };
 
 export default Star;
