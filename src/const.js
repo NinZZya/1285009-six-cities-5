@@ -1,8 +1,10 @@
-export const AppRoute = {
-  LOGIN: `/login`,
-  OFFER: `/offer/`,
-  FAVORITES: `/favorites/`,
+export const AppPath = {
   ROOT: `/`,
+  LOGIN: `/login`,
+  CITY: `/city`,
+  OFFER: `/offer`,
+  FAVORITES: `/favorites`,
+  NOT_FOUND: `/not-found`,
 };
 
 export const CITIES = {
