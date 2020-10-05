@@ -1,7 +1,7 @@
 import React from 'react';
 import Tab from './components/tab/tab';
 import {CITIES} from '../../const';
-import {TCityId} from '../../types';
+import * as Type from '../../types';
 
 const Tabs = ({activeCityId}) => {
   return (
@@ -18,7 +18,7 @@ const Tabs = ({activeCityId}) => {
 };
 
 Tabs.propTypes = {
-  activeCityId: TCityId,
+  activeCityId: Type.id,
 };
 
 export default Tabs;

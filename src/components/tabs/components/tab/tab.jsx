@@ -1,5 +1,5 @@
 import React from 'react';
-import {TCity, TCityId} from '../../../../types';
+import * as Type from '../../../../types';
 
 const Tab = ({city, activeCityId}) => {
   const {id, name} = city;
@@ -20,8 +20,8 @@ const Tab = ({city, activeCityId}) => {
 };
 
 Tab.propTypes = {
-  city: TCity,
-  activeCityId: TCityId,
+  city: Type.city,
+  activeCityId: Type.id,
 };
 
 export default Tab;

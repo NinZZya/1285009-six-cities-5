@@ -1,5 +1,5 @@
 import React from 'react';
-import {TStar} from '../../../.././../../types';
+import * as Type from '../../../.././../../types';
 
 const Star = ({star}) => {
   const {value, title} = star;
@@ -27,7 +27,7 @@ const Star = ({star}) => {
 };
 
 Star.propTypes = {
-  star: TStar,
+  star: Type.star,
 };
 
 export default Star;

@@ -4,7 +4,7 @@ import Sort from '../../components/sort/sort';
 import OffersList from '../../components/offers-list/offers-list';
 import Map from '../../components/map/map';
 import {CITIES} from '../../const';
-import {TCityId} from '../../types';
+import * as Type from '../../types';
 
 const Main = ({activeCityId}) => {
   return (
@@ -31,7 +31,7 @@ const Main = ({activeCityId}) => {
 };
 
 Main.propTypes = {
-  activeCityId: TCityId,
+  activeCityId: Type.id,
 };
 
 export default Main;

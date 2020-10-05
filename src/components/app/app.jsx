@@ -1,13 +1,13 @@
 import React from 'react';
 import {Switch, Route, Redirect, useLocation} from 'react-router-dom';
 import Header from '../header/header';
+import Footer from '../footer/footer';
 import Main from '../../pages/main/main';
 import Login from '../../pages/login/login';
 import Offer from '../../pages/offer/offer';
 import Favorites from '../../pages/favorites/favorites';
 import {AppRoute} from '../../const';
-import {TCityId} from '../../types';
-import Footer from '../footer/footer';
+import * as Type from '../../types';
 
 
 const LocationToClassName = {
@@ -49,7 +49,7 @@ const App = ({activeCityId}) => {
 };
 
 App.propTypes = {
-  activeCityId: TCityId,
+  activeCityId: Type.id,
 };
 
 export default App;

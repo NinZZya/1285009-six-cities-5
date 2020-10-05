@@ -1,5 +1,5 @@
 import React from 'react';
-import OffersItem from '../offers-item/offers-item';
+import OffersItem from './components/offers-item/offers-item';
 
 const OFFERS_COUNT = 5;
 

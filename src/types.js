@@ -19,13 +19,13 @@ export const STAR_TITLES = [
   `terribly`,
 ];
 
-export const TCityId = number;
-export const TCity = shape({
-  id: TCityId,
+export const id = number;
+export const city = shape({
+  id,
   name: oneOf(CITIES),
 });
 
-export const TStar = shape({
+export const star = shape({
   value: number,
   title: oneOf(STAR_TITLES),
 });
