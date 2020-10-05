@@ -1,7 +1,15 @@
-import PropTypes from 'prop-types';
+import {
+  number,
+  shape,
+  oneOf,
+  func,
+  arrayOf,
+  string,
+} from 'prop-types';
+import {SortType} from './const';
 
-const {number, shape, oneOf, func, array} = PropTypes;
 
+const LIST_SORTS = Object.values(SortType);
 const LIST_CITIES = [
   `Paris`,
   `Cologne`,
@@ -20,21 +28,25 @@ export const STAR_TITLES = [
 ];
 
 export const ID = number;
+
 export const CITY = shape({
   id: ID,
   name: oneOf(LIST_CITIES),
 });
 
-export const CITIES = shape({
-  id: CITY,
-});
+export const OFFER = string;
 
-
-export const OFFERS = array;
+export const OFFERS = arrayOf(OFFER);
 
 export const STAR = shape({
   value: number,
   title: oneOf(STAR_TITLES),
 });
 
+export const SORT = oneOf(LIST_SORTS);
+
+export const SORTS = arrayOf(SORT);
+
 export const FUNCTION = func;
+
+export const CLASS_NAME = string;
