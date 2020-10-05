@@ -1,31 +1,50 @@
 import React from 'react';
+import {Switch, Route, Redirect, useLocation} from 'react-router-dom';
+import Header from '../header/header';
 import Main from '../../pages/main/main';
 import Login from '../../pages/login/login';
 import Offer from '../../pages/offer/offer';
 import Favorites from '../../pages/favorites/favorites';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import {TCityId} from '../../types';
+import Footer from '../footer/footer';
 
+
+const LocationToClassName = {
+  [AppRoute.ROOT]: `page--gray page--main`,
+  [AppRoute.LOGIN]: `page--gray page--login`,
+  [AppRoute.FAVORITES]: ``,
+  [AppRoute.OFFER]: ``,
+};
+
+const getPage = (path) => {
+  const pathArgs = path.split(`/`);
+
+  return pathArgs.length > 2 ? `/${pathArgs[1]}/` : `/`;
+};
 
 const App = ({activeCityId}) => {
+  const location = useLocation();
+  const page = getPage(location.pathname);
+
   return (
-    <Router>
+    <div
+      className={`page ${LocationToClassName[page]}`}
+    >
+      <Header />
       <Switch>
         <Route exact path={AppRoute.ROOT}>
           <Main activeCityId={activeCityId} />
         </Route>
         <Route exact path={AppRoute.LOGIN} component={Login} />
         <Route exact path={`${AppRoute.OFFER}:id?`} component={Offer} />
-        <Route exact path={AppRoute.FAVORITES} component={Favorites} />
+        <Route exact path={AppRoute.FAVORITES}>
+          <Favorites />
+          <Footer />
+        </Route>
         <Redirect to={AppRoute.ROOT} />
       </Switch>
-    </Router>
+    </div>
   );
 };
 
