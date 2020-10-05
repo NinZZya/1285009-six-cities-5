@@ -1,18 +1,25 @@
 import React from 'react';
 import OffersItem from './components/offers-item/offers-item';
+import * as Type from '../../types';
 
-const OFFERS_COUNT = 5;
 
-const OffersList = () => {
+const OffersList = (props) => {
+  const {
+    offers = [],
+    className = ``,
+  } = props;
+
   return (
-    <div className="cities__places-list places__list tabs__content">
-      {
-        new Array(OFFERS_COUNT)
-          .fill(``)
-          .map((_, index) => <OffersItem key={`offer-${index}`} />)
-      }
+    <div className={`places__list ${className}`}>
+      {offers.map((_, index) => <OffersItem key={`offer-item-${index}`} />)}
     </div>
   );
 };
+
+OffersList.propTypes = {
+  offers: Type.OFFERS,
+  className: Type.CLASS_NAME,
+};
+
 
 export default OffersList;

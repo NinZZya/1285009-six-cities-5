@@ -1,9 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../../../const';
+import {AppPath} from '../../../../const';
 
 const OffersItem = () => {
-  const offerRoute = `${AppRoute.OFFER}`;
+  const offerRoute = `${AppPath.OFFER}`;
 
   return (
     <article className="cities__place-card place-card">
@@ -35,7 +35,7 @@ const OffersItem = () => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={offerRoute}>
+          <Link to={`${offerRoute}/1`}>
             Beautiful &amp; luxurious apartment at great location
           </Link>
         </h2>
