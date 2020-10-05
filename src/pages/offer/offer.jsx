@@ -1,4 +1,5 @@
 import React from 'react';
+import {useRouteMatch, useHistory} from 'react-router-dom';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferMark from '../../components/offer-mark/offer-mark';
 import OfferHeader from '../../components/offer-header/offer-header';
@@ -10,16 +11,27 @@ import OfferHost from '../../components/offer-host/offer-host';
 import Reviews from '../../components/reviews/reviews';
 import Map from '../../components/map/map';
 import OffersList from '../../components/offers-list/offers-list';
-import * as Type from '../../types';
-import PageNotFound from '../page-not-found/page-not-found';
+import {AppPath, IdName} from '../../const';
+// import * as Type from '../../types';
 
 
 const OFFERS = new Array(5).fill(``);
 const LIST_CLASS_NAME = `near-places__list`;
 
-const Offer = ({activeOfferId}) => {
-  if (activeOfferId < 0) {
-    return <PageNotFound />;
+const getOfferId = (match) => {
+  const offerId = Number(match.params[IdName.OFFER]);
+
+  return offerId && !isNaN(offerId) ? offerId : -1;
+};
+
+const Offer = () => {
+  const offerPath = `${AppPath.OFFER}/:${IdName.OFFER}`;
+  const matchOfferId = useRouteMatch(offerPath, IdName.OFFER);
+  const activeOfferId = getOfferId(matchOfferId);
+  const history = useHistory();
+
+  if (activeOfferId === -1) {
+    history.push(AppPath.NOT_FOUND);
   }
 
   return (
@@ -52,10 +64,9 @@ const Offer = ({activeOfferId}) => {
   );
 };
 
-
-Offer.propTypes = {
-  activeOfferId: Type.ID,
-};
+// Offer.propTypes = {
+//   offers: Type.OFFERS,
+// };
 
 
 export default Offer;

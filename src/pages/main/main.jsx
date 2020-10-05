@@ -1,16 +1,28 @@
 import React from 'react';
+import {useRouteMatch} from 'react-router-dom';
 import CitiesTabs from '../../components/cities-tabs/cities-tabs';
 import Sort from '../../components/sort/sort';
 import OffersList from '../../components/offers-list/offers-list';
 import NoOffers from '../../components/no-offers/no-offers';
 import Map from '../../components/map/map';
-import {CITIES, SortType} from '../../const';
-import * as Type from '../../types';
+import {CITIES, SortType, AppPath, IdName} from '../../const';
+// import * as Type from '../../types';
 
 
 const OFFERS = new Array(5).fill(``);
+const DEFAULT_CITY_ID = 1;
 const DEFAULT_SORT = SortType.POPULAR;
 const SORTS = Object.values(SortType);
+
+const getCityId = (match) => {
+  if (match) {
+    const cityId = Number(match.params[IdName.CITY]);
+
+    return cityId && !isNaN(cityId) ? cityId : DEFAULT_CITY_ID;
+  }
+
+  return DEFAULT_CITY_ID;
+};
 
 const ClassName = {
   PAGE_EMPTY: `page__main--index-empty`,
@@ -39,7 +51,11 @@ const renderOffers = (offers, city) => {
   );
 };
 
-const Main = ({activeCityId}) => {
+const Main = () => {
+  const cityPath = `${AppPath.CITY}/:${IdName.CITY}?`;
+  const matchCityId = useRouteMatch(cityPath, IdName.CITY);
+  const activeCityId = getCityId(matchCityId);
+
   const activeCity = CITIES[activeCityId];
 
   return (
@@ -67,9 +83,9 @@ const Main = ({activeCityId}) => {
   );
 };
 
-Main.propTypes = {
-  activeCityId: Type.ID,
-};
+// Main.propTypes = {
+//   offers: Type.OFFERS,
+// };
 
 
 export default Main;

@@ -7,6 +7,11 @@ export const AppPath = {
   NOT_FOUND: `/not-found`,
 };
 
+export const IdName = {
+  CITY: `cityId`,
+  OFFER: `offerId`,
+};
+
 export const CITIES = {
   1: {id: 1, name: `Paris`},
   2: {id: 2, name: `Cologne`},
