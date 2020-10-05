@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-const {number, shape, oneOf} = PropTypes;
+const {number, shape, oneOf, func, array} = PropTypes;
 
-const CITIES = [
+const LIST_CITIES = [
   `Paris`,
   `Cologne`,
   `Brussels`,
@@ -19,13 +19,22 @@ export const STAR_TITLES = [
   `terribly`,
 ];
 
-export const id = number;
-export const city = shape({
-  id,
-  name: oneOf(CITIES),
+export const ID = number;
+export const CITY = shape({
+  id: ID,
+  name: oneOf(LIST_CITIES),
 });
 
-export const star = shape({
+export const CITIES = shape({
+  id: CITY,
+});
+
+
+export const OFFERS = array;
+
+export const STAR = shape({
   value: number,
   title: oneOf(STAR_TITLES),
 });
+
+export const FUNCTION = func;
