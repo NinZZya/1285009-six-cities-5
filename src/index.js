@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router} from 'react-router-dom';
-import App from './components/app/app';
+import App from './app/app';
 
-const ACTIVE_SITY_ID = 1;
 
 ReactDOM.render(
     <Router>
-      <App activeCityId={ACTIVE_SITY_ID} />
+      <App />
     </Router>,
     document.querySelector(`#root`)
 );
