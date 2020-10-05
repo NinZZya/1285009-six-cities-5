@@ -10,10 +10,20 @@ import OfferHost from '../../components/offer-host/offer-host';
 import Reviews from '../../components/reviews/reviews';
 import Map from '../../components/map/map';
 import OffersList from '../../components/offers-list/offers-list';
+import * as Type from '../../types';
+import PageNotFound from '../page-not-found/page-not-found';
 
-const Offer = () => {
+
+const OFFERS = new Array(5).fill(``);
+const LIST_CLASS_NAME = `near-places__list`;
+
+const Offer = ({activeOfferId}) => {
+  if (activeOfferId < 0) {
+    return <PageNotFound />;
+  }
+
   return (
-    <main className="page__main page__main--property">
+    <main className="page__main page__main--property" key={activeOfferId}>
       <section className="property">
         <OfferGallery />
         <div className="property__container container">
@@ -34,12 +44,18 @@ const Offer = () => {
             <h2 className="near-places__title">
               Other places in the neighbourhood
             </h2>
-            <OffersList />
+            <OffersList className={LIST_CLASS_NAME} offers={OFFERS.slice(0, 3)} />
           </section>
         </div>
       </section>
     </main>
   );
 };
+
+
+Offer.propTypes = {
+  activeOfferId: Type.ID,
+};
+
 
 export default Offer;
