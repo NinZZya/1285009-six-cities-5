@@ -10,7 +10,7 @@ const PathToClassName = {
   [AppPath.LOGIN]: `page--gray page--login`,
   [AppPath.FAVORITES]: ``,
   [AppPath.OFFER]: ``,
-  [AppPath.NOT_FOUND]: `page--gray page--login`,
+  [AppPath.NOT_FOUND]: `page--gray page--main`,
 };
 
 const getPage = (path) => {
