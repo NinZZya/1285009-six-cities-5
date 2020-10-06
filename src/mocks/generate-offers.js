@@ -53,13 +53,20 @@ const cities = Object.values(CITIES).slice(0, length - 2);
 
 let reviewId = 0;
 
+const generateDate = () => {
+  const year = getRandomInt(2018, 2020);
+  const month = String(getRandomInt(1, 12)).padStart(2, `0`);
+  const day = String(getRandomInt(1, 28)).padStart(2, `0`);
+  return `${year}-${month}-${day}`;
+};
+
 const generateReview = () => {
   const user = getRandomArrValue(USERS);
 
   return {
     id: reviewId++,
     user,
-    date: `${getRandomInt(2018, 2020)}-${getRandomInt(1, 12).padStart(2, `0`)}-${getRandomInt(1, 28).padStart(2, `0`)}`,
+    date: generateDate(),
     rate: getRandomInt(0, 5),
     text: getRandomArr(DESCRIPTIONS, getRandomInt(1, DESCRIPTIONS.length)).join(`/n`),
   };
@@ -93,6 +100,4 @@ const generateOffer = (_, id) => {
   };
 };
 
-const generateOffers = (count) => new Array(count).fill(``).map(generateOffer);
-
-export default generateOffers;
+export default (count) => new Array(count).fill(``).map(generateOffer);
