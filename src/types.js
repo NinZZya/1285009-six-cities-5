@@ -86,8 +86,4 @@ export const OFFER = shape({
   isPremium: bool,
 });
 
-export const OFFERS = shape({
-  [ID]: OFFER,
-});
-
 export const LIST_OFFERS = arrayOf(OFFER);

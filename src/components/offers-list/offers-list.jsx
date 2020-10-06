@@ -17,7 +17,7 @@ const OffersList = (props) => {
 };
 
 OffersList.propTypes = {
-  offers: Type.OFFERS,
+  offers: Type.LIST_OFFERS,
   className: Type.CLASS_NAME,
 };
 
