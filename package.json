@@ -19,6 +19,7 @@
     "eslint": "5.13",
     "eslint-config-htmlacademy": "0.5",
     "eslint-plugin-react": "7.18",
+    "redux-devtools-extension": "2.13.8",
     "webpack": "4.41.6",
     "webpack-cli": "3.3",
     "webpack-dev-server": "3.10"
