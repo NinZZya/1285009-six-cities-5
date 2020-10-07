@@ -18,7 +18,7 @@ export default [
     host: {
       name: `Angelina`,
       avatar: `/img/avatar-angelina.jpg`,
-      isPro: false,
+      isPro: true,
     },
     images: [
       `/img/apartment-03.jpg`,
@@ -50,6 +50,7 @@ export default [
       }
     ],
     isPremium: false,
+    isFavorite: false,
   },
   {
     id: 1,
@@ -118,6 +119,7 @@ export default [
       }
     ],
     isPremium: false,
+    isFavorite: true,
   },
   {
     id: 2,
@@ -135,7 +137,7 @@ export default [
     host: {
       name: `Angelina`,
       avatar: `/img/avatar-angelina.jpg`,
-      isPro: false,
+      isPro: true,
     },
     images: [
       `/img/apartment-01.jpg`
@@ -166,6 +168,7 @@ export default [
       }
     ],
     isPremium: false,
+    isFavorite: false,
   },
   {
     id: 3,
@@ -186,13 +189,12 @@ export default [
     host: {
       name: `Angelina`,
       avatar: `/img/avatar-angelina.jpg`,
-      isPro: false
+      isPro: true,
     },
     images: [
       `/img/room.jpg`,
       `/img/apartment-02.jpg`,
       `/img/apartment-03.jpg`,
-      `/img/studio-01.jpg`,
     ],
     description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     reviews: [
@@ -220,5 +222,6 @@ export default [
       }
     ],
     isPremium: false,
+    isFavorite: true,
   }
 ];

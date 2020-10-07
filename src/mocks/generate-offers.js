@@ -37,7 +37,6 @@ const IMAGES = [
   `/img/apartment-02.jpg`,
   `/img/apartment-03.jpg`,
   `/img/room.jpg`,
-  `/img/studio-01.jpg`,
 ];
 
 const USERS = [
@@ -97,6 +96,7 @@ const generateOffer = (_, id) => {
     description: getRandomArr(DESCRIPTIONS, getRandomInt(1, DESCRIPTIONS.length)).join(`/n`),
     reviews: generateReviews(getRandomInt(1, 5)),
     isPremium: getRandomBool(),
+    isFavorite: getRandomBool(),
   };
 };
 
