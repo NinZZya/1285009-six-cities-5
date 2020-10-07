@@ -11,7 +11,11 @@ const OffersList = (props) => {
 
   return (
     <div className={`places__list ${className}`}>
-      {offers.map((_, index) => <OffersItem key={`offer-item-${index}`} />)}
+      {offers.map((offer) => {
+        return (
+          <OffersItem key={`offer-item-${offer.id}`} offer={offer} />
+        );
+      })}
     </div>
   );
 };
