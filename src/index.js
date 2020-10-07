@@ -1,10 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/app/app';
+import {Provider} from 'react-redux';
+import {BrowserRouter as Router} from 'react-router-dom';
+import App from './app/app';
+import store from './store';
+import {loadOffersAsync} from './redux/offers/offers-operations';
 
-const ACTIVE_SITY_ID = 1;
+
+store.dispatch(loadOffersAsync());
 
 ReactDOM.render(
-    <App activeCityId={ACTIVE_SITY_ID} />,
+    <Provider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </Provider>,
     document.querySelector(`#root`)
 );

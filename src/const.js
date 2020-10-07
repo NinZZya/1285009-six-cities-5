@@ -1,8 +1,19 @@
-export const AppRoute = {
-  LOGIN: `/login`,
-  OFFER: `/offer/`,
-  FAVORITES: `/favorites/`,
+export const DEFAULT_CITY_ID = 1;
+export const MAX_RATE = 5;
+export const LOADING_MESSAGE = `Loading data ...`;
+
+export const AppPath = {
   ROOT: `/`,
+  LOGIN: `/login`,
+  CITY: `/city`,
+  OFFER: `/offer`,
+  FAVORITES: `/favorites`,
+  NOT_FOUND: `/not-found`,
+};
+
+export const IdName = {
+  CITY: `cityId`,
+  OFFER: `offerId`,
 };
 
 export const CITIES = {
@@ -28,3 +39,16 @@ export const STARS = [
   {value: 2, title: `badly`},
   {value: 1, title: `terribly`},
 ];
+
+export const LoadStatus = {
+  LOADING: `LOADING`,
+  SUCCESS: `SUCCESS`,
+  ERROR: `ERROR`,
+};
+
+export const UserStatus = {
+  NO_AUTH: `NO_AUTH`,
+  RESPONSE: `RESPONSE`,
+  AUTH: `AUTH`,
+  AUTH_ERROR: `AUTH_ERROR`,
+};

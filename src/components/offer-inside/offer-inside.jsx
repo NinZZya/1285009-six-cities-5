@@ -1,14 +1,16 @@
 import React from 'react';
+import * as Type from '../../types';
 
-const OfferInside = () => {
+
+const OfferInside = ({features = []}) => {
   return (
     <div className="property__inside">
       <h2 className="property__inside-title">What&apos;s inside</h2>
       <ul className="property__inside-list">
-        {new Array(6).fill(``).map((_, index) => {
+        {features.map((feature, index) => {
           return (
             <li className="property__inside-item" key={`iside-item-${index}`}>
-              Wi-Fi
+              {feature}
             </li>
           );
         })}
@@ -16,5 +18,10 @@ const OfferInside = () => {
     </div>
   );
 };
+
+OfferInside.propTypes = {
+  features: Type.OFFER_FEATURES,
+};
+
 
 export default OfferInside;

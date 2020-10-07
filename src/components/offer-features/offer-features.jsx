@@ -1,19 +1,28 @@
 import React from 'react';
+import * as Type from '../../types';
 
-const OfferFeatures = () => {
+
+const OfferFeatures = ({type, bedroomsCount, adultsCount}) => {
   return (
     <ul className="property__features">
       <li className="property__feature property__feature--entire">
-        Apartment
+        {type}
       </li>
       <li className="property__feature property__feature--bedrooms">
-        3 Bedrooms
+        {`${bedroomsCount} Bedrooms`}
       </li>
       <li className="property__feature property__feature--adults">
-        Max 4 adults
+        {`Max ${adultsCount} adults`}
       </li>
     </ul>
   );
 };
+
+OfferFeatures.propTypes = {
+  type: Type.OFFER_TYPE,
+  bedroomsCount: Type.OFFER_BEDROOMS_COUNT,
+  adultsCount: Type.OFFER_ADULTS_COUNT,
+};
+
 
 export default OfferFeatures;

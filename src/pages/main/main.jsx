@@ -1,41 +1,165 @@
 import React from 'react';
-import Header from '../../components/header/header';
-import Tabs from '../../components/tabs/tabs';
+import {connect} from 'react-redux';
+import {useRouteMatch, useHistory} from 'react-router-dom';
+import CitiesTabs from '../../components/cities-tabs/cities-tabs';
 import Sort from '../../components/sort/sort';
 import OffersList from '../../components/offers-list/offers-list';
+import NoOffers from '../../components/no-offers/no-offers';
 import Map from '../../components/map/map';
-import {CITIES} from '../../const';
-import {TCityId} from '../../types';
+import Message from '../../components/message/message';
+import * as OffersSelector from '../../redux/offers/offers-selectors';
+import * as OffersAction from '../../redux/offers/offers-actions';
+import * as Type from '../../types';
+import {
+  CITIES,
+  SortType,
+  AppPath,
+  IdName,
+  LoadStatus,
+  DEFAULT_CITY_ID,
+  LOADING_MESSAGE,
+} from '../../const';
 
-const Main = ({activeCityId}) => {
-  return (
-    <div className="page page--gray page--main">
-      <Header />
-      <main className="page__main page__main--index">
-        <h1 className="visually-hidden">Cities</h1>
-        <Tabs activeCityId={activeCityId} />
-        <div className="cities">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">
-                {`312 places to stay in ${CITIES[activeCityId].name}`}
-              </b>
-              <Sort />
-              <OffersList />
-            </section>
-            <div className="cities__right-section">
-              <Map />
-            </div>
-          </div>
+
+const SORTS = Object.values(SortType);
+
+const getCityId = (match) => {
+  if (match) {
+    const cityId = Number(match.params[IdName.CITY]);
+    return cityId && !isNaN(cityId) ? cityId : -1;
+  }
+
+  return DEFAULT_CITY_ID;
+};
+
+const ClassName = {
+  PAGE_EMPTY: `page__main--index-empty`,
+  CONTAINER_EMPTY: `cities__places-container--empty`,
+  OFFERS_LIST: `cities__places-list tabs__content`,
+};
+
+const getOffersContent = (renderArgs) => {
+  const {
+    offers,
+    activeCity,
+    sortType,
+    changeOffersSortType,
+  } = renderArgs;
+
+  if (offers.length) {
+    return (
+      <div className="cities__places-container container">
+        <section className="cities__places places">
+          <h2 className="visually-hidden">Places</h2>
+          <b className="places__found">
+            {`${offers.length} places to stay in ${activeCity.name}`}
+          </b>
+          <Sort
+            activeSort={sortType}
+            sorts={SORTS}
+            onSortClick={(type) => {
+              changeOffersSortType(type);
+            }}
+          />
+          <OffersList
+            offers={offers}
+            className={ClassName.OFFERS_LIST}
+          />
+        </section>
+        <div className="cities__right-section">
+          <Map />
         </div>
-      </main>
-    </div>
+      </div>
+    );
+  }
+
+  return <NoOffers city={activeCity} />;
+};
+
+const Main = (props) => {
+  const {
+    activeCityId,
+    offersStatus,
+    offers,
+    sortType,
+    chageActiveCityId,
+    changeOffersSortType,
+  } = props;
+
+  const cityPath = `${AppPath.CITY}/:${IdName.CITY}?`;
+  const matchCityId = useRouteMatch(cityPath, IdName.CITY);
+  const pathCityId = getCityId(matchCityId);
+  const history = useHistory();
+
+  const activeCity = CITIES[activeCityId];
+  const pathCity = CITIES[pathCityId];
+
+  if (!pathCity || pathCityId === -1) {
+    history.push(AppPath.NOT_FOUND);
+  }
+
+  if ((pathCityId !== activeCityId) && pathCity) {
+    chageActiveCityId(pathCityId);
+  }
+
+  const loader = offersStatus === LoadStatus.LOADING ?
+    <Message title={LOADING_MESSAGE} /> :
+    null;
+
+  const offersContent = offersStatus === LoadStatus.SUCCESS ?
+    getOffersContent({offers, activeCity, sortType, changeOffersSortType}) :
+    null;
+
+
+  return (
+    <main
+      className={`page__main page__main--index ${
+        !offers.length ? ClassName.PAGE_EMPTY : ``
+      }`}
+    >
+      <h1 className="visually-hidden">Cities</h1>
+      <CitiesTabs
+        activeCityId={activeCityId}
+      />
+      <div className="cities">
+        <div
+          className={`cities__places-container container ${
+            !offers.length ? ClassName.CONTAINER_EMPTY : ``
+          }`}
+        >
+          {loader}
+          {offersContent}
+        </div>
+      </div>
+    </main>
   );
 };
 
 Main.propTypes = {
-  activeCityId: TCityId,
+  offersStatus: Type.OFFERS_STATUS,
+  offers: Type.LIST_OFFERS,
+  activeCityId: Type.ID,
+  sortType: Type.SORT,
+  chageActiveCityId: Type.FUNCTION,
+  changeOffersSortType: Type.FUNCTION,
 };
 
-export default Main;
+const mapStateToProps = (state) => ({
+  offersStatus: OffersSelector.getOffersStatus(state),
+  offers: OffersSelector.getSortedCityOffers(state),
+  activeCityId: OffersSelector.getActiveCityId(state),
+  sortType: OffersSelector.getOffersSortType(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  chageActiveCityId: (cityId) => {
+    dispatch(OffersAction.changeActiveCityId(cityId));
+  },
+  changeOffersSortType: (sortType) => {
+    dispatch(OffersAction.changeOffersSortType(sortType));
+  }
+});
+
+
+export {Main};
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
