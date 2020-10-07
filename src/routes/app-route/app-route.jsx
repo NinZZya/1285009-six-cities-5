@@ -34,10 +34,14 @@ const AppRoute = (props) => {
           <Login />
         </PrivateRoute>
         <Route exact path={offerPath} component={Offer} />
-        <Route exact path={AppPath.FAVORITES}>
+        <PrivateRoute
+          exact
+          path={AppPath.FAVORITES}
+          userStatus={userStatus}
+        >
           <Favorites />
           <Footer />
-        </Route>
+        </PrivateRoute>
         <Route exact path={AppPath.NOT_FOUND} component={PageNotFound} />
         <Redirect to={AppPath.NOT_FOUND} />
       </Switch>
