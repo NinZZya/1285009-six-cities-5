@@ -1,12 +1,20 @@
 import React from 'react';
+import * as Type from '../../types';
 
-const OfferHeader = () => {
+
+const OfferHeader = ({title, isFavorite}) => {
   return (
     <div className="property__name-wrapper">
       <h1 className="property__name">
-        Beautiful &amp; luxurious studio at great location
+        {title}
       </h1>
-      <button className="property__bookmark-button button" type="button">
+      <button
+        className={`button property__bookmark-button ${isFavorite ?
+          `property__bookmark-button--active` :
+          ``}`
+        }
+        type="button"
+      >
         <svg className="property__bookmark-icon" width="31" height="33">
           <use xlinkHref="#icon-bookmark"></use>
         </svg>
@@ -15,5 +23,11 @@ const OfferHeader = () => {
     </div>
   );
 };
+
+OfferHeader.propTypes = {
+  title: Type.OFFER_TITLE,
+  isFavorite: Type.OFFER_IS_FAVORITE,
+};
+
 
 export default OfferHeader;

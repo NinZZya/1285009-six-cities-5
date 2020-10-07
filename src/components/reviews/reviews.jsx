@@ -1,21 +1,38 @@
 import React from 'react';
 import Review from './components/review/review';
 import NewReview from './components/new-review/new-review';
+import * as Type from '../../types';
 
-const REVIEWS_COUNT = 1;
 
-const Reviews = () => {
+const renderCount = (count) => {
+  return (
+    <>
+      &middot; <span className="reviews__amount">{count}</span>
+    </>
+  );
+};
+
+const Reviews = ({reviews = []}) => {
+  const count = reviews.length;
+
   return (
     <section className="property__reviews reviews">
       <h2 className="reviews__title">
-        Reviews &middot; <span className="reviews__amount">{REVIEWS_COUNT}</span>
+        Reviews {count ? renderCount(count) : null}
       </h2>
       <ul className="reviews__list">
-        {new Array(REVIEWS_COUNT).fill(``).map((_, index) => <Review key={`review-${index}`} />)}
+        {reviews.map((review) => (
+          <Review key={`review-${review.id}`} review={review} />
+        ))}
       </ul>
       <NewReview />
     </section>
   );
 };
+
+Reviews.propTypes = {
+  reviews: Type.REVIEWS,
+};
+
 
 export default Reviews;
