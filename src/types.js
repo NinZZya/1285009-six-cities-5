@@ -6,6 +6,7 @@ import {
   arrayOf,
   string,
   bool,
+  object,
 } from 'prop-types';
 import {SortType, LoadStatus, UserStatus} from './const';
 
@@ -33,6 +34,9 @@ const STAR_TITLES = [
 
 
 export const ID = number;
+export const PATH = string;
+export const EXACT = bool;
+export const CHILDREN = object;
 export const FUNCTION = func;
 export const CLASS_NAME = string;
 export const OFFERS_STATUS = oneOf(LIST_LOAD_STATUS);

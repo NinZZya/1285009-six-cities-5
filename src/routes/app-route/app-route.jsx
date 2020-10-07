@@ -7,10 +7,13 @@ import Login from '../../pages/login/login';
 import Offer from '../../pages/offer/offer';
 import Favorites from '../../pages/favorites/favorites';
 import PageNotFound from '../../pages/page-not-found/page-not-found';
+import PrivateRoute from '../private-route/private-route';
+import * as Type from '../../types';
 import {AppPath, IdName} from '../../const';
 
 
-const AppRoute = () => {
+const AppRoute = (props) => {
+  const {userStatus, user} = props;
   const mainPath = [
     AppPath.ROOT,
     `${AppPath.CITY}/:${IdName.CITY}?`,
@@ -20,10 +23,16 @@ const AppRoute = () => {
 
   return (
     <>
-      <Header />
+      <Header userStatus={userStatus} user={user} />
       <Switch>
         <Route exact path={mainPath} component={Main} />
-        <Route exact path={AppPath.LOGIN} component={Login} />
+        <PrivateRoute
+          exact
+          path={AppPath.LOGIN}
+          userStatus={userStatus}
+        >
+          <Login />
+        </PrivateRoute>
         <Route exact path={offerPath} component={Offer} />
         <Route exact path={AppPath.FAVORITES}>
           <Favorites />
@@ -34,6 +43,11 @@ const AppRoute = () => {
       </Switch>
     </>
   );
+};
+
+AppRoute.propTypes = {
+  userStatus: Type.USER_STATUS,
+  user: Type.USER,
 };
 
 

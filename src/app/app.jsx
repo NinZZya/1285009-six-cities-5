@@ -1,6 +1,9 @@
 import React from 'react';
 import {useLocation} from 'react-router-dom';
+import {connect} from 'react-redux';
 import AppRoute from '../routes/app-route/app-route';
+import {getUser, getUserStatus} from '../redux/user/user-selectors';
+import * as Type from '../types';
 import {AppPath} from '../const';
 
 
@@ -19,7 +22,8 @@ const getPage = (path) => {
   return pathArgs.length === 1 ? `/` : `/${pathArgs[1]}`;
 };
 
-const App = () => {
+const App = (props) => {
+  const {userStatus, user} = props;
   const location = useLocation();
   const page = getPage(location.pathname);
 
@@ -27,10 +31,23 @@ const App = () => {
     <div
       className={`page ${PathToClassName[page]}`}
     >
-      <AppRoute />
+      <AppRoute
+        userStatus={userStatus}
+        user={user}
+      />
     </div>
   );
 };
 
+App.propTypes = {
+  userStatus: Type.USER_STATUS,
+  user: Type.USER,
+};
 
-export default App;
+const mapStateToProps = (state) => ({
+  userStatus: getUserStatus(state),
+  user: getUser(state),
+});
+
+export {App};
+export default connect(mapStateToProps)(App);
