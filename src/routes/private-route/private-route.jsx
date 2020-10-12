@@ -21,7 +21,7 @@ const PrivateRoute = (props) => {
       exact={exact}
     >
       {Children.map(children, ((child) => child))}
-    </ Route>
+    </Route>
   );
 };
 
