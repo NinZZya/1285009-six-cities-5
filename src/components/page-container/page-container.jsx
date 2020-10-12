@@ -20,7 +20,7 @@ const PageContainer = (props) => {
 };
 
 PageContainer.propTypes = {
-  type: Type.PATH,
+  type: Type.TYPE_NAME,
   children: Type.CHILDREN,
   empty: Type.EXACT,
 };
