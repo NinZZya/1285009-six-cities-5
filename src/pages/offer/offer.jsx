@@ -1,6 +1,8 @@
 import React from 'react';
 import {useRouteMatch, useHistory} from 'react-router-dom';
 import {connect} from 'react-redux';
+import PageContainer from '../../components/page-container/page-container';
+import Container from '../../components/container/container';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferMark from '../../components/offer-mark/offer-mark';
 import OfferHeader from '../../components/offer-header/offer-header';
@@ -19,6 +21,10 @@ import {AppPath, IdName, LoadStatus, LOADING_MESSAGE} from '../../const';
 
 
 const LIST_CLASS_NAME = `near-places__list`;
+const TypeContainer = {
+  PAGE: `property`,
+  PROPERTY: `property__container`,
+};
 
 const getOfferId = (match) => {
   const offerId = Number(match.params[IdName.OFFER]);
@@ -44,30 +50,32 @@ const getOfferContent = (offer, offers) => {
   } = offer;
 
   return (
-    <section className="property">
-      <OfferGallery images={images} />
-      <div className="property__container container">
-        <div className="property__wrapper">
-          {isPremium ? <OfferMark /> : null}
-          <OfferHeader title={title} isFavorite={isFavorite} />
-          <OfferRaiting rate={rate} />
-          <OfferFeatures type={type} bedroomsCount={bedroomsCount} adultsCount={adultsCount} />
-          <OfferPrice price={price} />
-          {features.length ? <OfferInside features={features} /> : null}
-          <OfferHost host={host} description={description} />
-          <Reviews reviews={reviews} />
+    <PageContainer type={TypeContainer.PAGE}>
+      <section className="property">
+        <OfferGallery images={images} />
+        <Container type={TypeContainer.PROPERTY}>
+          <div className="property__wrapper">
+            {isPremium ? <OfferMark /> : null}
+            <OfferHeader title={title} isFavorite={isFavorite} />
+            <OfferRaiting rate={rate} />
+            <OfferFeatures type={type} bedroomsCount={bedroomsCount} adultsCount={adultsCount} />
+            <OfferPrice price={price} />
+            {features.length ? <OfferInside features={features} /> : null}
+            <OfferHost host={host} description={description} />
+            <Reviews reviews={reviews} />
+          </div>
+        </Container>
+        <Map />
+        <div className="container">
+          <section className="near-places places">
+            <h2 className="near-places__title">
+              Other places in the neighbourhood
+            </h2>
+            <OffersList className={LIST_CLASS_NAME} offers={offers.slice(0, 3)} />
+          </section>
         </div>
-      </div>
-      <Map />
-      <div className="container">
-        <section className="near-places places">
-          <h2 className="near-places__title">
-            Other places in the neighbourhood
-          </h2>
-          <OffersList className={LIST_CLASS_NAME} offers={offers.slice(0, 3)} />
-        </section>
-      </div>
-    </section>
+      </section>
+    </PageContainer>
   );
 };
 

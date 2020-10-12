@@ -34,9 +34,9 @@ const STAR_TITLES = [
   `terribly`,
 ];
 
-
 export const ID = number;
 export const PATH = string;
+export const FLAG = bool;
 export const EXACT = bool;
 export const CHILDREN = oneOfType([array, object]).isRequired;
 export const FUNCTION = func;

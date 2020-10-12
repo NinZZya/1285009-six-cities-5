@@ -52,3 +52,5 @@ export const UserStatus = {
   AUTH: `AUTH`,
   AUTH_ERROR: `AUTH_ERROR`,
 };
+
+export const EMPTY_POSTFIX = `-empty`;

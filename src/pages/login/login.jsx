@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import PageContainer from '../../components/page-container/page-container';
+import Container from '../../components/container/container';
 import LoginForm from '../../components/login-form/login-form';
 import {authUserAsync} from '../../redux/user/user-operations';
 import * as UserAction from '../../redux/user/user-actions';
@@ -9,6 +11,11 @@ import * as UserSelector from '../../redux/user/user-selectors';
 import * as Type from '../../types';
 import {AppPath, CITIES, UserStatus} from '../../const';
 
+
+const ContainerType = {
+  PAGE: `login`,
+  LOGIN: `page__login`,
+};
 
 const Login = (props) => {
   const {
@@ -22,8 +29,8 @@ const Login = (props) => {
   const cityPath = `${AppPath.CITY}/${activeCityId}`;
 
   return (
-    <main className="page__main page__main--login">
-      <div className="page__login-container container">
+    <PageContainer type={ContainerType.PAGE}>
+      <Container type={ContainerType.LOGIN}>
         <section className="login">
           <h1 className="login__title">Sign in</h1>
           <LoginForm
@@ -42,8 +49,8 @@ const Login = (props) => {
             </Link>
           </div>
         </section>
-      </div>
-    </main>
+      </Container>
+    </PageContainer>
   );
 };
 

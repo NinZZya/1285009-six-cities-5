@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {useRouteMatch, useHistory} from 'react-router-dom';
+import PageContainer from '../../components/page-container/page-container';
+import Container from '../../components/container/container';
 import CitiesTabs from '../../components/cities-tabs/cities-tabs';
 import Sort from '../../components/sort/sort';
 import OffersList from '../../components/offers-list/offers-list';
@@ -22,6 +24,11 @@ import {
 
 
 const SORTS = Object.values(SortType);
+const ContainerType = {
+  PAGE: `index`,
+  CITIES: `cities__places`,
+};
+
 
 const getCityId = (match) => {
   if (match) {
@@ -33,8 +40,6 @@ const getCityId = (match) => {
 };
 
 const ClassName = {
-  PAGE_EMPTY: `page__main--index-empty`,
-  CONTAINER_EMPTY: `cities__places-container--empty`,
   OFFERS_LIST: `cities__places-list tabs__content`,
 };
 
@@ -48,7 +53,7 @@ const getOffersContent = (renderArgs) => {
 
   if (offers.length) {
     return (
-      <div className="cities__places-container container">
+      <Container type={ContainerType.CITIES}>
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
           <b className="places__found">
@@ -69,7 +74,7 @@ const getOffersContent = (renderArgs) => {
         <div className="cities__right-section">
           <Map />
         </div>
-      </div>
+      </Container>
     );
   }
 
@@ -110,28 +115,26 @@ const Main = (props) => {
     getOffersContent({offers, activeCity, sortType, changeOffersSortType}) :
     null;
 
-
+  const isEmpty = !offers.length;
   return (
-    <main
-      className={`page__main page__main--index ${
-        !offers.length ? ClassName.PAGE_EMPTY : ``
-      }`}
+    <PageContainer
+      type={ContainerType.PAGE}
+      empty={isEmpty}
     >
       <h1 className="visually-hidden">Cities</h1>
       <CitiesTabs
         activeCityId={activeCityId}
       />
       <div className="cities">
-        <div
-          className={`cities__places-container container ${
-            !offers.length ? ClassName.CONTAINER_EMPTY : ``
-          }`}
+        <Container
+          type={ContainerType.CITIES}
+          empty={isEmpty}
         >
           {loader}
           {offersContent}
-        </div>
+        </Container>
       </div>
-    </main>
+    </PageContainer>
   );
 };
 
