@@ -1,5 +1,4 @@
 import React, {Children} from 'react';
-import {string} from 'prop-types';
 import * as Type from '../../types';
 import {EMPTY_POSTFIX} from '../../const';
 
@@ -22,7 +21,7 @@ const Container = (props) => {
 };
 
 Container.propTypes = {
-  type: string,
+  type: Type.TYPE_NAME,
   children: Type.CHILDREN,
   empty: Type.FLAG,
 };
