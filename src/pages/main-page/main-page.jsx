@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {useRouteMatch, useHistory} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import PageContainer from '../../components/page-container/page-container';
 import Container from '../../components/container/container';
 import CitiesTabs from '../../components/cities-tabs/cities-tabs';
@@ -32,7 +32,7 @@ const ContainerType = {
 };
 
 const getCityId = (match) => {
-  if (match) {
+  if (match.path !== AppPath.ROOT) {
     const cityId = Number(match.params[IdName.CITY]);
     return cityId && !isNaN(cityId) ? cityId : -1;
   }
@@ -98,18 +98,16 @@ const MainPage = (props) => {
     sortType,
     chageActiveCityId,
     changeOffersSortType,
+    match,
   } = props;
 
-  const cityPath = `${AppPath.CITY}/:${IdName.CITY}?`;
-  const matchCityId = useRouteMatch(cityPath, IdName.CITY);
-  const pathCityId = getCityId(matchCityId);
-  const history = useHistory();
+  const pathCityId = getCityId(match);
 
   const activeCity = CITIES[activeCityId];
   const pathCity = CITIES[pathCityId];
 
   if (!pathCity || pathCityId === -1) {
-    history.push(AppPath.NOT_FOUND);
+    return <Redirect to ={AppPath.NOT_FOUND} />;
   }
 
   if ((pathCityId !== activeCityId) && pathCity) {
@@ -162,6 +160,7 @@ MainPage.propTypes = {
   sortType: Type.SORT,
   chageActiveCityId: Type.FUNCTION,
   changeOffersSortType: Type.FUNCTION,
+  match: Type.MATCH,
 };
 
 const mapStateToProps = (state) => ({

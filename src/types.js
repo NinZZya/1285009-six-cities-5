@@ -54,6 +54,14 @@ export const MESSAGE_TITLE = string;
 export const MESSAGE_TEXT = string;
 export const COORDS = arrayOf(number);
 
+export const MATCH = shape({
+  path: string,
+  params: shape({
+    cityId: string,
+    offerId: string,
+  }),
+});
+
 
 // City types
 

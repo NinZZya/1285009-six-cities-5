@@ -1,5 +1,5 @@
 import React from 'react';
-import {Redirect, useRouteMatch} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import PageContainer from '../../components/page-container/page-container';
 import Container from '../../components/container/container';
@@ -122,11 +122,10 @@ const OfferPage = (props) => {
   const {
     offersStatus, getOffer, getNearOffers,
     reviews, reviewsStatus,
+    match,
   } = props;
 
-  const offerPath = `${AppPath.OFFER}/:${IdName.OFFER}`;
-  const matchOfferId = useRouteMatch(offerPath, IdName.OFFER);
-  const activeOfferId = getOfferId(matchOfferId);
+  const activeOfferId = getOfferId(match);
 
 
   const offer = getOffer(activeOfferId);
@@ -156,6 +155,7 @@ OfferPage.propTypes = {
   getOffer: Type.FUNCTION,
   reviewsStatus: Type.REVIEWS_STATUS,
   reviews: Type.REVIEWS,
+  match: Type.MATCH,
 };
 
 
