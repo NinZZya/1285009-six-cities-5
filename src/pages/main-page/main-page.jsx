@@ -9,6 +9,7 @@ import OffersList, {OffersListType} from '../../components/offers-list/offers-li
 import NoOffers from '../../components/no-offers/no-offers';
 import Map from '../../components/map/map';
 import Message from '../../components/message/message';
+import withActiveId from '../../hocs/with-active-id/with-active-id';
 import * as OffersSelector from '../../redux/offers/offers-selectors';
 import * as OffersAction from '../../redux/offers/offers-actions';
 import * as Type from '../../types';
@@ -41,6 +42,8 @@ const getCityId = (match) => {
 
 const getOffersContent = (renderArgs) => {
   const {
+    activeId,
+    onActiveIdChange,
     offers,
     activeCity,
     sortType,
@@ -66,6 +69,7 @@ const getOffersContent = (renderArgs) => {
           <OffersList
             type={OffersListType.MAIN}
             offers={offers}
+            onOfferHover={onActiveIdChange}
           />
         </section>
         <div className="cities__right-section">
@@ -73,6 +77,7 @@ const getOffersContent = (renderArgs) => {
             <Map
               center={activeCity}
               pins={offers}
+              activeId={activeId}
             />
           </section>
         </div>
@@ -85,6 +90,8 @@ const getOffersContent = (renderArgs) => {
 
 const MainPage = (props) => {
   const {
+    activeId,
+    onActiveIdChange,
     activeCityId,
     offersStatus,
     offers,
@@ -114,7 +121,13 @@ const MainPage = (props) => {
     null;
 
   const offersContent = offersStatus === LoadStatus.SUCCESS ?
-    getOffersContent({offers, activeCity, sortType, changeOffersSortType}) :
+    getOffersContent(
+        {
+          offers, activeCity,
+          sortType, changeOffersSortType,
+          activeId, onActiveIdChange,
+        }
+    ) :
     null;
 
   const isEmpty = !offers.length;
@@ -141,6 +154,8 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
+  activeId: Type.ID,
+  onActiveIdChange: Type.FUNCTION,
   offersStatus: Type.OFFERS_STATUS,
   offers: Type.LIST_OFFERS,
   activeCityId: Type.ID,
@@ -167,4 +182,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 
 export {MainPage};
-export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
+export default withActiveId(
+    connect(mapStateToProps, mapDispatchToProps)(MainPage)
+);
