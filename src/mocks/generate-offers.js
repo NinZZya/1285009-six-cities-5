@@ -46,9 +46,42 @@ const USERS = [
   {id: 4, name: `Ann`, avatar: `/img/avatar.svg`},
 ];
 
+const OFFERS_COORDS = {
+  1: [
+    [48.8588336, 2.2457026],
+    [48.884716, 2.339014],
+    [48.8727168, 2.3359014],
+    [48.8560346, 2.3181479],
+    [48.8553232, 2.3522368],
+    [48.8728688, 2.3559089],
+    [48.8628688, 2.3359089],
+  ],
+  2: [
+    [50.9422757, 6.9500156],
+    [50.947828, 6.9184057],
+    [50.9435302, 6.9600436],
+    [50.9468833, 6.9609954],
+    [50.9396526, 6.941616],
+    [50.9386526, 6.917616],
+  ],
+  3: [
+    [50.8488746, 4.3506942],
+    [50.8559434, 4.3672311],
+    [50.8513309, 4.3515856],
+    [50.8414535, 4.3618321],
+    [50.8434535, 4.3518321],
+  ],
+  4: [
+    [52.3909553943508, 4.85309666406198],
+    [52.369553943508, 4.85309666406198],
+    [52.3909553943508, 4.929309666406198],
+    [52.3809553943508, 4.939309666406198],
+  ],
+};
+
 const TYPES = [`Apartment`, `Private room`];
 
-const cities = Object.values(CITIES).slice(0, length - 2);
+const cities = Object.keys(CITIES).slice(0, length - 2);
 
 let reviewId = 0;
 
@@ -74,30 +107,38 @@ const generateReview = () => {
 const generateReviews = (count) => new Array(count).fill(``).map(generateReview);
 
 
-const generateOffer = (_, id) => {
-  const host = getRandomArrValue(USERS);
+const generateOffer = (cityId, id) => {
+  const coords = getRandomArr(OFFERS_COORDS[cityId]);
 
-  return {
-    id,
-    city: getRandomArrValue(cities),
-    title: getRandomArrValue(TITLES),
-    type: getRandomArrValue(TYPES),
-    price: getRandomInt(20, 500),
-    rate: getRandomInt(0, 5),
-    bedroomsCount: getRandomInt(1, 3),
-    adultsCount: getRandomInt(1, 4),
-    features: getRandomArr(FEATURES, getRandomInt(0, FEATURES.length)),
-    host: {
-      name: host.name,
-      avatar: host.avatar,
-      isPro: getRandomBool(),
-    },
-    images: getRandomArr(IMAGES, getRandomInt(1, IMAGES.length)),
-    description: getRandomArr(DESCRIPTIONS, getRandomInt(1, DESCRIPTIONS.length)).join(`/n`),
-    reviews: generateReviews(getRandomInt(1, 5)),
-    isPremium: getRandomBool(),
-    isFavorite: getRandomBool(),
-  };
+  return coords.map((coord, index) => {
+    const host = getRandomArrValue(USERS);
+
+    return {
+      id: id * 100 + index,
+      city: CITIES[cityId],
+      title: getRandomArrValue(TITLES),
+      type: getRandomArrValue(TYPES),
+      price: getRandomInt(20, 500),
+      rate: getRandomInt(0, 5),
+      bedroomsCount: getRandomInt(1, 3),
+      adultsCount: getRandomInt(1, 4),
+      features: getRandomArr(FEATURES, getRandomInt(0, FEATURES.length)),
+      host: {
+        name: host.name,
+        avatar: host.avatar,
+        isPro: getRandomBool(),
+      },
+      images: getRandomArr(IMAGES, getRandomInt(1, IMAGES.length)),
+      description: getRandomArr(DESCRIPTIONS, getRandomInt(1, DESCRIPTIONS.length)).join(`/n`),
+      reviews: generateReviews(getRandomInt(1, 5)),
+      isPremium: getRandomBool(),
+      isFavorite: getRandomBool(),
+      coords: {
+        latitude: coord[0],
+        longitude: coord[1],
+      },
+    };
+  });
 };
 
-export default (count) => new Array(count).fill(``).map(generateOffer);
+export default () => cities.map(generateOffer).reduce((offers, item) => [...offers, ...item], []);

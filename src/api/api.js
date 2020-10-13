@@ -2,9 +2,9 @@ import users from '../mocks/users';
 import generateOffers from '../mocks/generate-offers';
 
 const DELAY_MS = 500;
-const OFFERS_COUNT = 20;
 
-const OFFERS = generateOffers(OFFERS_COUNT);
+const OFFERS = generateOffers();
+console.log(OFFERS)
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
