@@ -17,7 +17,7 @@ const ContainerType = {
   LOGIN: `page__login`,
 };
 
-const Login = (props) => {
+const LoginPage = (props) => {
   const {
     activeCityId,
     userStatus,
@@ -54,7 +54,7 @@ const Login = (props) => {
   );
 };
 
-Login.propTypes = {
+LoginPage.propTypes = {
   activeCityId: Type.ID,
   userStatus: Type.USER_STATUS,
   error: Type.USER_ERROR,
@@ -78,5 +78,5 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 
-export {Login};
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export {LoginPage};
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

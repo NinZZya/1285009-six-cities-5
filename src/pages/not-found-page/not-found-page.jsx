@@ -10,7 +10,7 @@ const ContainerType = {
   NOT_FOUND: `cities__places`,
 };
 
-const PageNotFound = () => {
+const NotFoundPage = () => {
   return (
     <PageContainer empty type={ContainerType.PAGE}>
       <div className="cities">
@@ -33,4 +33,4 @@ const PageNotFound = () => {
 };
 
 
-export default PageNotFound;
+export default NotFoundPage;

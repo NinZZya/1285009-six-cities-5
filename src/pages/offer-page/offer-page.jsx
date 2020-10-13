@@ -5,25 +5,40 @@ import PageContainer from '../../components/page-container/page-container';
 import Container from '../../components/container/container';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferMark from '../../components/offer-mark/offer-mark';
-import OfferHeader from '../../components/offer-header/offer-header';
-import OfferRaiting from '../../components/offer-raiting/offer-raiting';
+import BookmarkButton, {BookmarkButtonType} from '../../components/bookmark-button/bookmark-button';
 import OfferFeatures from '../../components/offer-features/offer-features';
+import OfferFeature from '../../components/offer-features/components/offer-feature/offer-feature';
 import OfferPrice from '../../components/offer-price/offer-price';
 import OfferInside from '../../components/offer-inside/offer-inside';
 import OfferHost from '../../components/offer-host/offer-host';
 import Reviews from '../../components/reviews/reviews';
 import Map from '../../components/map/map';
 import Message from '../../components/message/message';
-import OffersList from '../../components/offers-list/offers-list';
+import OffersList, {OffersListType} from '../../components/offers-list/offers-list';
 import * as OffersSelector from '../../redux/offers/offers-selectors';
 import * as Type from '../../types';
-import {AppPath, IdName, LoadStatus, LOADING_MESSAGE, OffersListType} from '../../const';
+import {AppPath, IdName, LoadStatus, LOADING_MESSAGE} from '../../const';
+import RaitingStars from '../../components/raiting-stars/raiting-stars';
 
 
-const TypeContainer = {
+const ContainerType = {
   PAGE: `property`,
-  PROPERTY: `property__container`,
+  GALLERY: `property__gallery`,
 };
+
+const FetureType = {
+  ENTIRE: `entire`,
+  BEDROOMS: `bedrooms`,
+  ADULTS: `adults`,
+};
+
+const TypeName = {
+  OFFER_PRICE: `property`,
+  RAITING_STARS: `property__stars`,
+  MARK: `property`,
+};
+
+const OFFER_CONTAINER_CLASS_NAME = `property__container`;
 
 const getOfferId = (match) => {
   const offerId = Number(match.params[IdName.OFFER]);
@@ -49,22 +64,37 @@ const getOfferContent = (offer, offers) => {
   } = offer;
 
   return (
-    <PageContainer type={TypeContainer.PAGE}>
+    <>
       <section className="property">
-        <OfferGallery images={images} />
-        <Container type={TypeContainer.PROPERTY}>
+        <Container type={ContainerType.GALLERYx}>
+          <OfferGallery images={images} />
+        </Container>
+        <Container className={OFFER_CONTAINER_CLASS_NAME}>
           <div className="property__wrapper">
-            {isPremium && <OfferMark />}
-            <OfferHeader title={title} isFavorite={isFavorite} />
-            <OfferRaiting rate={rate} />
-            <OfferFeatures type={type} bedroomsCount={bedroomsCount} adultsCount={adultsCount} />
-            <OfferPrice price={price} />
+            {isPremium && <OfferMark type={TypeName.MARK} />}
+            <div className="property__name-wrapper">
+              <h1 className="property__name">
+                {title}
+              </h1>
+              <BookmarkButton type={BookmarkButtonType.OFFER} mark={isFavorite} />
+            </div>
+            <div className="property__rating rating">
+              <RaitingStars type={TypeName.RAITING_STARS} rate={rate} />
+              <span className="property__rating-value rating__value">{rate}</span>
+            </div>
+            <OfferFeatures>
+              <OfferFeature type={FetureType.ENTIRE} value={type} />
+              <OfferFeature type={FetureType.BEDROOMS} value={`${bedroomsCount} Bedrooms`} />
+              <OfferFeature type={FetureType.ADULTS} value={`Max ${adultsCount} adults`} />
+            </OfferFeatures>
+            <OfferPrice type={TypeName.OFFER_PRICE} price={price} />
             {features.length && <OfferInside features={features} />}
             <OfferHost host={host} description={description} />
             <Reviews reviews={reviews} />
           </div>
         </Container>
         <Map />
+      </section>
         <Container>
           <section className="near-places places">
             <h2 className="near-places__title">
@@ -73,12 +103,12 @@ const getOfferContent = (offer, offers) => {
             <OffersList type={OffersListType.NEAR} offers={offers.slice(0, 3)} />
           </section>
         </Container>
-      </section>
-    </PageContainer>
+
+    </>
   );
 };
 
-const Offer = (props) => {
+const OfferPage = (props) => {
   const {offersStatus, offers, getOffer} = props;
 
   const offerPath = `${AppPath.OFFER}/:${IdName.OFFER}`;
@@ -101,14 +131,14 @@ const Offer = (props) => {
     null;
 
   return (
-    <main className="page__main page__main--property" key={activeOfferId}>
+    <PageContainer type={ContainerType.PAGE}>
       {loader}
       {offerContent}
-    </main>
+    </PageContainer>
   );
 };
 
-Offer.propTypes = {
+OfferPage.propTypes = {
   offersStatus: Type.OFFERS_STATUS,
   offers: Type.LIST_OFFERS,
   getOffer: Type.FUNCTION,
@@ -122,5 +152,5 @@ const mapStateToProps = (state) => ({
 });
 
 
-export {Offer};
-export default connect(mapStateToProps)(Offer);
+export {OfferPage};
+export default connect(mapStateToProps)(OfferPage);

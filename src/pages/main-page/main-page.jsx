@@ -5,7 +5,7 @@ import PageContainer from '../../components/page-container/page-container';
 import Container from '../../components/container/container';
 import CitiesTabs from '../../components/cities-tabs/cities-tabs';
 import Sort from '../../components/sort/sort';
-import OffersList from '../../components/offers-list/offers-list';
+import OffersList, {OffersListType} from '../../components/offers-list/offers-list';
 import NoOffers from '../../components/no-offers/no-offers';
 import Map from '../../components/map/map';
 import Message from '../../components/message/message';
@@ -15,7 +15,6 @@ import * as Type from '../../types';
 import {
   CITIES,
   SortType,
-  OffersListType,
   AppPath,
   IdName,
   LoadStatus,
@@ -78,7 +77,7 @@ const getOffersContent = (renderArgs) => {
   return <NoOffers city={activeCity} />;
 };
 
-const Main = (props) => {
+const MainPage = (props) => {
   const {
     activeCityId,
     offersStatus,
@@ -135,7 +134,7 @@ const Main = (props) => {
   );
 };
 
-Main.propTypes = {
+MainPage.propTypes = {
   offersStatus: Type.OFFERS_STATUS,
   offers: Type.LIST_OFFERS,
   activeCityId: Type.ID,
@@ -161,5 +160,5 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 
-export {Main};
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export {MainPage};
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

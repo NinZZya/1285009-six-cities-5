@@ -15,7 +15,7 @@ const ContainerType = {
   FAVORITES: `page__favorites`,
 };
 
-const Favorites = (props) => {
+const FavoritesPage = (props) => {
   const {favorites, offersStatus, activeCityId} = props;
   const citiesCount = Object.keys(favorites).length;
 
@@ -47,7 +47,7 @@ const Favorites = (props) => {
 };
 
 
-Favorites.propTypes = {
+FavoritesPage.propTypes = {
   offersStatus: Type.OFFERS_STATUS,
   favorites: Type.FAVORITES_OFFERS,
   activeCityId: Type.ID,
@@ -60,5 +60,5 @@ const mapStateToProps = (state) => ({
 });
 
 
-export {Favorites};
-export default connect(mapStateToProps)(Favorites);
+export {FavoritesPage};
+export default connect(mapStateToProps)(FavoritesPage);
