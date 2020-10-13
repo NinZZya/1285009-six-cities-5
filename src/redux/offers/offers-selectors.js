@@ -5,6 +5,7 @@ import {SortOffers} from '../../utils/utils';
 
 const OFFERS_SPACE = NameSpace.OFFERS;
 
+const getId = (_, id) => id;
 
 export const getOffersStatus = (state) => state[OFFERS_SPACE].status;
 
@@ -42,4 +43,10 @@ export const getFavoritesOffers = createSelector(
         return favorites;
       }, {});
     }
+);
+
+export const getNearOffers = createSelector(
+    getId,
+    getOffers,
+    (id, offers) => offers.filter((offer) => offer.city.id === id)
 );
