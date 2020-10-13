@@ -93,7 +93,9 @@ const getOfferContent = (offer, offers) => {
             <Reviews reviews={reviews} />
           </div>
         </Container>
-        <Map />
+        <section className="property__map map">
+          <Map />
+        </section>
       </section>
         <Container>
           <section className="near-places places">

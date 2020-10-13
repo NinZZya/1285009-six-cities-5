@@ -68,7 +68,9 @@ const getOffersContent = (renderArgs) => {
           />
         </section>
         <div className="cities__right-section">
-          <Map />
+          <section className="cities__map  map">
+            <Map />
+          </section>
         </div>
       </Container>
     );
