@@ -12,6 +12,7 @@ import {
 } from 'prop-types';
 import {SortType, LoadStatus, UserStatus} from './const';
 
+// Data for types
 
 const LIST_SORTS = Object.values(SortType);
 const LIST_LOAD_STATUS = Object.values(LoadStatus);
@@ -34,6 +35,9 @@ const STAR_TITLES = [
   `terribly`,
 ];
 
+
+// General types
+
 export const ID = number;
 export const PATH = string;
 export const TYPE_NAME = string;
@@ -43,19 +47,25 @@ export const CHILDREN = oneOfType([array, object]).isRequired;
 export const FUNCTION = func;
 export const CLASS_NAME = string;
 export const OFFERS_STATUS = oneOf(LIST_LOAD_STATUS);
+export const REVIEWS_STATUS = oneOf(LIST_LOAD_STATUS);
 export const USER_STATUS = oneOf(LIST_USER_STATUS);
 export const USER_ERROR = string;
 export const MESSAGE_TITLE = string;
 export const MESSAGE_TEXT = string;
-export const CITY_NAME = oneOf(LIST_CITIES);
-
 export const COORDS = arrayOf(number);
 
+
+// City types
+
+export const CITY_NAME = oneOf(LIST_CITIES);
 export const CITY = shape({
   id: ID,
   name: CITY_NAME,
   coords: COORDS,
 });
+
+
+// Offer types
 
 export const STAR = shape({
   value: number,
@@ -125,7 +135,6 @@ export const OFFER = shape({
   host: OFFER_HOST,
   images: OFFER_IMAGES,
   description: OFFER_DESCRIPTION,
-  reviews: REVIEWS,
   isPremium: OFFER_IS_PREMIUM,
   isFavorite: OFFER_IS_FAVORITE,
   coords: COORDS,
@@ -136,6 +145,8 @@ export const FAVORITES_OFFERS = shape({
 });
 
 export const LIST_OFFERS = arrayOf(OFFER);
+
+// Map types
 
 export const MAP_CENTER = shape({
   coords: COORDS,

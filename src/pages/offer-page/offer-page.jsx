@@ -1,5 +1,5 @@
 import React from 'react';
-import {useRouteMatch, useHistory} from 'react-router-dom';
+import {Redirect, useRouteMatch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import PageContainer from '../../components/page-container/page-container';
 import Container from '../../components/container/container';
@@ -47,7 +47,7 @@ const getOfferId = (match) => {
   return !isNaN(offerId) ? offerId : -1;
 };
 
-const getOfferContent = (offer, getNearOffers) => {
+const getOfferContent = (offer, getNearOffers, reviews, reviewsStatus) => {
   const {
     id,
     images,
@@ -62,7 +62,6 @@ const getOfferContent = (offer, getNearOffers) => {
     price,
     host,
     description,
-    reviews,
   } = offer;
 
   // Near offers (NEAR_OFFERS_COUNT) + 1 (active offer)
@@ -95,7 +94,7 @@ const getOfferContent = (offer, getNearOffers) => {
             <OfferPrice type={TypeName.OFFER_PRICE} price={price} />
             {features.length && <OfferInside features={features} />}
             <OfferHost host={host} description={description} />
-            <Reviews reviews={reviews} />
+            <Reviews reviews={reviews} reviewsStatus={reviewsStatus} />
           </div>
         </Container>
         <section className="property__map map">
@@ -111,7 +110,7 @@ const getOfferContent = (offer, getNearOffers) => {
             <h2 className="near-places__title">
               Other places in the neighbourhood
             </h2>
-            <OffersList type={OffersListType.NEAR} offers={offers} />
+            <OffersList type={OffersListType.NEAR} offers={offers.slice(1, NEAR_OFFERS_COUNT + 1)} />
           </section>
         </Container>
 
@@ -120,25 +119,27 @@ const getOfferContent = (offer, getNearOffers) => {
 };
 
 const OfferPage = (props) => {
-  const {offersStatus, getOffer, getNearOffers} = props;
+  const {
+    offersStatus, getOffer, getNearOffers,
+    reviews, reviewsStatus,
+  } = props;
 
   const offerPath = `${AppPath.OFFER}/:${IdName.OFFER}`;
   const matchOfferId = useRouteMatch(offerPath, IdName.OFFER);
   const activeOfferId = getOfferId(matchOfferId);
-  const history = useHistory();
+
 
   const offer = getOffer(activeOfferId);
 
   if (activeOfferId === -1 || (!offer && offersStatus === LoadStatus.SUCCESS)) {
-    history.push(AppPath.NOT_FOUND);
+    return <Redirect to={AppPath.NOT_FOUND} />;
   }
 
   const loader = offersStatus === LoadStatus.LOADING ?
     <Message title={LOADING_MESSAGE} /> :
     null;
-
   const offerContent = offersStatus === LoadStatus.SUCCESS ?
-    getOfferContent(offer, getNearOffers) :
+    getOfferContent(offer, getNearOffers, reviews, reviewsStatus) :
     null;
 
   return (
@@ -153,6 +154,8 @@ OfferPage.propTypes = {
   offersStatus: Type.OFFERS_STATUS,
   getNearOffers: Type.FUNCTION,
   getOffer: Type.FUNCTION,
+  reviewsStatus: Type.REVIEWS_STATUS,
+  reviews: Type.REVIEWS,
 };
 
 
@@ -160,6 +163,8 @@ const mapStateToProps = (state) => ({
   offersStatus: OffersSelector.getOffersStatus(state),
   getNearOffers: (offerId) => OffersSelector.getNearOffers(state, offerId),
   getOffer: (offerId) => OffersSelector.getOffer(state, offerId),
+  reviewsStatus: OffersSelector.getReviewsStatus(state),
+  reviews: OffersSelector.getReviews(state),
 });
 
 
