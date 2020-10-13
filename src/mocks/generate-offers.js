@@ -133,10 +133,7 @@ const generateOffer = (cityId, id) => {
       reviews: generateReviews(getRandomInt(1, 5)),
       isPremium: getRandomBool(),
       isFavorite: getRandomBool(),
-      coords: {
-        latitude: coord[0],
-        longitude: coord[1],
-      },
+      coords: coord,
     };
   });
 };

@@ -48,6 +48,7 @@ const getOffersContent = (renderArgs) => {
   } = renderArgs;
 
   if (offers.length) {
+
     return (
       <Container type={ContainerType.CITIES}>
         <section className="cities__places places">
@@ -69,7 +70,10 @@ const getOffersContent = (renderArgs) => {
         </section>
         <div className="cities__right-section">
           <section className="cities__map  map">
-            <Map />
+            <Map
+              center={activeCity}
+              pins={offers}
+            />
           </section>
         </div>
       </Container>

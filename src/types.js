@@ -49,9 +49,12 @@ export const MESSAGE_TITLE = string;
 export const MESSAGE_TEXT = string;
 export const CITY_NAME = oneOf(LIST_CITIES);
 
+export const COORDS = arrayOf(number);
+
 export const CITY = shape({
   id: ID,
   name: CITY_NAME,
+  coords: COORDS,
 });
 
 export const STAR = shape({
@@ -125,6 +128,7 @@ export const OFFER = shape({
   reviews: REVIEWS,
   isPremium: OFFER_IS_PREMIUM,
   isFavorite: OFFER_IS_FAVORITE,
+  coords: COORDS,
 });
 
 export const FAVORITES_OFFERS = shape({
@@ -132,3 +136,9 @@ export const FAVORITES_OFFERS = shape({
 });
 
 export const LIST_OFFERS = arrayOf(OFFER);
+
+export const MAP_CENTER = shape({
+  coords: COORDS,
+});
+
+export const MAP_PINS = LIST_OFFERS;
