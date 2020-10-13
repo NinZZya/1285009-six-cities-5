@@ -15,6 +15,7 @@ const getErrorContent = (error) => {
     </p>
   );
 };
+
 const LoginForm = (props) => {
   const {
     onAuth,
