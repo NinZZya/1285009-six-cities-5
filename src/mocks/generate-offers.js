@@ -83,30 +83,6 @@ const TYPES = [`Apartment`, `Private room`];
 
 const cities = Object.keys(CITIES).slice(0, length - 2);
 
-let reviewId = 0;
-
-const generateDate = () => {
-  const year = getRandomInt(2018, 2020);
-  const month = String(getRandomInt(1, 12)).padStart(2, `0`);
-  const day = String(getRandomInt(1, 28)).padStart(2, `0`);
-  return `${year}-${month}-${day}`;
-};
-
-const generateReview = () => {
-  const user = getRandomArrValue(USERS);
-
-  return {
-    id: reviewId++,
-    user,
-    date: generateDate(),
-    rate: getRandomInt(0, 5),
-    text: getRandomArr(DESCRIPTIONS, getRandomInt(1, DESCRIPTIONS.length)).join(`/n`),
-  };
-};
-
-const generateReviews = (count) => new Array(count).fill(``).map(generateReview);
-
-
 const generateOffer = (cityId, id) => {
   const coords = getRandomArr(OFFERS_COORDS[cityId]);
 
@@ -130,7 +106,6 @@ const generateOffer = (cityId, id) => {
       },
       images: getRandomArr(IMAGES, getRandomInt(1, IMAGES.length)),
       description: getRandomArr(DESCRIPTIONS, getRandomInt(1, DESCRIPTIONS.length)).join(`/n`),
-      reviews: generateReviews(getRandomInt(1, 5)),
       isPremium: getRandomBool(),
       isFavorite: getRandomBool(),
       coords: coord,

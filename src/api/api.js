@@ -1,9 +1,11 @@
 import users from '../mocks/users';
 import generateOffers from '../mocks/generate-offers';
+import generateReviews from '../mocks/generate-reviews';
 
 const DELAY_MS = 500;
 
-const OFFERS = generateOffers();
+const mockOffers = generateOffers();
+const mockReviews = generateReviews(mockOffers);
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
@@ -32,7 +34,12 @@ export default class Api {
 
   static getOffers() {
     return delay(DELAY_MS)
-      .then(() => OFFERS);
+      .then(() => mockOffers);
+  }
+
+  static getReviews(id) {
+    return delay(DELAY_MS)
+      .then(() => mockReviews[id]);
   }
 
   static adaptOffersToClient(offers) {
