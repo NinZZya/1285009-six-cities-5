@@ -26,3 +26,20 @@ export const getSortedCityOffers = createSelector(
       return SortOffers[sortType](cityOffers);
     }
 );
+
+export const getFavoritesOffers = createSelector(
+    getOffers,
+    (offers) => {
+      return offers.reduce((favorites, offer) => {
+        if (offer.isFavorite) {
+          if (favorites[offer.city.name]) {
+            favorites[offer.city.id].push(offer);
+          } else {
+            favorites[offer.city.id] = [offer];
+          }
+        }
+
+        return favorites;
+      }, {});
+    }
+);
