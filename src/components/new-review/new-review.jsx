@@ -1,6 +1,7 @@
 import React from 'react';
 import Star from './components/star/star';
-import {STARS} from '../../../../const';
+import {STARS} from '../../const';
+
 
 const NewReview = () => {
   return (
@@ -19,5 +20,6 @@ const NewReview = () => {
     </form>
   );
 };
+
 
 export default NewReview;

@@ -14,7 +14,8 @@ export const loadOffersAsync = () => (dispatch, getOffers, api) => {
     });
 };
 
-export const loadOfferReviewsAsync = (id) => (dispatch, getComments, api) => {
+export const loadReviewsAsync = (id) => (dispatch, getComments, api) => {
+  dispatch(OffersAction.changeOfferReviewsStatus(LoadStatus.LOADING));
   return api.getReviews(id)
     .then((response) => {
       const reviews = response ? response : [];

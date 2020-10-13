@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Type from '../../../.././../../types';
+import * as Type from '../../../../types';
 
 const Star = ({star}) => {
   const {value, title} = star;
