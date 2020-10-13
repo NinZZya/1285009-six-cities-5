@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import PageContainer from '../../components/page-container/page-container';
+import PageContainer, {PageContainerType} from '../../components/page-container/page-container';
 import Container from '../../components/container/container';
 import FavoritesList from '../../components/favorites-list/favorites-list';
 import NoFavorites from '../../components/no-favorites/no-favorites';
@@ -10,10 +10,7 @@ import {LoadStatus, LOADING_MESSAGE} from '../../const';
 import * as Type from '../../types';
 
 
-const ContainerType = {
-  PAGE: `favorites`,
-  FAVORITES: `page__favorites`,
-};
+const FAVORITES_CONTAINER_TYPE = `page__favorites`;
 
 const Favorites = (props) => {
   const {favorites, offersStatus, activeCityId} = props;
@@ -31,8 +28,8 @@ const Favorites = (props) => {
     null;
 
   return (
-    <PageContainer type={ContainerType.PAGE}>
-      <Container type={ContainerType.FAVORITES}>
+    <PageContainer type={PageContainerType.FAVORITES}>
+      <Container type={FAVORITES_CONTAINER_TYPE}>
         <section className={`favorites ${isEmpty ? `favorites--empty` : ``}`}>
           <h1 className={isEmpty ? `visually-hidden` : `favorites__title`}>
             {isEmpty ? `Favorites (empty)` : `Saved listing`}
