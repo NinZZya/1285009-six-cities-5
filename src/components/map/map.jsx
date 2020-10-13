@@ -21,16 +21,14 @@ class Map extends PureComponent {
     this._zoom = 13;
   }
 
-  _createPin(coords) {
-    return leaflet
-    .marker(coords, {
-      icon: this._pin,
-    });
-  }
-
   _addPins() {
-    const pins = this.props.pins.reduce((items, {coords}) => {
-      const pin = this._createPin(coords);
+    const pins = this.props.pins.reduce((items, {id, coords}) => {
+      const pin = leaflet
+        .marker(coords, {
+          icon: id === this.props.activeId ?
+            this._activePin :
+            this._pin,
+        });
       items.push(pin);
       return items;
     }, []);
@@ -44,7 +42,10 @@ class Map extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.center.coords !== prevProps.center.coords) {
+    const isNeedUpdate = this.props.center.coords !== prevProps.center.coords ||
+      this.props.activeId !== prevProps.activeId;
+
+    if (isNeedUpdate) {
       this._map.setView(this.props.center.coords);
       this._addPins();
     }
@@ -90,6 +91,8 @@ class Map extends PureComponent {
 Map.propTypes = {
   center: Type.MAP_CENTER,
   pins: Type.MAP_PINS,
+  activeId: Type.ID,
+  sortType: Type.SORT,
 };
 
 export default Map;
