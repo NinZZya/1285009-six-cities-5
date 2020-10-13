@@ -1,27 +1,19 @@
-import React from 'react';
+import React, {Children} from 'react';
 import * as Type from '../../types';
 
 
-const OfferFeatures = ({type, bedroomsCount, adultsCount}) => {
+const OfferFeatures = (props) => {
+  const {children} = props;
+
   return (
     <ul className="property__features">
-      <li className="property__feature property__feature--entire">
-        {type}
-      </li>
-      <li className="property__feature property__feature--bedrooms">
-        {`${bedroomsCount} Bedrooms`}
-      </li>
-      <li className="property__feature property__feature--adults">
-        {`Max ${adultsCount} adults`}
-      </li>
+      {children ? Children.map(children, (child) => child) : null}
     </ul>
   );
 };
 
 OfferFeatures.propTypes = {
-  type: Type.OFFER_TYPE,
-  bedroomsCount: Type.OFFER_BEDROOMS_COUNT,
-  adultsCount: Type.OFFER_ADULTS_COUNT,
+  children: Type.CHILDREN,
 };
 
 

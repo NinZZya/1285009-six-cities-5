@@ -1,10 +1,14 @@
 import React from 'react';
 import OffersItem from './components/offers-item/offers-item';
 import * as Type from '../../types';
-import {OffersListType} from '../../const';
 
 
 const BASE_CLASS = `places__list`;
+const OffersListType = {
+  MAIN: `MAIN`,
+  NEAR: `NEAR`,
+  FAVORITES: `FAVORITES`,
+};
 
 const getClassName = (type) => {
   switch (type) {
@@ -46,4 +50,5 @@ OffersList.propTypes = {
 };
 
 
+export {OffersListType};
 export default OffersList;

@@ -1,11 +1,20 @@
 import React from 'react';
+import * as Type from '../../types';
 
-const OfferMark = () => {
+
+const OfferMark = (props) => {
+  const {type} = props;
+
   return (
-    <div className="property__mark">
+    <div className={`${type}__mark`}>
       <span>Premium</span>
     </div>
   );
 };
+
+OfferMark.propTypes = {
+  type: Type.TYPE_NAME,
+};
+
 
 export default OfferMark;

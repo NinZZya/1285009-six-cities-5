@@ -1,4 +1,5 @@
 import React from 'react';
+import {DEFAULT_AVATAR} from '../../const';
 import * as Type from '../../types';
 
 
@@ -15,7 +16,13 @@ const OfferHost = ({host, description}) => {
             `property__avatar-wrapper--pro` :
             ``}`}
         >
-          <img className="property__avatar user__avatar" src={avatar} width="74" height="74" alt="Host avatar"></img>
+          <img
+            className="property__avatar user__avatar"
+            src={avatar ? avatar : DEFAULT_AVATAR}
+            width="74"
+            height="74"
+            alt="Host avatar">
+          </img>
         </div>
         <span className="property__user-name">
           {name}

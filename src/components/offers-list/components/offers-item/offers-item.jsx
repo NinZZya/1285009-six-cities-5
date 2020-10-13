@@ -1,33 +1,42 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {AppPath, OffersListType} from '../../../../const';
+import RaitingStars from '../../../raiting-stars/raiting-stars';
+import BookmarkButton, {BookmarkButtonType} from '../../../bookmark-button/bookmark-button';
+import OfferMark from '../../../offer-mark/offer-mark';
+import OfferPrice from '../../../offer-price/offer-price';
+import {OffersListType} from '../../offers-list';
+import {AppPath} from '../../../../const';
 import * as Type from '../../../../types';
-import {calcRatePercent} from '../../../../utils/utils';
 
 
-const getCardClassName = (type) => {
-  switch (type) {
-    case OffersListType.MAIN:
-      return `cities__place-card`;
-    case OffersListType.NEAR:
-      return `near-places__card`;
-    case OffersListType.FAVORITES:
-      return `favorites__card`;
-    default:
-      return ``;
-  }
+const TypeName = {
+  OFFER_PRICE: `place-card`,
+  RAITING_STARS: `place-card__stars`,
+  MARK: `place-card`,
 };
 
-const getImageWrapperClassName = (type) => {
+const getClassName = (type) => {
   switch (type) {
     case OffersListType.MAIN:
-      return `cities__image-wrapper`;
+      return {
+        card: `cities__place-card`,
+        image: `cities__image-wrapper`,
+      };
     case OffersListType.NEAR:
-      return `near-places__image-wrapper`;
+      return {
+        card: `near-places__card`,
+        image: `near-places__image-wrapper`,
+      };
     case OffersListType.FAVORITES:
-      return `favorites__image-wrapper`;
+      return {
+        card: `favorites__card`,
+        image: `favorites__image-wrapper`,
+      };
     default:
-      return ``;
+      return {
+        card: ``,
+        image: ``,
+      };
   }
 };
 
@@ -39,12 +48,6 @@ const getImageSize = (type) => {
       return {width: 260, height: 200};
   }
 };
-
-const renderPremium = () => (
-  <div className="place-card__mark">
-    <span>Premium</span>
-  </div>
-);
 
 const OffersItem = (props) => {
   const {
@@ -60,14 +63,13 @@ const OffersItem = (props) => {
 
   const offerRoute = `${AppPath.OFFER}/${id}`;
 
-  const cardClassName = getCardClassName(props.type);
-  const imageWrapperClassName = getImageWrapperClassName(props.type);
+  const className = getClassName(props.type);
   const imageSize = getImageSize(props.type);
 
   return (
-    <article className={`place-card ${cardClassName}`}>
-      {isPremium && renderPremium()}
-      <div className={`place-card__image-wrapper ${imageWrapperClassName}`}>
+    <article className={`place-card ${className.card}`}>
+      {isPremium && <OfferMark type={TypeName.MARK} />}
+      <div className={`place-card__image-wrapper ${className.image}`}>
         <Link to={offerRoute}>
           <img
             className="place-card__image"
@@ -81,28 +83,11 @@ const OffersItem = (props) => {
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
-          <div className="place-card__price">
-            <b className="place-card__price-value">&euro;{price}</b>
-            <span className="place-card__price-text">&#47;&nbsp;night</span>
-          </div>
-          <button
-            className={`place-card__bookmark-button button ${isFavorite ?
-              `place-card__bookmark-button--active` :
-              ``}`
-            }
-            type="button"
-          >
-            <svg className="place-card__bookmark-icon" width="18" height="19">
-              <use xlinkHref="#icon-bookmark"></use>
-            </svg>
-            <span className="visually-hidden">To bookmarks</span>
-          </button>
+          <OfferPrice type={TypeName.OFFER_PRICE} price={price} />
+          <BookmarkButton type={BookmarkButtonType.OFFER_ITEM} mark={isFavorite} />
         </div>
         <div className="place-card__rating rating">
-          <div className="place-card__stars rating__stars">
-            <span style={{width: `${calcRatePercent(rate)}%`}}></span>
-            <span className="visually-hidden">Rating</span>
-          </div>
+          <RaitingStars type={TypeName.RAITING_STARS} rate={rate} />
         </div>
         <h2 className="place-card__name">
           <Link to={`${offerRoute}`}>
