@@ -5,8 +5,6 @@ import {SortOffers} from '../../utils/utils';
 
 const OFFERS_SPACE = NameSpace.OFFERS;
 
-const getId = (_, id) => id;
-
 export const getOffersStatus = (state) => state[OFFERS_SPACE].status;
 
 export const getActiveCityId = (state) => state[OFFERS_SPACE].activeCityId;
@@ -46,7 +44,15 @@ export const getFavoritesOffers = createSelector(
 );
 
 export const getNearOffers = createSelector(
-    getId,
-    getOffers,
-    (id, offers) => offers.filter((offer) => offer.city.id === id)
+    getOffer,
+    getSortedCityOffers,
+    (activeOffer, offers) => offers.map((offer) => {
+      return Object.assign({}, offer, {
+        distance: Math.sqrt(
+            Math.pow((activeOffer.coords[0] - offer.coords[0]), 2) +
+            Math.pow((activeOffer.coords[1] - offer.coords[1]), 2)
+        )
+      });
+    })
+    .sort((a, b) => a.distance - b.distance)
 );

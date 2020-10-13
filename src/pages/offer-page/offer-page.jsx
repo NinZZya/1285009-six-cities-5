@@ -21,6 +21,7 @@ import {AppPath, IdName, LoadStatus, LOADING_MESSAGE} from '../../const';
 import RaitingStars from '../../components/raiting-stars/raiting-stars';
 
 
+const NEAR_OFFERS_COUNT = 3;
 const ContainerType = {
   PAGE: `property`,
   GALLERY: `property__gallery`,
@@ -46,8 +47,9 @@ const getOfferId = (match) => {
   return !isNaN(offerId) ? offerId : -1;
 };
 
-const getOfferContent = (offer, offers) => {
+const getOfferContent = (offer, getNearOffers) => {
   const {
+    id,
     images,
     isPremium,
     title,
@@ -62,6 +64,9 @@ const getOfferContent = (offer, offers) => {
     description,
     reviews,
   } = offer;
+
+  // Near offers (NEAR_OFFERS_COUNT) + 1 (active offer)
+  const offers = getNearOffers(id).slice(0, NEAR_OFFERS_COUNT + 1);
 
   return (
     <>
@@ -94,7 +99,11 @@ const getOfferContent = (offer, offers) => {
           </div>
         </Container>
         <section className="property__map map">
-          <Map />
+          <Map
+            center={offer}
+            pins={offers}
+            activeId={offer.id}
+          />
         </section>
       </section>
         <Container>
@@ -102,7 +111,7 @@ const getOfferContent = (offer, offers) => {
             <h2 className="near-places__title">
               Other places in the neighbourhood
             </h2>
-            <OffersList type={OffersListType.NEAR} offers={offers.slice(0, 3)} />
+            <OffersList type={OffersListType.NEAR} offers={offers} />
           </section>
         </Container>
 
@@ -111,7 +120,7 @@ const getOfferContent = (offer, offers) => {
 };
 
 const OfferPage = (props) => {
-  const {offersStatus, offers, getOffer} = props;
+  const {offersStatus, getOffer, getNearOffers} = props;
 
   const offerPath = `${AppPath.OFFER}/:${IdName.OFFER}`;
   const matchOfferId = useRouteMatch(offerPath, IdName.OFFER);
@@ -129,7 +138,7 @@ const OfferPage = (props) => {
     null;
 
   const offerContent = offersStatus === LoadStatus.SUCCESS ?
-    getOfferContent(offer, offers) :
+    getOfferContent(offer, getNearOffers) :
     null;
 
   return (
@@ -142,14 +151,14 @@ const OfferPage = (props) => {
 
 OfferPage.propTypes = {
   offersStatus: Type.OFFERS_STATUS,
-  offers: Type.LIST_OFFERS,
+  getNearOffers: Type.FUNCTION,
   getOffer: Type.FUNCTION,
 };
 
 
 const mapStateToProps = (state) => ({
   offersStatus: OffersSelector.getOffersStatus(state),
-  offers: OffersSelector.getSortedCityOffers(state),
+  getNearOffers: (offerId) => OffersSelector.getNearOffers(state, offerId),
   getOffer: (offerId) => OffersSelector.getOffer(state, offerId),
 });
 
