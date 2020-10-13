@@ -6,8 +6,7 @@ import {EMPTY_POSTFIX} from '../../const';
 const Container = (props) => {
   const {type, children, empty} = props;
 
-  const containerClassName = `${type}-container`;
-
+  const containerClassName = type ? `${type}-container` : ``;
   return (
     <div
       className={`container ${containerClassName} ${empty ?
