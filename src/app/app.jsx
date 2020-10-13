@@ -1,9 +1,9 @@
 import React from 'react';
+import {useLocation} from 'react-router-dom';
 import {connect} from 'react-redux';
 import AppRoute from '../routes/app-route/app-route';
 import {getUser, getUserStatus} from '../redux/user/user-selectors';
 import * as Type from '../types';
-import history from '../history';
 import {AppPath} from '../const';
 
 
@@ -24,7 +24,8 @@ const getPage = (path) => {
 
 const App = (props) => {
   const {userStatus, user} = props;
-  const page = getPage(history.location.pathname);
+  const location = useLocation();
+  const page = getPage(location.pathname);
 
   return (
     <div
