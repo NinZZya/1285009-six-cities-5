@@ -55,8 +55,4 @@ export const UserStatus = {
 
 export const EMPTY_POSTFIX = `-empty`;
 
-export const OffersListType = {
-  MAIN: `MAIN`,
-  NEAR: `NEAR`,
-  FAVORITES: `FAVORITES`,
-};
+export const DEFAULT_AVATAR = `/img/avatar.svg`;

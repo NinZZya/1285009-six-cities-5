@@ -97,6 +97,11 @@ export const OFFER_IMAGES = arrayOf(OFFER_IMAGE);
 export const OFFER_DESCRIPTION = string;
 export const OFFER_IS_PREMIUM = bool;
 export const OFFER_IS_FAVORITE = bool;
+export const OFFER_FEATURE_VAUE = oneOfType([
+  OFFER_ADULTS_COUNT,
+  OFFER_BEDROOMS_COUNT,
+  OFFER_TYPE,
+]);
 
 export const OFFER_HOST = shape({
   name: string,
