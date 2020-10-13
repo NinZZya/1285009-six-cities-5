@@ -36,6 +36,7 @@ const STAR_TITLES = [
 
 export const ID = number;
 export const PATH = string;
+export const TYPE_NAME = string;
 export const FLAG = bool;
 export const EXACT = bool;
 export const CHILDREN = oneOfType([array, object]).isRequired;
@@ -46,10 +47,11 @@ export const USER_STATUS = oneOf(LIST_USER_STATUS);
 export const USER_ERROR = string;
 export const MESSAGE_TITLE = string;
 export const MESSAGE_TEXT = string;
+export const CITY_NAME = oneOf(LIST_CITIES);
 
 export const CITY = shape({
   id: ID,
-  name: oneOf(LIST_CITIES),
+  name: CITY_NAME,
 });
 
 export const STAR = shape({
@@ -118,6 +120,10 @@ export const OFFER = shape({
   reviews: REVIEWS,
   isPremium: OFFER_IS_PREMIUM,
   isFavorite: OFFER_IS_FAVORITE,
+});
+
+export const FAVORITES_OFFERS = shape({
+  [string]: arrayOf(OFFER),
 });
 
 export const LIST_OFFERS = arrayOf(OFFER);
