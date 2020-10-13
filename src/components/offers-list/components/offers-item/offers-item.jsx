@@ -61,16 +61,34 @@ const OffersItem = (props) => {
     isFavorite,
   } = props.offer;
 
+  const {onOfferHover} = props;
+
   const offerRoute = `${AppPath.OFFER}/${id}`;
 
   const className = getClassName(props.type);
   const imageSize = getImageSize(props.type);
 
+  const handleOfferMouseOver = () => {
+    if (onOfferHover) {
+      onOfferHover(id);
+    }
+  };
+
+  const handleOfferMouseOut = () => {
+    if (onOfferHover) {
+      onOfferHover();
+    }
+  };
+
   return (
     <article className={`place-card ${className.card}`}>
       {isPremium && <OfferMark type={TypeName.MARK} />}
       <div className={`place-card__image-wrapper ${className.image}`}>
-        <Link to={offerRoute}>
+        <Link
+          to={offerRoute}
+          onMouseOver={handleOfferMouseOver}
+          onMouseOut={handleOfferMouseOut}
+        >
           <img
             className="place-card__image"
             src={images[0]}
@@ -90,7 +108,11 @@ const OffersItem = (props) => {
           <RaitingStars type={TypeName.RAITING_STARS} rate={rate} />
         </div>
         <h2 className="place-card__name">
-          <Link to={`${offerRoute}`}>
+          <Link
+            to={`${offerRoute}`}
+            onMouseOver={handleOfferMouseOver}
+            onMouseOut={handleOfferMouseOut}
+          >
             {title}
           </Link>
         </h2>
@@ -103,6 +125,7 @@ const OffersItem = (props) => {
 OffersItem.propTypes = {
   type: Type.TYPE_NAME,
   offer: Type.OFFER,
+  onOfferHover: Type.FUNCTION,
 };
 
 

@@ -27,6 +27,7 @@ const OffersList = (props) => {
   const {
     type,
     offers = [],
+    onOfferHover,
   } = props;
 
   return (
@@ -37,6 +38,7 @@ const OffersList = (props) => {
             key={`offer-item-${offer.id}`}
             type={type}
             offer={offer}
+            onOfferHover={onOfferHover}
           />
         );
       })}
@@ -47,6 +49,7 @@ const OffersList = (props) => {
 OffersList.propTypes = {
   type: Type.TYPE_NAME,
   offers: Type.LIST_OFFERS,
+  onOfferHover: Type.FUNCTION,
 };
 
 
