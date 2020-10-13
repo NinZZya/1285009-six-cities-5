@@ -1,9 +1,44 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {AppPath} from '../../../../const';
+import {AppPath, OffersListType} from '../../../../const';
 import * as Type from '../../../../types';
 import {calcRatePercent} from '../../../../utils/utils';
 
+
+const getCardClassName = (type) => {
+  switch (type) {
+    case OffersListType.MAIN:
+      return `cities__place-card`;
+    case OffersListType.NEAR:
+      return `near-places__card`;
+    case OffersListType.FAVORITES:
+      return `favorites__card`;
+    default:
+      return ``;
+  }
+};
+
+const getImageWrapperClassName = (type) => {
+  switch (type) {
+    case OffersListType.MAIN:
+      return `cities__image-wrapper`;
+    case OffersListType.NEAR:
+      return `near-places__image-wrapper`;
+    case OffersListType.FAVORITES:
+      return `favorites__image-wrapper`;
+    default:
+      return ``;
+  }
+};
+
+const getImageSize = (type) => {
+  switch (type) {
+    case OffersListType.FAVORITES:
+      return {width: 150, height: 110};
+    default:
+      return {width: 260, height: 200};
+  }
+};
 
 const renderPremium = () => (
   <div className="place-card__mark">
@@ -11,7 +46,7 @@ const renderPremium = () => (
   </div>
 );
 
-const OffersItem = ({offer}) => {
+const OffersItem = (props) => {
   const {
     id,
     price,
@@ -21,15 +56,27 @@ const OffersItem = ({offer}) => {
     rate,
     isPremium,
     isFavorite,
-  } = offer;
-  const offerRoute = `${AppPath.OFFER}`;
+  } = props.offer;
+
+  const offerRoute = `${AppPath.OFFER}/${id}`;
+
+  const cardClassName = getCardClassName(props.type);
+  const imageWrapperClassName = getImageWrapperClassName(props.type);
+  const imageSize = getImageSize(props.type);
 
   return (
-    <article className="cities__place-card place-card">
-      {isPremium ? renderPremium() : null}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+    <article className={`place-card ${cardClassName}`}>
+      {isPremium && renderPremium()}
+      <div className={`place-card__image-wrapper ${imageWrapperClassName}`}>
         <Link to={offerRoute}>
-          <img className="place-card__image" src={images[0]} width="260" height="200" alt="Place image"></img>
+          <img
+            className="place-card__image"
+            src={images[0]}
+            width={imageSize.width}
+            height={imageSize.height}
+            alt={`Image of ${type}. ${name}`}
+          >
+          </img>
         </Link>
       </div>
       <div className="place-card__info">
@@ -58,7 +105,7 @@ const OffersItem = ({offer}) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`${offerRoute}/${id}`}>
+          <Link to={`${offerRoute}`}>
             {title}
           </Link>
         </h2>
@@ -69,6 +116,7 @@ const OffersItem = ({offer}) => {
 };
 
 OffersItem.propTypes = {
+  type: Type.TYPE_NAME,
   offer: Type.OFFER,
 };
 
