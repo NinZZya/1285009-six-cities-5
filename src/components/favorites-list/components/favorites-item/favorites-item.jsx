@@ -1,21 +1,35 @@
 import React from 'react';
-import FavoriteOfferCard from '../favorite-offer-card/favorite-offer-card';
+import {Link} from 'react-router-dom';
+import OffersList from '../../../offers-list/offers-list';
+import * as Type from '../../../../types';
+import {AppPath, OffersListType} from '../../../../const';
 
-const FavoritesItem = () => {
+
+const FavoritesItem = (props) => {
+  const {offers} = props;
+  const city = offers[0].city;
+
   return (
     <li className="favorites__locations-items">
-      <div className="favorites__locations locations locations--current">
+      <div
+        className="favorites__locations locations locations--current"
+      >
         <div className="locations__item">
-          <a className="locations__item-link" href="#">
-            <span>Amsterdam</span>
-          </a>
+          <Link className="locations__item-link" to={`${AppPath.CITY}/${city.id}`}>
+            <span>{city.name}</span>
+          </Link>
         </div>
       </div>
       <div className="favorites__places">
-        {new Array(3).fill(``).map((_, index) => <FavoriteOfferCard key={`favorite-offer-${index}`} />)}
+        <OffersList type={OffersListType.FAVORITES} offers={offers} />
       </div>
     </li>
   );
 };
+
+FavoritesItem.propTypes = {
+  offers: Type.LIST_OFFERS,
+};
+
 
 export default FavoritesItem;
