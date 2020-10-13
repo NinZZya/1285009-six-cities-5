@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {useRouteMatch, useHistory} from 'react-router-dom';
-import PageContainer, {PageContainerType} from '../../components/page-container/page-container';
+import PageContainer from '../../components/page-container/page-container';
 import Container from '../../components/container/container';
 import CitiesTabs from '../../components/cities-tabs/cities-tabs';
 import Sort from '../../components/sort/sort';
@@ -25,8 +25,11 @@ import {
 
 
 const SORTS = Object.values(SortType);
-const CITIES_CONTAINER_TYPE = `cities__places`;
 
+const ContainerType = {
+  PAGE: `index`,
+  CITIES: `cities__places`,
+};
 
 const getCityId = (match) => {
   if (match) {
@@ -47,7 +50,7 @@ const getOffersContent = (renderArgs) => {
 
   if (offers.length) {
     return (
-      <Container type={CITIES_CONTAINER_TYPE}>
+      <Container type={ContainerType.CITIES}>
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
           <b className="places__found">
@@ -112,7 +115,7 @@ const Main = (props) => {
   const isEmpty = !offers.length;
   return (
     <PageContainer
-      type={PageContainerType.MAIN}
+      type={ContainerType.PAGE}
       empty={isEmpty}
     >
       <h1 className="visually-hidden">Cities</h1>
@@ -121,7 +124,7 @@ const Main = (props) => {
       />
       <div className="cities">
         <Container
-          type={CITIES_CONTAINER_TYPE}
+          type={ContainerType.CITIES}
           empty={isEmpty}
         >
           {loader}

@@ -1,17 +1,20 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import PageContainer, {PageContainerType} from '../../components/page-container/page-container';
+import PageContainer from '../../components/page-container/page-container';
 import Container from '../../components/container/container';
 import {AppPath} from '../../const';
 
 
-const NOT_FOUND_CONTAINER_TYPE = `cities__places`;
+const ContainerType = {
+  PAGE: `index`,
+  NOT_FOUND: `cities__places`,
+};
 
 const PageNotFound = () => {
   return (
-    <PageContainer empty type={PageContainerType.NOT_FOUND}>
+    <PageContainer empty type={ContainerType.PAGE}>
       <div className="cities">
-        <Container empty type={NOT_FOUND_CONTAINER_TYPE}>
+        <Container empty type={ContainerType.NOT_FOUND}>
           <section className="cities__no-places">
             <div className="cities__status-wrapper tabs__content">
               <b className="cities__status">Page not found</b>

@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import PageContainer, {PageContainerType} from '../../components/page-container/page-container';
+import PageContainer from '../../components/page-container/page-container';
 import Container from '../../components/container/container';
 import LoginForm from '../../components/login-form/login-form';
 import {authUserAsync} from '../../redux/user/user-operations';
@@ -12,7 +12,10 @@ import * as Type from '../../types';
 import {AppPath, CITIES, UserStatus} from '../../const';
 
 
-const LOGIN_CONTAINER_TYPE = `page__login`;
+const ContainerType = {
+  PAGE: `login`,
+  LOGIN: `page__login`,
+};
 
 const Login = (props) => {
   const {
@@ -26,8 +29,8 @@ const Login = (props) => {
   const cityPath = `${AppPath.CITY}/${activeCityId}`;
 
   return (
-    <PageContainer type={PageContainerType.LOGIN}>
-      <Container type={LOGIN_CONTAINER_TYPE}>
+    <PageContainer type={ContainerType.PAGE}>
+      <Container type={ContainerType.LOGIN}>
         <section className="login">
           <h1 className="login__title">Sign in</h1>
           <LoginForm

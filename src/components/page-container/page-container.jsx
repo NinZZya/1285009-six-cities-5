@@ -3,25 +3,9 @@ import * as Type from '../../types';
 import {EMPTY_POSTFIX} from '../../const';
 
 
-const PageContainerType = {
-  MAIN: `MAIN`,
-  FAVORITES: `FAVORITES`,
-  LOGIN: `LOGIN`,
-  OFFER: `OFFER`,
-  PAGE_NOT_FOUND: `PAGE_NOT_FOUND`,
-};
-
-const Modificator = {
-  [PageContainerType.MAIN]: `index`,
-  [PageContainerType.FAVORITES]: `favorites`,
-  [PageContainerType.LOGIN]: `login`,
-  [PageContainerType.OFFER]: `property`,
-  [PageContainerType.PAGE_NOT_FOUND]: `index`,
-};
-
 const PageContainer = (props) => {
   const {type, children, empty} = props;
-  const pageClassName = `page__main--${Modificator[type]}`;
+  const pageClassName = `page__main--${type}`;
 
   return (
     <main
@@ -42,5 +26,4 @@ PageContainer.propTypes = {
 };
 
 
-export {PageContainerType};
 export default PageContainer;
