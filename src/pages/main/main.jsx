@@ -15,6 +15,7 @@ import * as Type from '../../types';
 import {
   CITIES,
   SortType,
+  OffersListType,
   AppPath,
   IdName,
   LoadStatus,
@@ -37,10 +38,6 @@ const getCityId = (match) => {
   }
 
   return DEFAULT_CITY_ID;
-};
-
-const ClassName = {
-  OFFERS_LIST: `cities__places-list tabs__content`,
 };
 
 const getOffersContent = (renderArgs) => {
@@ -67,8 +64,8 @@ const getOffersContent = (renderArgs) => {
             }}
           />
           <OffersList
+            type={OffersListType.MAIN}
             offers={offers}
-            className={ClassName.OFFERS_LIST}
           />
         </section>
         <div className="cities__right-section">

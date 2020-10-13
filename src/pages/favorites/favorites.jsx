@@ -1,21 +1,45 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import PageContainer from '../../components/page-container/page-container';
 import Container from '../../components/container/container';
 import FavoritesList from '../../components/favorites-list/favorites-list';
+import NoFavorites from '../../components/no-favorites/no-favorites';
+import Message from '../../components/message/message';
+import {getActiveCityId, getFavoritesOffers, getOffersStatus} from '../../redux/offers/offers-selectors';
+import {LoadStatus, LOADING_MESSAGE} from '../../const';
+import * as Type from '../../types';
 
 
 const ContainerType = {
   PAGE: `favorites`,
-  FAVORITES: `cities__places`,
+  FAVORITES: `page__favorites`,
 };
 
-const Favorites = () => {
+const Favorites = (props) => {
+  const {favorites, offersStatus, activeCityId} = props;
+  const citiesCount = Object.keys(favorites).length;
+
+  const loader = offersStatus === LoadStatus.LOADING ?
+    <Message title={LOADING_MESSAGE} /> :
+    null;
+
+  const isEmpty = offersStatus === LoadStatus.SUCCESS && !citiesCount;
+  const emptyContent = isEmpty ? <NoFavorites /> : null;
+
+  const favoritesContent = offersStatus === LoadStatus.SUCCESS && citiesCount ?
+    <FavoritesList favorites={favorites} activeCityId={activeCityId} /> :
+    null;
+
   return (
-    <PageContainer page={ContainerType.PAGE}>
+    <PageContainer type={ContainerType.PAGE}>
       <Container type={ContainerType.FAVORITES}>
-        <section className="favorites">
-          <h1 className="favorites__title">Saved listing</h1>
-          <FavoritesList />
+        <section className={`favorites ${isEmpty ? `favorites--empty` : ``}`}>
+          <h1 className={isEmpty ? `visually-hidden` : `favorites__title`}>
+            {isEmpty ? `Favorites (empty)` : `Saved listing`}
+          </h1>
+          {loader}
+          {emptyContent}
+          {favoritesContent}
         </section>
       </Container>
     </PageContainer>
@@ -23,4 +47,18 @@ const Favorites = () => {
 };
 
 
-export default Favorites;
+Favorites.propTypes = {
+  offersStatus: Type.OFFERS_STATUS,
+  favorites: Type.FAVORITES_OFFERS,
+  activeCityId: Type.ID,
+};
+
+const mapStateToProps = (state) => ({
+  offersStatus: getOffersStatus(state),
+  activeCityId: getActiveCityId(state),
+  favorites: getFavoritesOffers(state),
+});
+
+
+export {Favorites};
+export default connect(mapStateToProps)(Favorites);

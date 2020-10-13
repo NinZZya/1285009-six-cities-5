@@ -17,10 +17,9 @@ import Message from '../../components/message/message';
 import OffersList from '../../components/offers-list/offers-list';
 import * as OffersSelector from '../../redux/offers/offers-selectors';
 import * as Type from '../../types';
-import {AppPath, IdName, LoadStatus, LOADING_MESSAGE} from '../../const';
+import {AppPath, IdName, LoadStatus, LOADING_MESSAGE, OffersListType} from '../../const';
 
 
-const LIST_CLASS_NAME = `near-places__list`;
 const TypeContainer = {
   PAGE: `property`,
   PROPERTY: `property__container`,
@@ -55,25 +54,25 @@ const getOfferContent = (offer, offers) => {
         <OfferGallery images={images} />
         <Container type={TypeContainer.PROPERTY}>
           <div className="property__wrapper">
-            {isPremium ? <OfferMark /> : null}
+            {isPremium && <OfferMark />}
             <OfferHeader title={title} isFavorite={isFavorite} />
             <OfferRaiting rate={rate} />
             <OfferFeatures type={type} bedroomsCount={bedroomsCount} adultsCount={adultsCount} />
             <OfferPrice price={price} />
-            {features.length ? <OfferInside features={features} /> : null}
+            {features.length && <OfferInside features={features} />}
             <OfferHost host={host} description={description} />
             <Reviews reviews={reviews} />
           </div>
         </Container>
         <Map />
-        <div className="container">
+        <Container>
           <section className="near-places places">
             <h2 className="near-places__title">
               Other places in the neighbourhood
             </h2>
-            <OffersList className={LIST_CLASS_NAME} offers={offers.slice(0, 3)} />
+            <OffersList type={OffersListType.NEAR} offers={offers.slice(0, 3)} />
           </section>
-        </div>
+        </Container>
       </section>
     </PageContainer>
   );
