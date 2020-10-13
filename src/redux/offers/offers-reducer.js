@@ -7,6 +7,8 @@ const initialState = {
   offers: {},
   sortType: SortType.POPULAR,
   activeCityId: DEFAULT_CITY_ID,
+  reviewStatus: LoadStatus.LOADING,
+  reviews: [],
 };
 
 export default (state = initialState, action) => {
@@ -26,6 +28,14 @@ export default (state = initialState, action) => {
     case OffersType.CHANGE_ACTIVE_CITY_ID:
       return Object.assign({}, state, {
         activeCityId: action.payload,
+      });
+    case OffersType.CHANGE_OFFER_REVIEWS_STATUS:
+      return Object.assign({}, state, {
+        reviewStatus: action.payload,
+      });
+    case OffersType.SET_OFFER_REVIEWS:
+      return Object.assign({}, state, {
+        reviews: action.payload,
       });
     default:
       return state;
