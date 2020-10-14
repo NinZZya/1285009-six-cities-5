@@ -2,7 +2,7 @@ import {changeUserStatus, setUser, setError} from './user-actions';
 import {UserStatus} from '../../const';
 
 
-export const authUserAsync = (authData) => (dispatch, auth, api) => {
+export const authUserAsync = (authData) => (dispatch, getState, api) => {
   return api.auth(authData)
     .then((user) => {
       dispatch(setUser(user));
