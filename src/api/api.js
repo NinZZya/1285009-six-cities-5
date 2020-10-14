@@ -4,8 +4,8 @@ import generateReviews, {reviewId} from '../mocks/generate-reviews';
 
 const DELAY_MS = 500;
 
-const mockOffers = generateOffers();
-const mockReviews = generateReviews(mockOffers);
+export const mockOffers = generateOffers();
+export const mockReviews = generateReviews(mockOffers);
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
@@ -50,6 +50,7 @@ export default class Api {
           id: reviewId.value,
         });
         mockReviews[offerId].push(review);
+        return true;
       });
   }
 
@@ -58,5 +59,15 @@ export default class Api {
       mapOffers[offer.id] = offer;
       return mapOffers;
     }, {});
+  }
+
+  static adaptReviewToServer(review) {
+    return {
+      id: review.id,
+      user: review.user,
+      date: String(review.date),
+      rate: Number(review.rate),
+      text: String(review.text),
+    };
   }
 }

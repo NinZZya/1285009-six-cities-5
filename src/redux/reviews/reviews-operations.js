@@ -15,7 +15,8 @@ export const loadReviewsAsync = (id) => (dispatch, getState, api) => {
 
 export const addReviewAsync = (id, data) => (dispatch, getState, api) => {
   dispatch(ReviewsAction.changeReviewsStatus(DataStatus.SENDING));
-  return api.addReview(id, data)
+  const review = api.adaptReviewToServer(data);
+  return api.addReview(id, review)
     .then(() => {
       dispatch(ReviewsAction.changeReviewsStatus(DataStatus.SUCCESS));
     })

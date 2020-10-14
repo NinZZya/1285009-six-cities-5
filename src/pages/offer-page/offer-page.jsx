@@ -68,7 +68,7 @@ class OfferPage extends PureComponent {
     const {
       userStatus, user,
       getNearOffers,
-      reviews, reviewsStatus,
+      reviews, reviewsStatus, addReview,
     } = this.props;
 
     const {
@@ -95,8 +95,8 @@ class OfferPage extends PureComponent {
       <Reviews reviews={reviews} /> :
       null;
 
-    const handelSubmitReview = () => {
-
+    const handelSubmitReview = (review) => {
+      addReview(id, review);
     };
 
     return (
@@ -132,7 +132,13 @@ class OfferPage extends PureComponent {
                 </h2>
                 {reviewsLoader}
                 {reviewsContent}
-                {isAuth && <NewReview onSubmitReview={handelSubmitReview}/>}
+                {isAuth && (
+                  <NewReview
+                    user={user}
+                    reviewsStatus={reviewsStatus}
+                    onSubmitReview={handelSubmitReview}
+                  />
+                )}
               </section>
             </div>
           </Container>

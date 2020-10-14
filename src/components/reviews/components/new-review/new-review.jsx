@@ -2,20 +2,26 @@ import React from 'react';
 import Star from './components/star/star';
 import withFormValues from '../../../../hocs/with-form-values/with-form-values';
 import * as Type from '../../../../types';
-import {STARS} from '../../../../const';
+import {DataStatus, STARS} from '../../../../const';
 
 
-const MIN_CHARS_COUNT = 50;
+const MIN_CHARS_COUNT = 5;
+
 const FormName = {
   REVIEW: `review`,
   RATE: `rating`,
+};
+
+const SubmitCaption = {
+  SUBMIT: `Submit`,
+  SENDING: `Sending...`,
 };
 
 
 const NewReview = (props) => {
   const {
     form, onFormValuesChange, onFormValuesReset,
-    onSubmitReview,
+    onSubmitReview, user, reviewsStatus,
   } = props;
 
   const isReviewValid = form[FormName.REVIEW] ?
@@ -25,9 +31,19 @@ const NewReview = (props) => {
 
   const isDisabled = !(form[FormName.RATE] && isReviewValid);
 
+  const submitCaption = reviewsStatus === DataStatus.SENDING ?
+    SubmitCaption.SENDING :
+    SubmitCaption.SUBMIT;
+
   const handelSubmitReview = (evt) => {
     evt.preventDefault();
-    onSubmitReview();
+    onSubmitReview({
+      id: -1,
+      user,
+      date: String(new Date()),
+      rate: form[FormName.RATE],
+      text: form[FormName.REVIEW],
+    });
     onFormValuesReset();
     evt.target.reset();
   };
@@ -68,7 +84,7 @@ const NewReview = (props) => {
           type="submit"
           disabled={isDisabled}
         >
-          Submit
+          {submitCaption}
         </button>
       </div>
     </form>
@@ -80,6 +96,8 @@ NewReview.propTypes = {
   onFormValuesChange: Type.FUNCTION,
   onFormValuesReset: Type.FUNCTION,
   onSubmitReview: Type.FUNCTION,
+  user: Type.USER,
+  reviewsStatus: Type.REVIEWS_STATUS,
 };
 
 
