@@ -10,12 +10,12 @@ import {
   object,
   oneOfType,
 } from 'prop-types';
-import {SortType, LoadStatus, UserStatus} from './const';
+import {SortType, DataStatus, UserStatus} from './const';
 
 // Data for types
 
 const LIST_SORTS = Object.values(SortType);
-const LIST_LOAD_STATUS = Object.values(LoadStatus);
+const LIST_DATA_STATUS = Object.values(DataStatus);
 const LIST_USER_STATUS = Object.values(UserStatus);
 
 const LIST_CITIES = [
@@ -46,8 +46,8 @@ export const EXACT = bool;
 export const CHILDREN = oneOfType([array, object]).isRequired;
 export const FUNCTION = func;
 export const CLASS_NAME = string;
-export const OFFERS_STATUS = oneOf(LIST_LOAD_STATUS);
-export const REVIEWS_STATUS = oneOf(LIST_LOAD_STATUS);
+export const OFFERS_STATUS = oneOf(LIST_DATA_STATUS);
+export const REVIEWS_STATUS = oneOf(LIST_DATA_STATUS);
 export const USER_STATUS = oneOf(LIST_USER_STATUS);
 export const USER_ERROR = string;
 export const MESSAGE_TITLE = string;

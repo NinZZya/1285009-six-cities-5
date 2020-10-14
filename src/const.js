@@ -57,8 +57,9 @@ export const STARS = [
   {value: 1, title: `terribly`},
 ];
 
-export const LoadStatus = {
+export const DataStatus = {
   LOADING: `LOADING`,
+  SENDING: `SENDING`,
   SUCCESS: `SUCCESS`,
   ERROR: `ERROR`,
 };
