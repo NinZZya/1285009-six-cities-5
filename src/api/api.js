@@ -1,6 +1,6 @@
 import users from '../mocks/users';
 import generateOffers from '../mocks/generate-offers';
-import generateReviews from '../mocks/generate-reviews';
+import generateReviews, {reviewId} from '../mocks/generate-reviews';
 
 const DELAY_MS = 500;
 
@@ -42,6 +42,17 @@ export default class Api {
       .then(() => mockReviews[id]);
   }
 
+  static addReview(offerId, data) {
+    return delay(DELAY_MS)
+      .then(() => {
+        reviewId.value++;
+        const review = Object.assign({}, data, {
+          id: reviewId.value,
+        });
+        mockReviews[offerId].push(review);
+      });
+  }
+
   static adaptOffersToClient(offers) {
     return offers.reduce((mapOffers, offer) => {
       mapOffers[offer.id] = offer;
@@ -49,4 +60,3 @@ export default class Api {
     }, {});
   }
 }
-

@@ -16,7 +16,8 @@ const USERS = [
   {id: 4, name: `Ann`, avatar: `/img/avatar.svg`},
 ];
 
-let reviewId = 0;
+let id = 0;
+const reviewId = {};
 
 const generateDate = () => {
   const year = getRandomInt(2018, 2020);
@@ -27,9 +28,10 @@ const generateDate = () => {
 
 const generateReview = () => {
   const user = getRandomArrValue(USERS);
+  reviewId[`value`] = id;
 
   return {
-    id: reviewId++,
+    id: id++,
     user,
     date: generateDate(),
     rate: getRandomInt(1, 5),
@@ -41,5 +43,7 @@ const generateReviews = (offers) => offers.reduce((reviews, offer) => {
   reviews[offer.id] = new Array(getRandomInt(0, 5)).fill(``).map(generateReview);
   return reviews;
 }, {});
+
+export {reviewId};
 
 export default generateReviews;
