@@ -10,8 +10,6 @@ export const getActiveCityId = (state) => state[OFFERS_SPACE].activeCityId;
 export const getOffersSortType = (state) => state[OFFERS_SPACE].sortType;
 export const getOffers = (state) => Object.values(state[OFFERS_SPACE].offers);
 export const getOffer = (state, offerId) => state[OFFERS_SPACE].offers[offerId];
-export const getReviewsStatus = (state) => state[OFFERS_SPACE].reviewStatus;
-export const getReviews = (state) => state[OFFERS_SPACE].reviews;
 
 export const getSortedCityOffers = createSelector(
     getOffers,
