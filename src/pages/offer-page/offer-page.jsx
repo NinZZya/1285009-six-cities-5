@@ -12,7 +12,7 @@ import OfferPrice from '../../components/offer-price/offer-price';
 import OfferInside from '../../components/offer-inside/offer-inside';
 import OfferHost from '../../components/offer-host/offer-host';
 import Reviews from '../../components/reviews/reviews';
-import NewReview from '../../components/new-review/new-review';
+import NewReview from '../../components/reviews/components/new-review/new-review';
 import Map from '../../components/map/map';
 import Message from '../../components/message/message';
 import OffersList, {OffersListType} from '../../components/offers-list/offers-list';
@@ -84,6 +84,20 @@ class OfferPage extends PureComponent {
     const count = reviews.length;
     const isAuth = userStatus === UserStatus.AUTH && user;
 
+    const reviewsLoader = reviewsStatus === LoadStatus.LOADING ?
+      <Message title={LOADING_MESSAGE} /> :
+      null;
+
+    const reviewsContent = (
+      reviewsStatus !== LoadStatus.LOADING && reviewsStatus !== LoadStatus.ERROR
+    ) ?
+      <Reviews reviews={reviews} /> :
+      null;
+
+    const handelSubmitReview = () => {
+
+    };
+
     return (
       <>
         <section className="property">
@@ -109,14 +123,15 @@ class OfferPage extends PureComponent {
                 <OfferFeature type={FetureType.ADULTS} value={`Max ${adultsCount} adults`} />
               </OfferFeatures>
               <OfferPrice type={TypeName.OFFER_PRICE} price={price} />
-              {features.length && <OfferInside features={features} />}
+              {features.length ? <OfferInside features={features} /> : null}
               <OfferHost host={host} description={description} />
               <section className="property__reviews reviews">
                 <h2 className="reviews__title">
                   Reviews {count ? this._renderReviewCount(count) : null}
                 </h2>
-                <Reviews reviews={reviews} reviewsStatus={reviewsStatus} />
-                {isAuth && <NewReview />}
+                {reviewsLoader}
+                {reviewsContent}
+                {isAuth && <NewReview onSubmitReview={handelSubmitReview}/>}
               </section>
             </div>
           </Container>

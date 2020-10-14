@@ -99,6 +99,8 @@ export const REVIEW = shape({
   text: string,
 });
 
+export const FORM = object;
+
 export const REVIEWS = arrayOf(REVIEW);
 
 export const OFFER_USER = shape({

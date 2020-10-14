@@ -1,8 +1,10 @@
 import React from 'react';
-import * as Type from '../../../../types';
+import * as Type from '../../../../../../types';
 
-const Star = ({star}) => {
+const Star = (props) => {
+  const {star, onStarChange} = props;
   const {value, title} = star;
+
   return (
     <>
       <input
@@ -11,6 +13,7 @@ const Star = ({star}) => {
         value={value}
         id={`${value}-stars`}
         type="radio"
+        onChange={onStarChange}
       >
       </input>
       <label
@@ -28,6 +31,7 @@ const Star = ({star}) => {
 
 Star.propTypes = {
   star: Type.STAR,
+  onStarChange: Type.FUNCTION,
 };
 
 export default Star;
