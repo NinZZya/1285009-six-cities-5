@@ -1,9 +1,9 @@
 import React, {PureComponent} from 'react';
 
 
-const withForm = (Component) => {
+const withFormValues = (Component) => {
 
-  class WithForm extends PureComponent {
+  class WithFormValues extends PureComponent {
     constructor(props) {
       super(props);
 
@@ -11,11 +11,11 @@ const withForm = (Component) => {
         form: {},
       };
 
-      this._handleFormChange = this._handleFormChange.bind(this);
-      this._handleFormReset = this._handleFormReset.bind(this);
+      this._handleFormValuesChange = this._handleFormValuesChange.bind(this);
+      this._handleFormValuesReset = this._handleFormValuesReset.bind(this);
     }
 
-    _handleFormChange(evt) {
+    _handleFormValuesChange(evt) {
       const form = {
         [evt.target.name]: evt.target.value,
       };
@@ -25,7 +25,7 @@ const withForm = (Component) => {
       }));
     }
 
-    _handleFormReset() {
+    _handleFormValuesReset() {
       this.setState(() => ({
         form: {},
       }));
@@ -36,15 +36,15 @@ const withForm = (Component) => {
         <Component
           {...this.props}
           form={this.state.form}
-          onFormChange={this._handleFormChange}
-          onFormReset={this._handleFormReset}
+          onFormValuesChange={this._handleFormValuesChange}
+          onFormValuesReset={this._handleFormValuesReset}
         />
       );
     }
   }
 
-  return WithForm;
+  return WithFormValues;
 };
 
 
-export default withForm;
+export default withFormValues;

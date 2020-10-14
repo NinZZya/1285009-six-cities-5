@@ -1,11 +1,11 @@
 import React from 'react';
 import Star from './components/star/star';
-import witForm from '../../../../hocs/with-form/with-form';
+import withFormValues from '../../../../hocs/with-form-values/with-form-values';
 import * as Type from '../../../../types';
 import {STARS} from '../../../../const';
 
 
-const MIN_CHARS_COUNT = 5;
+const MIN_CHARS_COUNT = 50;
 const FormName = {
   REVIEW: `review`,
   RATE: `rating`,
@@ -14,7 +14,7 @@ const FormName = {
 
 const NewReview = (props) => {
   const {
-    form, onFormChange, onFormReset,
+    form, onFormValuesChange, onFormValuesReset,
     onSubmitReview,
   } = props;
 
@@ -28,7 +28,7 @@ const NewReview = (props) => {
   const handelSubmitReview = (evt) => {
     evt.preventDefault();
     onSubmitReview();
-    onFormReset();
+    onFormValuesReset();
     evt.target.reset();
   };
 
@@ -45,7 +45,7 @@ const NewReview = (props) => {
           <Star
             star={star}
             key={`star-review-${index}`}
-            onStarChange={onFormChange}
+            onStarChange={onFormValuesChange}
           />))}
       </div>
       <textarea
@@ -53,7 +53,7 @@ const NewReview = (props) => {
         id="review"
         name={FormName.REVIEW}
         placeholder="Tell how was your stay, what you like and what can be improved"
-        onChange={onFormChange}
+        onChange={onFormValuesChange}
       >
       </textarea>
       <div className="reviews__button-wrapper">
@@ -77,10 +77,10 @@ const NewReview = (props) => {
 
 NewReview.propTypes = {
   form: Type.FORM,
-  onFormChange: Type.FUNCTION,
-  onFormReset: Type.FUNCTION,
+  onFormValuesChange: Type.FUNCTION,
+  onFormValuesReset: Type.FUNCTION,
   onSubmitReview: Type.FUNCTION,
 };
 
 
-export default witForm(NewReview);
+export default withFormValues(NewReview);
