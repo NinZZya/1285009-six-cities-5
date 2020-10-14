@@ -6,7 +6,7 @@ import FavoritesList from '../../components/favorites-list/favorites-list';
 import NoFavorites from '../../components/no-favorites/no-favorites';
 import Message from '../../components/message/message';
 import {getActiveCityId, getFavoritesOffers, getOffersStatus} from '../../redux/offers/offers-selectors';
-import {LoadStatus, LOADING_MESSAGE} from '../../const';
+import {DataStatus, LOADING_MESSAGE} from '../../const';
 import * as Type from '../../types';
 
 
@@ -19,14 +19,14 @@ const FavoritesPage = (props) => {
   const {favorites, offersStatus, activeCityId} = props;
   const citiesCount = Object.keys(favorites).length;
 
-  const loader = offersStatus === LoadStatus.LOADING ?
+  const loader = offersStatus === DataStatus.LOADING ?
     <Message title={LOADING_MESSAGE} /> :
     null;
 
-  const isEmpty = offersStatus === LoadStatus.SUCCESS && !citiesCount;
+  const isEmpty = offersStatus === DataStatus.SUCCESS && !citiesCount;
   const emptyContent = isEmpty ? <NoFavorites /> : null;
 
-  const favoritesContent = offersStatus === LoadStatus.SUCCESS && citiesCount ?
+  const favoritesContent = offersStatus === DataStatus.SUCCESS && citiesCount ?
     <FavoritesList favorites={favorites} activeCityId={activeCityId} /> :
     null;
 

@@ -18,7 +18,7 @@ import {
   SortType,
   AppPath,
   IdName,
-  LoadStatus,
+  DataStatus,
   DEFAULT_CITY_ID,
   LOADING_MESSAGE,
 } from '../../const';
@@ -114,11 +114,11 @@ const MainPage = (props) => {
     chageActiveCityId(pathCityId);
   }
 
-  const loader = offersStatus === LoadStatus.LOADING ?
+  const loader = offersStatus === DataStatus.LOADING ?
     <Message title={LOADING_MESSAGE} /> :
     null;
 
-  const offersContent = offersStatus === LoadStatus.SUCCESS ?
+  const offersContent = offersStatus === DataStatus.SUCCESS ?
     getOffersContent(
         {
           offers, activeCity,

@@ -18,9 +18,10 @@ import Message from '../../components/message/message';
 import OffersList, {OffersListType} from '../../components/offers-list/offers-list';
 import * as UserSelector from '../../redux/user/user-selectors';
 import * as OffersSelector from '../../redux/offers/offers-selectors';
-import * as OffersOperation from '../../redux/offers/offers-operations';
+import * as ReviewsSelector from '../../redux/reviews/reviews-selectors';
+import * as ReviewsOperation from '../../redux/reviews/reviews-operations';
 import * as Type from '../../types';
-import {AppPath, IdName, LoadStatus, LOADING_MESSAGE, UserStatus} from '../../const';
+import {AppPath, IdName, DataStatus, LOADING_MESSAGE, UserStatus} from '../../const';
 import RaitingStars from '../../components/raiting-stars/raiting-stars';
 
 
@@ -84,12 +85,12 @@ class OfferPage extends PureComponent {
     const count = reviews.length;
     const isAuth = userStatus === UserStatus.AUTH && user;
 
-    const reviewsLoader = reviewsStatus === LoadStatus.LOADING ?
+    const reviewsLoader = reviewsStatus === DataStatus.LOADING ?
       <Message title={LOADING_MESSAGE} /> :
       null;
 
     const reviewsContent = (
-      reviewsStatus !== LoadStatus.LOADING && reviewsStatus !== LoadStatus.ERROR
+      reviewsStatus !== DataStatus.LOADING && reviewsStatus !== DataStatus.ERROR
     ) ?
       <Reviews reviews={reviews} /> :
       null;
@@ -171,15 +172,15 @@ class OfferPage extends PureComponent {
     this._offer = getOffer(this._activeOfferId);
 
 
-    if (this._activeOfferId === -1 || (!this._offer && offersStatus === LoadStatus.SUCCESS)) {
+    if (this._activeOfferId === -1 || (!this._offer && offersStatus === DataStatus.SUCCESS)) {
       return <Redirect to={AppPath.NOT_FOUND} />;
     }
 
-    const loader = offersStatus === LoadStatus.LOADING ?
+    const loader = offersStatus === DataStatus.LOADING ?
       <Message title={LOADING_MESSAGE} /> :
       null;
 
-    const offerContent = offersStatus === LoadStatus.SUCCESS ?
+    const offerContent = offersStatus === DataStatus.SUCCESS ?
       this._getOfferContent() :
       null;
 
@@ -200,6 +201,7 @@ OfferPage.propTypes = {
   reviews: Type.REVIEWS,
   match: Type.MATCH,
   loadReviews: Type.FUNCTION,
+  addReview: Type.FUNCTION,
   userStatus: Type.USER_STATUS,
   user: Type.USER,
 };
@@ -209,16 +211,19 @@ const mapStateToProps = (state) => ({
   offersStatus: OffersSelector.getOffersStatus(state),
   getNearOffers: (offerId) => OffersSelector.getNearOffers(state, offerId),
   getOffer: (offerId) => OffersSelector.getOffer(state, offerId),
-  reviewsStatus: OffersSelector.getReviewsStatus(state),
-  reviews: OffersSelector.getReviews(state),
+  reviewsStatus: ReviewsSelector.getReviewsStatus(state),
+  reviews: ReviewsSelector.getReviews(state),
   userStatus: UserSelector.getUserStatus(state),
   user: UserSelector.getUser(state),
 });
 
 const mapDispatchToPorps = (dispatch) => ({
   loadReviews: (id) => {
-    dispatch(OffersOperation.loadReviewsAsync(id));
+    dispatch(ReviewsOperation.loadReviewsAsync(id));
   },
+  addReview: (offerid, review) => {
+    dispatch(ReviewsOperation.addReviewAsync(offerid, review));
+  }
 });
 
 
