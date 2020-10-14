@@ -95,7 +95,7 @@ const generateOffer = (cityId, id) => {
       title: getRandomArrValue(TITLES),
       type: getRandomArrValue(TYPES),
       price: getRandomInt(20, 500),
-      rate: getRandomInt(0, 5),
+      rate: getRandomInt(1, 5),
       bedroomsCount: getRandomInt(1, 3),
       adultsCount: getRandomInt(1, 4),
       features: getRandomArr(FEATURES, getRandomInt(0, FEATURES.length)),

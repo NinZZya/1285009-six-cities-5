@@ -32,7 +32,7 @@ const generateReview = () => {
     id: reviewId++,
     user,
     date: generateDate(),
-    rate: getRandomInt(0, 5),
+    rate: getRandomInt(1, 5),
     text: getRandomArr(DESCRIPTIONS, getRandomInt(1, DESCRIPTIONS.length)).join(`/n`),
   };
 };
