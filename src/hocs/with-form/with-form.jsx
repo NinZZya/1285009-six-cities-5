@@ -12,6 +12,7 @@ const withForm = (Component) => {
       };
 
       this._handleFormChange = this._handleFormChange.bind(this);
+      this._handleFormReset = this._handleFormReset.bind(this);
     }
 
     _handleFormChange(evt) {
@@ -24,12 +25,19 @@ const withForm = (Component) => {
       }));
     }
 
+    _handleFormReset() {
+      this.setState(() => ({
+        form: {},
+      }));
+    }
+
     render() {
       return (
         <Component
           {...this.props}
           form={this.state.form}
           onFormChange={this._handleFormChange}
+          onFormReset={this._handleFormReset}
         />
       );
     }
