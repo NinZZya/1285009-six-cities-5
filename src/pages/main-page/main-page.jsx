@@ -7,8 +7,8 @@ import CitiesTabs from '../../components/cities-tabs/cities-tabs';
 import Sort from '../../components/sort/sort';
 import OffersList, {OffersListType} from '../../components/offers-list/offers-list';
 import NoOffers from '../../components/no-offers/no-offers';
+import Loader from '../../components/loader/loader';
 import Map from '../../components/map/map';
-import Message from '../../components/message/message';
 import withActiveId from '../../hocs/with-active-id/with-active-id';
 import * as OffersSelector from '../../redux/offers/offers-selectors';
 import * as OffersAction from '../../redux/offers/offers-actions';
@@ -20,7 +20,6 @@ import {
   IdName,
   DataStatus,
   DEFAULT_CITY_ID,
-  LOADING_MESSAGE,
 } from '../../const';
 
 
@@ -115,7 +114,7 @@ const MainPage = (props) => {
   }
 
   const loader = offersStatus === DataStatus.LOADING ?
-    <Message title={LOADING_MESSAGE} /> :
+    <Loader /> :
     null;
 
   const offersContent = offersStatus === DataStatus.SUCCESS ?

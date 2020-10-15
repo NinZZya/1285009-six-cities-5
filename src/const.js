@@ -1,6 +1,5 @@
 export const DEFAULT_CITY_ID = 1;
 export const MAX_RATE = 5;
-export const LOADING_MESSAGE = `Loading data ...`;
 
 export const AppPath = {
   ROOT: `/`,

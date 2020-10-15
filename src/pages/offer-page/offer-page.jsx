@@ -14,14 +14,14 @@ import OfferHost from '../../components/offer-host/offer-host';
 import Reviews from '../../components/reviews/reviews';
 import NewReview from '../../components/reviews/components/new-review/new-review';
 import Map from '../../components/map/map';
-import Message from '../../components/message/message';
+import Loader from '../../components/loader/loader';
 import OffersList, {OffersListType} from '../../components/offers-list/offers-list';
 import * as UserSelector from '../../redux/user/user-selectors';
 import * as OffersSelector from '../../redux/offers/offers-selectors';
 import * as ReviewsSelector from '../../redux/reviews/reviews-selectors';
 import * as ReviewsOperation from '../../redux/reviews/reviews-operations';
 import * as Type from '../../types';
-import {AppPath, IdName, DataStatus, LOADING_MESSAGE, UserStatus} from '../../const';
+import {AppPath, IdName, DataStatus, UserStatus} from '../../const';
 import RaitingStars from '../../components/raiting-stars/raiting-stars';
 
 
@@ -86,7 +86,7 @@ class OfferPage extends PureComponent {
     const isAuth = userStatus === UserStatus.AUTH && user;
 
     const reviewsLoader = reviewsStatus === DataStatus.LOADING ?
-      <Message title={LOADING_MESSAGE} /> :
+      <Loader /> :
       null;
 
     const reviewsContent = (
@@ -183,7 +183,7 @@ class OfferPage extends PureComponent {
     }
 
     const loader = offersStatus === DataStatus.LOADING ?
-      <Message title={LOADING_MESSAGE} /> :
+      <Loader /> :
       null;
 
     const offerContent = offersStatus === DataStatus.SUCCESS ?

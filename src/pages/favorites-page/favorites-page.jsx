@@ -4,10 +4,10 @@ import PageContainer from '../../components/page-container/page-container';
 import Container from '../../components/container/container';
 import FavoritesList from '../../components/favorites-list/favorites-list';
 import NoFavorites from '../../components/no-favorites/no-favorites';
-import Message from '../../components/message/message';
 import {getActiveCityId, getFavoritesOffers, getOffersStatus} from '../../redux/offers/offers-selectors';
-import {DataStatus, LOADING_MESSAGE} from '../../const';
+import {DataStatus} from '../../const';
 import * as Type from '../../types';
+import Loader from '../../components/loader/loader';
 
 
 const ContainerType = {
@@ -20,7 +20,7 @@ const FavoritesPage = (props) => {
   const citiesCount = Object.keys(favorites).length;
 
   const loader = offersStatus === DataStatus.LOADING ?
-    <Message title={LOADING_MESSAGE} /> :
+    <Loader /> :
     null;
 
   const isEmpty = offersStatus === DataStatus.SUCCESS && !citiesCount;
