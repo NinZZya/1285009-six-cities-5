@@ -37,6 +37,24 @@ export default class Api {
       .then(() => mockOffers);
   }
 
+  static getNearOffers(id) {
+    return delay(DELAY_MS)
+      .then(() => {
+        const activeOffer = mockOffers.find((offer) => offer.id === id);
+        const nearOffers = mockOffers.map((offer) => {
+          return Object.assign({}, offer, {
+            distance: Math.sqrt(
+                Math.pow((activeOffer.coords[0] - offer.coords[0]), 2) +
+                Math.pow((activeOffer.coords[1] - offer.coords[1]), 2)
+            )
+          });
+        })
+        .sort((a, b) => a.distance - b.distance);
+
+        return nearOffers.slice(1, nearOffers.length);
+      });
+  }
+
   static getReviews(id) {
     return delay(DELAY_MS)
       .then(() => mockReviews[id]);
