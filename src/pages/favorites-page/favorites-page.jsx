@@ -4,10 +4,10 @@ import PageContainer from '../../components/page-container/page-container';
 import Container from '../../components/container/container';
 import FavoritesList from '../../components/favorites-list/favorites-list';
 import NoFavorites from '../../components/no-favorites/no-favorites';
+import LoadingData from '../../components/loading-data/loading-data';
 import {getActiveCityId, getFavoritesOffers, getOffersStatus} from '../../reducer/offers/offers-selectors';
 import {DataStatus} from '../../const';
 import * as Type from '../../types';
-import Loader from '../../components/loader/loader';
 
 
 const ContainerType = {
@@ -18,10 +18,6 @@ const ContainerType = {
 const FavoritesPage = (props) => {
   const {favorites, offersStatus, activeCityId} = props;
   const citiesCount = Object.keys(favorites).length;
-
-  const loader = offersStatus === DataStatus.LOADING ?
-    <Loader /> :
-    null;
 
   const isEmpty = offersStatus === DataStatus.SUCCESS && !citiesCount;
   const emptyContent = isEmpty ? <NoFavorites /> : null;
@@ -37,7 +33,7 @@ const FavoritesPage = (props) => {
           <h1 className={isEmpty ? `visually-hidden` : `favorites__title`}>
             {isEmpty ? `Favorites (empty)` : `Saved listing`}
           </h1>
-          {loader}
+          <LoadingData status={offersStatus} />
           {emptyContent}
           {favoritesContent}
         </section>

@@ -14,7 +14,7 @@ import OfferHost from '../../components/offer-host/offer-host';
 import Reviews from '../../components/reviews/reviews';
 import NewReview from '../../components/reviews/components/new-review/new-review';
 import Map from '../../components/map/map';
-import Loader from '../../components/loader/loader';
+import LoadingData from '../../components/loading-data/loading-data';
 import OffersList, {OffersListType} from '../../components/offers-list/offers-list';
 import * as UserSelector from '../../reducer/user/user-selectors';
 import * as OffersSelector from '../../reducer/offers/offers-selectors';
@@ -70,18 +70,6 @@ class OfferPage extends PureComponent {
     loadReviews(this._activeOfferId);
   }
 
-  _getLoader(status) {
-    if (status === DataStatus.LOADING) {
-      return <Loader />;
-    }
-
-    if (status === DataStatus.ERROR) {
-      return <div>Loading error. Try again later</div>;
-    }
-
-    return null;
-  }
-
   _handelSubmitReview(review) {
     const {
       addReview,
@@ -107,8 +95,6 @@ class OfferPage extends PureComponent {
     const count = reviews.length;
     const isAuth = userStatus === UserStatus.AUTH && user;
 
-    const reviewsLoader = this._getLoader(reviewsStatus);
-
     const reviewsContent = (
       reviewsStatus !== DataStatus.LOADING && reviewsStatus !== DataStatus.ERROR
     ) ?
@@ -120,7 +106,7 @@ class OfferPage extends PureComponent {
         <h2 className="reviews__title">
           Reviews {count ? this._renderReviewCount(count) : null}
         </h2>
-        {reviewsLoader}
+        <LoadingData status={reviewsStatus} />
         {reviewsContent}
         {isAuth && (
           <NewReview
@@ -149,7 +135,6 @@ class OfferPage extends PureComponent {
 
     const nearOffers = this.props.nearOffers.slice(0, NEAR_OFFERS_COUNT);
     const mapNearOffers = [...nearOffers, this._offer];
-    const nearOffersLoader = this._getLoader(nearOffersStatus);
     const nearOffersContent = nearOffersStatus === DataStatus.SUCCESS ?
       <OffersList type={OffersListType.NEAR} offers={nearOffers} /> :
       null;
@@ -198,7 +183,7 @@ class OfferPage extends PureComponent {
             <h2 className="near-places__title">
               Other places in the neighbourhood
             </h2>
-            {nearOffersLoader}
+            <LoadingData status={nearOffersStatus} />
             {nearOffersContent}
           </section>
         </Container>
@@ -221,17 +206,13 @@ class OfferPage extends PureComponent {
       return <Redirect to={AppPath.NOT_FOUND} />;
     }
 
-    const loader = offersStatus === DataStatus.LOADING ?
-      <Loader /> :
-      null;
-
     const offerContent = offersStatus === DataStatus.SUCCESS ?
       this._getOfferContent() :
       null;
 
     return (
       <PageContainer type={ContainerType.PAGE}>
-        {loader}
+        <LoadingData status={offersStatus} />
         {offerContent}
       </PageContainer>
     );

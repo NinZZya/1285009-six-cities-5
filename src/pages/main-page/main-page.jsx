@@ -7,7 +7,7 @@ import CitiesTabs from '../../components/cities-tabs/cities-tabs';
 import Sort from '../../components/sort/sort';
 import OffersList, {OffersListType} from '../../components/offers-list/offers-list';
 import NoOffers from '../../components/no-offers/no-offers';
-import Loader from '../../components/loader/loader';
+import LoadingData from '../../components/loading-data/loading-data';
 import Map from '../../components/map/map';
 import withActiveId from '../../hocs/with-active-id/with-active-id';
 import * as OffersSelector from '../../reducer/offers/offers-selectors';
@@ -113,10 +113,6 @@ const MainPage = (props) => {
     chageActiveCityId(pathCityId);
   }
 
-  const loader = offersStatus === DataStatus.LOADING ?
-    <Loader /> :
-    null;
-
   const offersContent = offersStatus === DataStatus.SUCCESS ?
     getOffersContent(
         {
@@ -142,7 +138,7 @@ const MainPage = (props) => {
           type={ContainerType.CITIES}
           empty={isEmpty}
         >
-          {loader}
+          <LoadingData status={offersStatus} />
           {offersContent}
         </Container>
       </div>
