@@ -153,7 +153,7 @@ const MainPage = (props) => {
 MainPage.propTypes = {
   activeId: Type.ID,
   onActiveIdChange: Type.FUNCTION,
-  offersStatus: Type.OFFERS_STATUS,
+  offersStatus: Type.DATA_STATUS,
   offers: Type.LIST_OFFERS,
   activeCityId: Type.ID,
   sortType: Type.SORT,

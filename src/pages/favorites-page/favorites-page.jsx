@@ -48,7 +48,7 @@ const FavoritesPage = (props) => {
 
 
 FavoritesPage.propTypes = {
-  offersStatus: Type.OFFERS_STATUS,
+  offersStatus: Type.DATA_STATUS,
   favorites: Type.FAVORITES_OFFERS,
   activeCityId: Type.ID,
 };
