@@ -4,10 +4,10 @@ import {Link} from 'react-router-dom';
 import PageContainer from '../../components/page-container/page-container';
 import Container from '../../components/container/container';
 import LoginForm from '../../components/login-form/login-form';
-import {authUserAsync} from '../../redux/user/user-operations';
-import * as UserAction from '../../redux/user/user-actions';
-import * as OfferSelector from '../../redux/offers/offers-selectors';
-import * as UserSelector from '../../redux/user/user-selectors';
+import {authUserAsync} from '../../reducer/user/user-operations';
+import * as UserAction from '../../reducer/user/user-actions';
+import * as OfferSelector from '../../reducer/offers/offers-selectors';
+import * as UserSelector from '../../reducer/user/user-selectors';
 import * as Type from '../../types';
 import {AppPath, CITIES, UserStatus} from '../../const';
 

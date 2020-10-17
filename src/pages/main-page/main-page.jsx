@@ -10,8 +10,8 @@ import NoOffers from '../../components/no-offers/no-offers';
 import Loader from '../../components/loader/loader';
 import Map from '../../components/map/map';
 import withActiveId from '../../hocs/with-active-id/with-active-id';
-import * as OffersSelector from '../../redux/offers/offers-selectors';
-import * as OffersAction from '../../redux/offers/offers-actions';
+import * as OffersSelector from '../../reducer/offers/offers-selectors';
+import * as OffersAction from '../../reducer/offers/offers-actions';
 import * as Type from '../../types';
 import {
   CITIES,

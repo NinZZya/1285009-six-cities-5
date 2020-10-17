@@ -16,10 +16,10 @@ import NewReview from '../../components/reviews/components/new-review/new-review
 import Map from '../../components/map/map';
 import Loader from '../../components/loader/loader';
 import OffersList, {OffersListType} from '../../components/offers-list/offers-list';
-import * as UserSelector from '../../redux/user/user-selectors';
-import * as OffersSelector from '../../redux/offers/offers-selectors';
-import * as ReviewsSelector from '../../redux/reviews/reviews-selectors';
-import * as ReviewsOperation from '../../redux/reviews/reviews-operations';
+import * as UserSelector from '../../reducer/user/user-selectors';
+import * as OffersSelector from '../../reducer/offers/offers-selectors';
+import * as ReviewsSelector from '../../reducer/reviews/reviews-selectors';
+import * as ReviewsOperation from '../../reducer/reviews/reviews-operations';
 import * as Type from '../../types';
 import {AppPath, IdName, DataStatus, UserStatus} from '../../const';
 import RaitingStars from '../../components/raiting-stars/raiting-stars';
