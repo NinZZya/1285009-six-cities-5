@@ -44,10 +44,12 @@ const getOffersContent = (renderArgs) => {
     activeId,
     onActiveIdChange,
     offers,
-    activeCity,
+    activeCityId,
     sortType,
     changeOffersSortType,
   } = renderArgs;
+
+  const activeCity = CITIES[activeCityId];
 
   if (offers.length) {
 
@@ -101,8 +103,6 @@ const MainPage = (props) => {
   } = props;
 
   const pathCityId = getCityId(match);
-
-  const activeCity = CITIES[activeCityId];
   const pathCity = CITIES[pathCityId];
 
   if (!pathCity || pathCityId === -1) {
@@ -116,7 +116,7 @@ const MainPage = (props) => {
   const offersContent = offersStatus === DataStatus.SUCCESS ?
     getOffersContent(
         {
-          offers, activeCity,
+          offers, activeCityId,
           sortType, changeOffersSortType,
           activeId, onActiveIdChange,
         }
