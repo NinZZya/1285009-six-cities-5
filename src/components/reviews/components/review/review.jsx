@@ -1,7 +1,11 @@
 import React from 'react';
+import RaitingStars from '../../../raiting-stars/raiting-stars';
 import * as Type from '../../../../types';
-import {calcRatePercent, dateFormatter} from '../../../../utils/utils';
+import {DEFAULT_AVATAR} from '../../../../const';
+import {dateFormatter} from '../../../../utils/utils';
 
+
+const RAITING_STARS_TYPE = `reviews__stars`;
 
 const Review = ({review}) => {
   const {
@@ -19,7 +23,7 @@ const Review = ({review}) => {
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
           <img
             className="reviews__avatar user__avatar"
-            src={user.avatar}
+            src={user.avatar ? user.avatar : DEFAULT_AVATAR}
             width="54"
             height="54"
             alt="Reviews avatar"
@@ -32,10 +36,7 @@ const Review = ({review}) => {
       </div>
       <div className="reviews__info">
         <div className="reviews__rating rating">
-          <div className="reviews__stars rating__stars">
-            <span style={{width: `${calcRatePercent(rate)}%`}}></span>
-            <span className="visually-hidden">Rating</span>
-          </div>
+          <RaitingStars type={RAITING_STARS_TYPE} rate={rate} />
         </div>
         <p className="reviews__text">
           {text}

@@ -2,11 +2,11 @@ import React from 'react';
 import {Switch, Route, Redirect} from 'react-router-dom';
 import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
-import Main from '../../pages/main/main';
-import Login from '../../pages/login/login';
-import Offer from '../../pages/offer/offer';
-import Favorites from '../../pages/favorites/favorites';
-import PageNotFound from '../../pages/page-not-found/page-not-found';
+import MainPage from '../../pages/main-page/main-page';
+import LoginPage from '../../pages/login-page/login-page';
+import OfferPage from '../../pages/offer-page/offer-page';
+import FavoritesPage from '../../pages/favorites-page/favorites-page';
+import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
 import * as Type from '../../types';
 import {AppPath, IdName} from '../../const';
@@ -25,24 +25,24 @@ const AppRoute = (props) => {
     <>
       <Header userStatus={userStatus} user={user} />
       <Switch>
-        <Route exact path={mainPath} component={Main} />
+        <Route exact path={mainPath} component={MainPage} />
         <PrivateRoute
           exact
           path={AppPath.LOGIN}
           userStatus={userStatus}
         >
-          <Login />
+          <LoginPage />
         </PrivateRoute>
-        <Route exact path={offerPath} component={Offer} />
+        <Route exact path={offerPath} component={OfferPage} />
         <PrivateRoute
           exact
           path={AppPath.FAVORITES}
           userStatus={userStatus}
         >
-          <Favorites />
+          <FavoritesPage />
           <Footer />
         </PrivateRoute>
-        <Route exact path={AppPath.NOT_FOUND} component={PageNotFound} />
+        <Route exact path={AppPath.NOT_FOUND} component={NotFoundPage} />
         <Redirect to={AppPath.NOT_FOUND} />
       </Switch>
     </>

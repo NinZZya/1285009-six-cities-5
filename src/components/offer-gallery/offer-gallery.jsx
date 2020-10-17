@@ -4,15 +4,13 @@ import * as Type from '../../types';
 
 const OfferGallery = ({images = []}) => {
   return (
-    <div className="property__gallery-container container">
-      <div className="property__gallery">
-        {images.map((image, index) => (
-          <div className="property__image-wrapper" key={`gallery-item${index}`} >
-            <img className="property__image" src={image} alt="Photo studio">
-            </img>
-          </div>
-        ))}
-      </div>
+    <div className="property__gallery">
+      {images.map((image, index) => (
+        <div className="property__image-wrapper" key={`gallery-item${index}`} >
+          <img className="property__image" src={image} alt="Photo studio">
+          </img>
+        </div>
+      ))}
     </div>
   );
 };

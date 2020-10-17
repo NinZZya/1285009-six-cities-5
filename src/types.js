@@ -6,13 +6,16 @@ import {
   arrayOf,
   string,
   bool,
+  array,
   object,
+  oneOfType,
 } from 'prop-types';
-import {SortType, LoadStatus, UserStatus} from './const';
+import {SortType, DataStatus, UserStatus} from './const';
 
+// Data for types
 
 const LIST_SORTS = Object.values(SortType);
-const LIST_LOAD_STATUS = Object.values(LoadStatus);
+const LIST_DATA_STATUS = Object.values(DataStatus);
 const LIST_USER_STATUS = Object.values(UserStatus);
 
 const LIST_CITIES = [
@@ -33,22 +36,44 @@ const STAR_TITLES = [
 ];
 
 
+// General types
+
 export const ID = number;
 export const PATH = string;
+export const TYPE_NAME = string;
+export const FLAG = bool;
 export const EXACT = bool;
-export const CHILDREN = object;
+export const CHILDREN = oneOfType([array, object]).isRequired;
 export const FUNCTION = func;
 export const CLASS_NAME = string;
-export const OFFERS_STATUS = oneOf(LIST_LOAD_STATUS);
+export const OFFERS_STATUS = oneOf(LIST_DATA_STATUS);
+export const REVIEWS_STATUS = oneOf(LIST_DATA_STATUS);
 export const USER_STATUS = oneOf(LIST_USER_STATUS);
 export const USER_ERROR = string;
 export const MESSAGE_TITLE = string;
 export const MESSAGE_TEXT = string;
+export const COORDS = arrayOf(number);
 
+export const MATCH = shape({
+  path: string,
+  params: shape({
+    cityId: string,
+    offerId: string,
+  }),
+});
+
+
+// City types
+
+export const CITY_NAME = oneOf(LIST_CITIES);
 export const CITY = shape({
   id: ID,
-  name: oneOf(LIST_CITIES),
+  name: CITY_NAME,
+  coords: COORDS,
 });
+
+
+// Offer types
 
 export const STAR = shape({
   value: number,
@@ -74,6 +99,8 @@ export const REVIEW = shape({
   text: string,
 });
 
+export const FORM = object;
+
 export const REVIEWS = arrayOf(REVIEW);
 
 export const OFFER_USER = shape({
@@ -93,6 +120,11 @@ export const OFFER_IMAGES = arrayOf(OFFER_IMAGE);
 export const OFFER_DESCRIPTION = string;
 export const OFFER_IS_PREMIUM = bool;
 export const OFFER_IS_FAVORITE = bool;
+export const OFFER_FEATURE_VAUE = oneOfType([
+  OFFER_ADULTS_COUNT,
+  OFFER_BEDROOMS_COUNT,
+  OFFER_TYPE,
+]);
 
 export const OFFER_HOST = shape({
   name: string,
@@ -113,9 +145,21 @@ export const OFFER = shape({
   host: OFFER_HOST,
   images: OFFER_IMAGES,
   description: OFFER_DESCRIPTION,
-  reviews: REVIEWS,
   isPremium: OFFER_IS_PREMIUM,
   isFavorite: OFFER_IS_FAVORITE,
+  coords: COORDS,
+});
+
+export const FAVORITES_OFFERS = shape({
+  [string]: arrayOf(OFFER),
 });
 
 export const LIST_OFFERS = arrayOf(OFFER);
+
+// Map types
+
+export const MAP_CENTER = shape({
+  coords: COORDS,
+});
+
+export const MAP_PINS = LIST_OFFERS;

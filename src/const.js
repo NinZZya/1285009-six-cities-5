@@ -1,6 +1,5 @@
 export const DEFAULT_CITY_ID = 1;
 export const MAX_RATE = 5;
-export const LOADING_MESSAGE = `Loading data ...`;
 
 export const AppPath = {
   ROOT: `/`,
@@ -17,10 +16,27 @@ export const IdName = {
 };
 
 export const CITIES = {
-  1: {id: 1, name: `Paris`},
-  2: {id: 2, name: `Cologne`},
-  3: {id: 3, name: `Brussels`},
-  4: {id: 4, name: `Amsterdam`},
+  1: {
+    id: 1,
+    name: `Paris`,
+    coords: [48.864716, 2.349014],
+  },
+  2: {
+    id: 2,
+    name: `Cologne`,
+    coords: [50.9415491, 6.9408247],
+  },
+  3: {
+    id: 3,
+    name:
+    `Brussels`,
+    coords: [50.8503396, 4.3517103],
+  },
+  4: {
+    id: 4,
+    name: `Amsterdam`,
+    coords: [52.38333, 4.9],
+  },
   5: {id: 5, name: `Hamburg`},
   6: {id: 6, name: `Dusseldorf`},
 };
@@ -40,8 +56,9 @@ export const STARS = [
   {value: 1, title: `terribly`},
 ];
 
-export const LoadStatus = {
+export const DataStatus = {
   LOADING: `LOADING`,
+  SENDING: `SENDING`,
   SUCCESS: `SUCCESS`,
   ERROR: `ERROR`,
 };
@@ -52,3 +69,7 @@ export const UserStatus = {
   AUTH: `AUTH`,
   AUTH_ERROR: `AUTH_ERROR`,
 };
+
+export const EMPTY_POSTFIX = `-empty`;
+
+export const DEFAULT_AVATAR = `/img/avatar.svg`;

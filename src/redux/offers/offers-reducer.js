@@ -1,9 +1,9 @@
 import * as OffersType from './offers-types';
-import {LoadStatus, SortType, DEFAULT_CITY_ID} from '../../const';
+import {DataStatus, SortType, DEFAULT_CITY_ID} from '../../const';
 
 
 const initialState = {
-  status: LoadStatus.LOADING,
+  status: DataStatus.LOADING,
   offers: {},
   sortType: SortType.POPULAR,
   activeCityId: DEFAULT_CITY_ID,

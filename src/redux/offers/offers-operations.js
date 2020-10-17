@@ -1,16 +1,18 @@
 import * as OffersAction from './offers-actions';
-import {LoadStatus} from '../../const';
+import {DataStatus} from '../../const';
 
 
-export const loadOffersAsync = () => (dispatch, getOffers, api) => {
+export const loadOffersAsync = () => (dispatch, getState, api) => {
   return api.getOffers()
     .then((response) => {
-      if (!response.length) {
-        dispatch(OffersAction.setOffers({}));
-      }
+      const offers = response.length ?
+        api.adaptOffersToClient(response) :
+        {};
 
-      const offers = api.adaptOffersToClient(response);
       dispatch(OffersAction.setOffers(offers));
-      dispatch(OffersAction.changeOffersStatus(LoadStatus.SUCCESS));
+      dispatch(OffersAction.changeOffersStatus(DataStatus.SUCCESS));
+    })
+    .catch(() => {
+      dispatch(OffersAction.changeOffersStatus(DataStatus.ERROR));
     });
 };

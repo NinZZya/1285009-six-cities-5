@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import * as Type from '../../types';
 import {UserStatus} from '../../const';
 
@@ -15,82 +15,69 @@ const getErrorContent = (error) => {
     </p>
   );
 };
-class LoginForm extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: ``,
-      password: ``,
-    };
-  }
 
-  render() {
-    const {
-      onAuth,
-      userStatus,
-      error,
-    } = this.props;
+const LoginForm = (props) => {
+  const {
+    onAuth,
+    userStatus,
+    error,
+  } = props;
 
-    const {email, password} = this.state;
+  const isDisabled = userStatus === UserStatus.RESPONSE;
+  const errorContent = userStatus === UserStatus.AUTH_ERROR ?
+    getErrorContent(error) :
+    null;
 
-    const isDisabled = userStatus === UserStatus.RESPONSE;
-    const errorContent = userStatus === UserStatus.AUTH_ERROR ?
-      getErrorContent(error) :
-      null;
-
-    return (
-      <form
-        className="login__form form"
-        action="#"
-        method="post"
-        onSubmit={(evt) => {
-          evt.preventDefault();
-          onAuth({email, password});
-        }}
-      >
-        <div className="login__input-wrapper form__input-wrapper">
-          <label className="visually-hidden">E-mail</label>
-          <input
-            className="login__input form__input"
-            type="email" name="email"
-            placeholder="Email"
-            required=""
-            disabled={isDisabled}
-            onChange={(evt) => {
-              evt.preventDefault();
-              this.setState({email: evt.target.value});
-            }}
-          >
-          </input>
-        </div>
-        <div className="login__input-wrapper form__input-wrapper">
-          <label className="visually-hidden">Password</label>
-          <input
-            className="login__input form__input"
-            type="password"
-            name="password"
-            placeholder="Password"
-            required=""
-            disabled={isDisabled}
-            onChange={(evt) => {
-              evt.preventDefault();
-              this.setState({password: evt.target.value});
-            }}
-          >
-          </input>
-        </div>
-        <button
-          className="login__submit form__submit button"
-          type="submit"
+  return (
+    <form
+      className="login__form form"
+      action="#"
+      method="post"
+      onSubmit={(evt) => {
+        evt.preventDefault();
+        const formData = new FormData(evt.target);
+        const authData = {
+          email: formData.get(`email`),
+          password: formData.get(`password`),
+        };
+        onAuth(authData);
+      }}
+    >
+      <div className="login__input-wrapper form__input-wrapper">
+        <label className="visually-hidden">E-mail</label>
+        <input
+          className="login__input form__input"
+          type="email"
+          name="email"
+          placeholder="Email"
+          required=""
           disabled={isDisabled}
         >
-          Sign in
-        </button>
-        {errorContent}
-      </form>
-    );
-  }
-}
+        </input>
+      </div>
+      <div className="login__input-wrapper form__input-wrapper">
+        <label className="visually-hidden">Password</label>
+        <input
+          className="login__input form__input"
+          type="password"
+          name="password"
+          placeholder="Password"
+          required=""
+          disabled={isDisabled}
+        >
+        </input>
+      </div>
+      <button
+        className="login__submit form__submit button"
+        type="submit"
+        disabled={isDisabled}
+      >
+        Sign in
+      </button>
+      {errorContent}
+    </form>
+  );
+};
 
 LoginForm.propTypes = {
   onAuth: Type.FUNCTION,

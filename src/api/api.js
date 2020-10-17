@@ -1,10 +1,11 @@
 import users from '../mocks/users';
 import generateOffers from '../mocks/generate-offers';
+import generateReviews, {reviewId} from '../mocks/generate-reviews';
 
 const DELAY_MS = 500;
-const OFFERS_COUNT = 20;
 
-const OFFERS = generateOffers(OFFERS_COUNT);
+export const mockOffers = generateOffers();
+export const mockReviews = generateReviews(mockOffers);
 
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
@@ -33,7 +34,24 @@ export default class Api {
 
   static getOffers() {
     return delay(DELAY_MS)
-      .then(() => OFFERS);
+      .then(() => mockOffers);
+  }
+
+  static getReviews(id) {
+    return delay(DELAY_MS)
+      .then(() => mockReviews[id]);
+  }
+
+  static addReview(offerId, data) {
+    return delay(DELAY_MS)
+      .then(() => {
+        reviewId.value++;
+        const review = Object.assign({}, data, {
+          id: reviewId.value,
+        });
+        mockReviews[offerId].push(review);
+        return true;
+      });
   }
 
   static adaptOffersToClient(offers) {
@@ -42,5 +60,14 @@ export default class Api {
       return mapOffers;
     }, {});
   }
-}
 
+  static adaptReviewToServer(review) {
+    return {
+      id: review.id,
+      user: review.user,
+      date: String(review.date),
+      rate: Number(review.rate),
+      text: String(review.text),
+    };
+  }
+}
