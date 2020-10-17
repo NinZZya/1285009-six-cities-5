@@ -81,17 +81,17 @@ const OFFERS_COORDS = {
 
 const TYPES = [`Apartment`, `Private room`];
 
-const cities = Object.keys(CITIES).slice(0, length - 2);
+const cities = Object.values(CITIES).slice(0, length - 2);
 
-const generateOffer = (cityId, id) => {
-  const coords = getRandomArr(OFFERS_COORDS[cityId]);
+const generateOffer = (city, id) => {
+  const coords = getRandomArr(OFFERS_COORDS[city.id]);
 
   return coords.map((coord, index) => {
     const host = getRandomArrValue(USERS);
 
     return {
       id: id * 100 + index,
-      city: CITIES[cityId],
+      city,
       title: getRandomArrValue(TITLES),
       type: getRandomArrValue(TYPES),
       price: getRandomInt(20, 500),
@@ -104,6 +104,7 @@ const generateOffer = (cityId, id) => {
         avatar: host.avatar,
         isPro: getRandomBool(),
       },
+      previewImage: getRandomArr(IMAGES, getRandomInt(1, IMAGES.length))[0],
       images: getRandomArr(IMAGES, getRandomInt(1, IMAGES.length)),
       description: getRandomArr(DESCRIPTIONS, getRandomInt(1, DESCRIPTIONS.length)).join(`/n`),
       isPremium: getRandomBool(),

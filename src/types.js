@@ -143,6 +143,7 @@ export const OFFER = shape({
   adultsCount: OFFER_ADULTS_COUNT,
   features: OFFER_FEATURES,
   host: OFFER_HOST,
+  previewImage: string,
   images: OFFER_IMAGES,
   description: OFFER_DESCRIPTION,
   isPremium: OFFER_IS_PREMIUM,

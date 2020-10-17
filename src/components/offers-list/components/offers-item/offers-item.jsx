@@ -55,7 +55,7 @@ const OffersItem = (props) => {
     price,
     title,
     type,
-    images,
+    previewImage,
     rate,
     isPremium,
     isFavorite,
@@ -91,7 +91,7 @@ const OffersItem = (props) => {
         >
           <img
             className="place-card__image"
-            src={images[0]}
+            src={previewImage}
             width={imageSize.width}
             height={imageSize.height}
             alt={`Image of ${type}. ${name}`}
