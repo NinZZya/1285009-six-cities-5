@@ -18,8 +18,8 @@ import Loader from '../../components/loader/loader';
 import OffersList, {OffersListType} from '../../components/offers-list/offers-list';
 import * as UserSelector from '../../reducer/user/user-selectors';
 import * as OffersSelector from '../../reducer/offers/offers-selectors';
-import * as ReviewsSelector from '../../reducer/reviews/reviews-selectors';
-import * as ReviewsOperation from '../../reducer/reviews/reviews-operations';
+import * as OfferSelector from '../../reducer/offer/offer-selectors';
+import * as OfferOperation from '../../reducer/offer/offer-operations';
 import * as Type from '../../types';
 import {AppPath, IdName, DataStatus, UserStatus} from '../../const';
 import RaitingStars from '../../components/raiting-stars/raiting-stars';
@@ -46,14 +46,48 @@ const TypeName = {
 const OFFER_CONTAINER_CLASS_NAME = `property__container`;
 
 const getOfferId = (match) => {
-  const offerId = Number(match.params[IdName.OFFER]);
+  const matchId = match.params[IdName.OFFER];
+  const isCoorectId = matchId ? matchId.slice(0, 2) !== `00` : false;
+  const offerId = Number(matchId);
 
-  return !isNaN(offerId) ? offerId : -1;
+  return !isNaN(offerId) && isCoorectId ? offerId : -1;
 };
 
 class OfferPage extends PureComponent {
   constructor(props) {
     super(props);
+
+    this._handelSubmitReview = this._handelSubmitReview.bind(this);
+  }
+
+  componentDidMount() {
+    const {
+      loadReviews,
+      loadNearOffers,
+    } = this.props;
+
+    loadNearOffers(this._activeOfferId);
+    loadReviews(this._activeOfferId);
+  }
+
+  _getLoader(status) {
+    if (status === DataStatus.LOADING) {
+      return <Loader />;
+    }
+
+    if (status === DataStatus.ERROR) {
+      return <div>Loading error. Try again later</div>;
+    }
+
+    return null;
+  }
+
+  _handelSubmitReview(review) {
+    const {
+      addReview,
+    } = this.props;
+
+    addReview(this._activeOfferId, review);
   }
 
   _renderReviewCount(count) {
@@ -64,30 +98,16 @@ class OfferPage extends PureComponent {
     );
   }
 
-  _getOfferContent() {
+  _getReviewsContent() {
     const {
       userStatus, user,
-      getNearOffers,
-      reviews, reviewsStatus, addReview,
+      reviews, reviewsStatus,
     } = this.props;
 
-    const {
-      id, images,
-      isPremium, isFavorite,
-      title, rate, type,
-      bedroomsCount, adultsCount,
-      features, price, host,
-      description,
-    } = this._offer;
-
-    // Near offers (NEAR_OFFERS_COUNT) + 1 (active offer)
-    const offers = getNearOffers(id).slice(0, NEAR_OFFERS_COUNT + 1);
     const count = reviews.length;
     const isAuth = userStatus === UserStatus.AUTH && user;
 
-    const reviewsLoader = reviewsStatus === DataStatus.LOADING ?
-      <Loader /> :
-      null;
+    const reviewsLoader = this._getLoader(reviewsStatus);
 
     const reviewsContent = (
       reviewsStatus !== DataStatus.LOADING && reviewsStatus !== DataStatus.ERROR
@@ -95,9 +115,45 @@ class OfferPage extends PureComponent {
       <Reviews reviews={reviews} /> :
       null;
 
-    const handelSubmitReview = (review) => {
-      addReview(id, review);
-    };
+    return (
+      <section className="property__reviews reviews">
+        <h2 className="reviews__title">
+          Reviews {count ? this._renderReviewCount(count) : null}
+        </h2>
+        {reviewsLoader}
+        {reviewsContent}
+        {isAuth && (
+          <NewReview
+            user={user}
+            reviewsStatus={reviewsStatus}
+            onSubmitReview={this._handelSubmitReview}
+          />
+        )}
+      </section>
+    );
+  }
+
+  _getOfferContent() {
+    const {
+      nearOffersStatus,
+    } = this.props;
+
+    const {
+      images,
+      isPremium, isFavorite,
+      title, rate, type,
+      bedroomsCount, adultsCount,
+      features, price, host,
+      description,
+    } = this._offer;
+
+    const nearOffers = this.props.nearOffers.slice(0, NEAR_OFFERS_COUNT);
+    const mapNearOffers = [...nearOffers, this._offer];
+    const nearOffersLoader = this._getLoader(nearOffersStatus);
+    const nearOffersContent = nearOffersStatus === DataStatus.SUCCESS ?
+      <OffersList type={OffersListType.NEAR} offers={nearOffers} /> :
+      null;
+
 
     return (
       <>
@@ -126,47 +182,28 @@ class OfferPage extends PureComponent {
               <OfferPrice type={TypeName.OFFER_PRICE} price={price} />
               {features.length ? <OfferInside features={features} /> : null}
               <OfferHost host={host} description={description} />
-              <section className="property__reviews reviews">
-                <h2 className="reviews__title">
-                  Reviews {count ? this._renderReviewCount(count) : null}
-                </h2>
-                {reviewsLoader}
-                {reviewsContent}
-                {isAuth && (
-                  <NewReview
-                    user={user}
-                    reviewsStatus={reviewsStatus}
-                    onSubmitReview={handelSubmitReview}
-                  />
-                )}
-              </section>
+              {this._getReviewsContent()}
             </div>
           </Container>
           <section className="property__map map">
             <Map
               center={this._offer}
-              pins={offers}
+              pins={mapNearOffers}
               activeId={this._offer.id}
             />
           </section>
         </section>
-          <Container>
-            <section className="near-places places">
-              <h2 className="near-places__title">
-                Other places in the neighbourhood
-              </h2>
-              <OffersList type={OffersListType.NEAR} offers={offers.slice(1, NEAR_OFFERS_COUNT + 1)} />
-            </section>
-          </Container>
-
+        <Container>
+          <section className="near-places places">
+            <h2 className="near-places__title">
+              Other places in the neighbourhood
+            </h2>
+            {nearOffersLoader}
+            {nearOffersContent}
+          </section>
+        </Container>
       </>
     );
-  }
-
-  componentDidMount() {
-    const {loadReviews} = this.props;
-
-    loadReviews(this._activeOfferId);
   }
 
   render() {
@@ -175,7 +212,9 @@ class OfferPage extends PureComponent {
     } = this.props;
 
     this._activeOfferId = getOfferId(match);
-    this._offer = getOffer(this._activeOfferId);
+    this._offer = offersStatus === DataStatus.SUCCESS ?
+      getOffer(this._activeOfferId) :
+      null;
 
 
     if (this._activeOfferId === -1 || (!this._offer && offersStatus === DataStatus.SUCCESS)) {
@@ -200,13 +239,15 @@ class OfferPage extends PureComponent {
 }
 
 OfferPage.propTypes = {
-  offersStatus: Type.OFFERS_STATUS,
-  getNearOffers: Type.FUNCTION,
+  offersStatus: Type.DATA_STATUS,
   getOffer: Type.FUNCTION,
-  reviewsStatus: Type.REVIEWS_STATUS,
+  nearOffers: Type.LIST_OFFERS,
+  nearOffersStatus: Type.DATA_STATUS,
+  reviewsStatus: Type.DATA_STATUS,
   reviews: Type.REVIEWS,
   match: Type.MATCH,
   loadReviews: Type.FUNCTION,
+  loadNearOffers: Type.FUNCTION,
   addReview: Type.FUNCTION,
   userStatus: Type.USER_STATUS,
   user: Type.USER,
@@ -215,20 +256,24 @@ OfferPage.propTypes = {
 
 const mapStateToProps = (state) => ({
   offersStatus: OffersSelector.getOffersStatus(state),
-  getNearOffers: (offerId) => OffersSelector.getNearOffers(state, offerId),
   getOffer: (offerId) => OffersSelector.getOffer(state, offerId),
-  reviewsStatus: ReviewsSelector.getReviewsStatus(state),
-  reviews: ReviewsSelector.getReviews(state),
+  nearOffers: OfferSelector.getNearOffers(state),
+  nearOffersStatus: OfferSelector.getNearOffersStatus(state),
+  reviewsStatus: OfferSelector.getOfferReviewsStatus(state),
+  reviews: OfferSelector.getOfferReviews(state),
   userStatus: UserSelector.getUserStatus(state),
   user: UserSelector.getUser(state),
 });
 
 const mapDispatchToPorps = (dispatch) => ({
   loadReviews: (id) => {
-    dispatch(ReviewsOperation.loadReviewsAsync(id));
+    dispatch(OfferOperation.loadOfferReviewsAsync(id));
+  },
+  loadNearOffers: (id) => {
+    dispatch(OfferOperation.loadNearOffersAsync(id));
   },
   addReview: (offerid, review) => {
-    dispatch(ReviewsOperation.addReviewAsync(offerid, review));
+    dispatch(OfferOperation.addOfferReviewAsync(offerid, review));
   }
 });
 
