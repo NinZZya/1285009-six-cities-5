@@ -1,4 +1,5 @@
 import * as UserType from './user-types';
+import {extend} from '../../utils/utils';
 import {UserStatus} from '../../const';
 
 
@@ -12,15 +13,15 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case UserType.CHANGE_USER_STATUS:
-      return Object.assign({}, state, {
+      return extend(state, {
         status: action.payload,
       });
     case UserType.SET_USER:
-      return Object.assign({}, state, {
+      return extend(state, {
         user: action.payload,
       });
     case UserType.SET_ERROR:
-      return Object.assign({}, state, {
+      return extend(state, {
         error: action.payload,
       });
     default:

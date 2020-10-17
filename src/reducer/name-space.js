@@ -1,5 +1,5 @@
 export default {
   USER: `USER`,
   OFFERS: `OFFERS`,
-  REVIEWS: `REVIEWS`,
+  OFFER: `OFFER`,
 };
