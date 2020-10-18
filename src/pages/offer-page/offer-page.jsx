@@ -125,12 +125,12 @@ class OfferPage extends PureComponent {
     } = this.props;
 
     const {
-      images,
+      images, city,
       isPremium, isFavorite,
       title, rate, type,
       bedroomsCount, adultsCount,
       features, price, host,
-      description,
+      description, coords,
     } = this._offer;
 
     const nearOffers = this.props.nearOffers.slice(0, NEAR_OFFERS_COUNT);
@@ -139,6 +139,10 @@ class OfferPage extends PureComponent {
       <OffersList type={OffersListType.NEAR} offers={nearOffers} /> :
       null;
 
+    const center = {
+      coords,
+      zoom: city.zoom,
+    };
 
     return (
       <>
@@ -172,7 +176,7 @@ class OfferPage extends PureComponent {
           </Container>
           <section className="property__map map">
             <Map
-              center={this._offer.city}
+              center={center}
               pins={mapNearOffers}
               activeId={this._offer.id}
             />
