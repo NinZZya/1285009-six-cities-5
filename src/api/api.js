@@ -44,8 +44,8 @@ export default class Api {
         const nearOffers = mockOffers.map((offer) => {
           return Object.assign({}, offer, {
             distance: Math.sqrt(
-                Math.pow((activeOffer.coords[0] - offer.coords[0]), 2) +
-                Math.pow((activeOffer.coords[1] - offer.coords[1]), 2)
+                Math.pow((activeOffer.location.latitude - offer.location.latitude), 2) +
+                Math.pow((activeOffer.location.longitude - offer.location.longitude), 2)
             )
           });
         })
@@ -70,13 +70,6 @@ export default class Api {
         mockReviews[offerId].push(review);
         return true;
       });
-  }
-
-  static adaptOffersToClient(offers) {
-    return offers.reduce((mapOffers, offer) => {
-      mapOffers[offer.id] = offer;
-      return mapOffers;
-    }, {});
   }
 
   static adaptReviewToServer(review) {
