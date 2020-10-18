@@ -1,4 +1,5 @@
 import * as OfferAction from './offer-actions';
+import {adaptOffersToListToClient} from '../../adapters/offers-adapter';
 import {DataStatus} from '../../const';
 
 
@@ -29,7 +30,7 @@ export const loadNearOffersAsync = (id) => (dispatch, getState, api) => {
   dispatch(OfferAction.changeNearOffersStatus(DataStatus.LOADING));
   return api.getNearOffers(id)
     .then((response) => {
-      const nearOffers = response ? response : [];
+      const nearOffers = response ? adaptOffersToListToClient(response) : [];
 
       dispatch(OfferAction.setNearOffers(nearOffers));
       dispatch(OfferAction.changeNearOffersStatus(DataStatus.SUCCESS));

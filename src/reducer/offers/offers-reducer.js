@@ -10,6 +10,7 @@ const initialState = {
   activeCityId: DEFAULT_CITY_ID,
 };
 
+
 export default (state = initialState, action) => {
   switch (action.type) {
     case OffersType.CHANGE_OFFERS_STATUS:
@@ -24,12 +25,7 @@ export default (state = initialState, action) => {
       return extend(state, {
         sortType: action.payload,
       });
-    case OffersType.CHANGE_ACTIVE_CITY_ID:
-      return extend(state, {
-        activeCityId: action.payload,
-      });
     default:
       return state;
   }
 };
-
