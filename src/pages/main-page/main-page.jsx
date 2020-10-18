@@ -10,11 +10,12 @@ import NoOffers from '../../components/no-offers/no-offers';
 import LoadingData from '../../components/loading-data/loading-data';
 import Map from '../../components/map/map';
 import withActiveId from '../../hocs/with-active-id/with-active-id';
-import * as OffersSelector from '../../reducer/offers/offers-selectors';
+import * as CitiesAction from '../../reducer/cities/cities-actions';
+import * as CitiesSelector from '../../reducer/cities/cities-selectors';
 import * as OffersAction from '../../reducer/offers/offers-actions';
+import * as OffersSelector from '../../reducer/offers/offers-selectors';
 import * as Type from '../../types';
 import {
-  CITIES,
   SortType,
   AppPath,
   IdName,
@@ -44,12 +45,13 @@ const getOffersContent = (renderArgs) => {
     activeId,
     onActiveIdChange,
     offers,
+    cities,
     activeCityId,
     sortType,
     changeOffersSortType,
   } = renderArgs;
 
-  const activeCity = CITIES[activeCityId];
+  const activeCity = cities[activeCityId];
 
   if (offers.length) {
 
@@ -96,6 +98,7 @@ const MainPage = (props) => {
     activeCityId,
     offersStatus,
     offers,
+    cities,
     sortType,
     chageActiveCityId,
     changeOffersSortType,
@@ -103,7 +106,7 @@ const MainPage = (props) => {
   } = props;
 
   const pathCityId = getCityId(match);
-  const pathCity = CITIES[pathCityId];
+  const pathCity = cities[pathCityId];
 
   if (!pathCity || pathCityId === -1) {
     return <Redirect to ={AppPath.NOT_FOUND} />;
@@ -116,7 +119,7 @@ const MainPage = (props) => {
   const offersContent = offersStatus === DataStatus.SUCCESS ?
     getOffersContent(
         {
-          offers, activeCityId,
+          offers, activeCityId, cities,
           sortType, changeOffersSortType,
           activeId, onActiveIdChange,
         }
@@ -132,6 +135,7 @@ const MainPage = (props) => {
       <h1 className="visually-hidden">Cities</h1>
       <CitiesTabs
         activeCityId={activeCityId}
+        cities={cities}
       />
       <div className="cities">
         <Container
@@ -151,6 +155,7 @@ MainPage.propTypes = {
   onActiveIdChange: Type.FUNCTION,
   offersStatus: Type.DATA_STATUS,
   offers: Type.LIST_OFFERS,
+  cities: Type.CITIES,
   activeCityId: Type.ID,
   sortType: Type.SORT,
   chageActiveCityId: Type.FUNCTION,
@@ -161,13 +166,14 @@ MainPage.propTypes = {
 const mapStateToProps = (state) => ({
   offersStatus: OffersSelector.getOffersStatus(state),
   offers: OffersSelector.getSortedCityOffers(state),
-  activeCityId: OffersSelector.getActiveCityId(state),
+  cities: CitiesSelector.getCities(state),
+  activeCityId: CitiesSelector.getActiveCityId(state),
   sortType: OffersSelector.getOffersSortType(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   chageActiveCityId: (cityId) => {
-    dispatch(OffersAction.changeActiveCityId(cityId));
+    dispatch(CitiesAction.changeActiveCityId(cityId));
   },
   changeOffersSortType: (sortType) => {
     dispatch(OffersAction.changeOffersSortType(sortType));

@@ -5,7 +5,8 @@ import Container from '../../components/container/container';
 import FavoritesList from '../../components/favorites-list/favorites-list';
 import NoFavorites from '../../components/no-favorites/no-favorites';
 import LoadingData from '../../components/loading-data/loading-data';
-import {getActiveCityId, getFavoritesOffers, getOffersStatus} from '../../reducer/offers/offers-selectors';
+import * as OffersSelector from '../../reducer/offers/offers-selectors';
+import * as CitiesSelector from '../../reducer/cities/cities-selectors';
 import {DataStatus} from '../../const';
 import * as Type from '../../types';
 
@@ -50,9 +51,9 @@ FavoritesPage.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  offersStatus: getOffersStatus(state),
-  activeCityId: getActiveCityId(state),
-  favorites: getFavoritesOffers(state),
+  offersStatus: OffersSelector.getOffersStatus(state),
+  activeCityId: CitiesSelector.getActiveCityId(state),
+  favorites: OffersSelector.getFavoritesOffers(state),
 });
 
 

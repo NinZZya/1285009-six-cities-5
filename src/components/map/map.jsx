@@ -17,8 +17,6 @@ class Map extends PureComponent {
     this._activePin = leaflet.icon({
       iconUrl: `/img/pin-active.svg`,
     });
-
-    this._zoom = 13;
   }
 
   componentDidUpdate(prevProps) {
@@ -36,7 +34,7 @@ class Map extends PureComponent {
     const {center} = this.props;
     this._map = leaflet.map(this._mapRef.current, {
       center: center.coords,
-      zoom: this._zoom,
+      zoom: center.zoom,
       zoomControl: false,
       marker: true,
     });

@@ -172,7 +172,7 @@ class OfferPage extends PureComponent {
           </Container>
           <section className="property__map map">
             <Map
-              center={this._offer}
+              center={this._offer.city}
               pins={mapNearOffers}
               activeId={this._offer.id}
             />
