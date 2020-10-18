@@ -68,10 +68,13 @@ export const CITY_NAME = oneOf(LIST_CITIES);
 export const CITY = shape({
   id: ID,
   name: CITY_NAME,
+  zoom: number,
   coords: COORDS,
 });
 
-
+export const CITIES = shape({
+  [number]: arrayOf(CITY),
+});
 // Offer types
 
 export const STAR = shape({
@@ -160,6 +163,7 @@ export const LIST_OFFERS = arrayOf(OFFER);
 
 export const MAP_CENTER = shape({
   coords: COORDS,
+  zoom: number,
 });
 
 export const MAP_PINS = LIST_OFFERS;
