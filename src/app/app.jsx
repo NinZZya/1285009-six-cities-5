@@ -6,7 +6,6 @@ import {getUser, getUserStatus} from '../reducer/user/user-selectors';
 import * as Type from '../types';
 import {AppPath} from '../const';
 
-// Map for classes
 const PathToClassName = {
   [AppPath.ROOT]: `page--gray page--main`,
   [AppPath.CITY]: `page--gray page--main`,
