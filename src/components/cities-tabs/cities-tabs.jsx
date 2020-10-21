@@ -1,15 +1,14 @@
 import React from 'react';
 import CitiesTab from './components/cities-tab/cities-tab';
-import {CITIES} from '../../const';
 import * as Type from '../../types';
 
-
-const cities = Object.values(CITIES);
 
 const CitiesTabs = (props) => {
   const {
     activeCityId,
   } = props;
+
+  const cities = Object.values(props.cities);
 
   return (
     <div className="tabs">
@@ -30,7 +29,7 @@ const CitiesTabs = (props) => {
 
 CitiesTabs.propTypes = {
   activeCityId: Type.ID,
-  renderItems: Type.FUNCTION,
+  cities: Type.CITIES,
 };
 
 

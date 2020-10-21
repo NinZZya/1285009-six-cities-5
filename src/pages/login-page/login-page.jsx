@@ -4,12 +4,12 @@ import {Link} from 'react-router-dom';
 import PageContainer from '../../components/page-container/page-container';
 import Container from '../../components/container/container';
 import LoginForm from '../../components/login-form/login-form';
-import {authUserAsync} from '../../redux/user/user-operations';
-import * as UserAction from '../../redux/user/user-actions';
-import * as OfferSelector from '../../redux/offers/offers-selectors';
-import * as UserSelector from '../../redux/user/user-selectors';
+import {authUserAsync} from '../../reducer/user/user-operations';
+import * as UserAction from '../../reducer/user/user-actions';
+import * as UserSelector from '../../reducer/user/user-selectors';
+import * as CitiesSelector from '../../reducer/cities/cities-selectors';
 import * as Type from '../../types';
-import {AppPath, CITIES, UserStatus} from '../../const';
+import {AppPath, UserStatus} from '../../const';
 
 
 const ContainerType = {
@@ -22,10 +22,12 @@ const LoginPage = (props) => {
     activeCityId,
     userStatus,
     error,
+    cities,
     autUser,
     changeUserStatus,
   } = props;
-  const city = CITIES[activeCityId];
+
+  const city = cities[activeCityId];
   const cityPath = `${AppPath.CITY}/${activeCityId}`;
 
   return (
@@ -58,12 +60,14 @@ LoginPage.propTypes = {
   activeCityId: Type.ID,
   userStatus: Type.USER_STATUS,
   error: Type.USER_ERROR,
+  cities: Type.CITIES,
   autUser: Type.FUNCTION,
   changeUserStatus: Type.FUNCTION,
 };
 
 const mapStateToProps = (state) => ({
-  activeCityId: OfferSelector.getActiveCityId(state),
+  activeCityId: CitiesSelector.getActiveCityId(state),
+  cities: CitiesSelector.getCities(state),
   userStatus: UserSelector.getUserStatus(state),
   error: UserSelector.getError(state),
 });

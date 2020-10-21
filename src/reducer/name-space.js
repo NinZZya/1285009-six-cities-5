@@ -1,5 +1,6 @@
 export default {
   USER: `USER`,
+  CITIES: `CITIES`,
   OFFERS: `OFFERS`,
-  REVIEWS: `REVIEWS`,
+  OFFER: `OFFER`,
 };

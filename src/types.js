@@ -46,8 +46,7 @@ export const EXACT = bool;
 export const CHILDREN = oneOfType([array, object]).isRequired;
 export const FUNCTION = func;
 export const CLASS_NAME = string;
-export const OFFERS_STATUS = oneOf(LIST_DATA_STATUS);
-export const REVIEWS_STATUS = oneOf(LIST_DATA_STATUS);
+export const DATA_STATUS = oneOf(LIST_DATA_STATUS);
 export const USER_STATUS = oneOf(LIST_USER_STATUS);
 export const USER_ERROR = string;
 export const MESSAGE_TITLE = string;
@@ -69,10 +68,13 @@ export const CITY_NAME = oneOf(LIST_CITIES);
 export const CITY = shape({
   id: ID,
   name: CITY_NAME,
+  zoom: number,
   coords: COORDS,
 });
 
-
+export const CITIES = shape({
+  [number]: arrayOf(CITY),
+});
 // Offer types
 
 export const STAR = shape({
@@ -143,6 +145,7 @@ export const OFFER = shape({
   adultsCount: OFFER_ADULTS_COUNT,
   features: OFFER_FEATURES,
   host: OFFER_HOST,
+  previewImage: string,
   images: OFFER_IMAGES,
   description: OFFER_DESCRIPTION,
   isPremium: OFFER_IS_PREMIUM,
@@ -160,6 +163,7 @@ export const LIST_OFFERS = arrayOf(OFFER);
 
 export const MAP_CENTER = shape({
   coords: COORDS,
+  zoom: number,
 });
 
 export const MAP_PINS = LIST_OFFERS;

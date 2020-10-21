@@ -37,6 +37,24 @@ export default class Api {
       .then(() => mockOffers);
   }
 
+  static getNearOffers(id) {
+    return delay(DELAY_MS)
+      .then(() => {
+        const activeOffer = mockOffers.find((offer) => offer.id === id);
+        const nearOffers = mockOffers.map((offer) => {
+          return Object.assign({}, offer, {
+            distance: Math.sqrt(
+                Math.pow((activeOffer.location.latitude - offer.location.latitude), 2) +
+                Math.pow((activeOffer.location.longitude - offer.location.longitude), 2)
+            )
+          });
+        })
+        .sort((a, b) => a.distance - b.distance);
+
+        return nearOffers.slice(1, nearOffers.length);
+      });
+  }
+
   static getReviews(id) {
     return delay(DELAY_MS)
       .then(() => mockReviews[id]);
@@ -52,13 +70,6 @@ export default class Api {
         mockReviews[offerId].push(review);
         return true;
       });
-  }
-
-  static adaptOffersToClient(offers) {
-    return offers.reduce((mapOffers, offer) => {
-      mapOffers[offer.id] = offer;
-      return mapOffers;
-    }, {});
   }
 
   static adaptReviewToServer(review) {

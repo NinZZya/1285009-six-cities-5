@@ -5,7 +5,7 @@ import {Router} from 'react-router-dom';
 import App from './app/app';
 import store from './store';
 import history from './history';
-import {loadOffersAsync} from './redux/offers/offers-operations';
+import {loadOffersAsync} from './reducer/offers/offers-operations';
 
 
 store.dispatch(loadOffersAsync());

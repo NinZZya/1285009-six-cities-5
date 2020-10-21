@@ -4,10 +4,11 @@ import PageContainer from '../../components/page-container/page-container';
 import Container from '../../components/container/container';
 import FavoritesList from '../../components/favorites-list/favorites-list';
 import NoFavorites from '../../components/no-favorites/no-favorites';
-import {getActiveCityId, getFavoritesOffers, getOffersStatus} from '../../redux/offers/offers-selectors';
+import LoadingData from '../../components/loading-data/loading-data';
+import * as OffersSelector from '../../reducer/offers/offers-selectors';
+import * as CitiesSelector from '../../reducer/cities/cities-selectors';
 import {DataStatus} from '../../const';
 import * as Type from '../../types';
-import Loader from '../../components/loader/loader';
 
 
 const ContainerType = {
@@ -18,10 +19,6 @@ const ContainerType = {
 const FavoritesPage = (props) => {
   const {favorites, offersStatus, activeCityId} = props;
   const citiesCount = Object.keys(favorites).length;
-
-  const loader = offersStatus === DataStatus.LOADING ?
-    <Loader /> :
-    null;
 
   const isEmpty = offersStatus === DataStatus.SUCCESS && !citiesCount;
   const emptyContent = isEmpty ? <NoFavorites /> : null;
@@ -37,7 +34,7 @@ const FavoritesPage = (props) => {
           <h1 className={isEmpty ? `visually-hidden` : `favorites__title`}>
             {isEmpty ? `Favorites (empty)` : `Saved listing`}
           </h1>
-          {loader}
+          <LoadingData status={offersStatus} />
           {emptyContent}
           {favoritesContent}
         </section>
@@ -48,15 +45,15 @@ const FavoritesPage = (props) => {
 
 
 FavoritesPage.propTypes = {
-  offersStatus: Type.OFFERS_STATUS,
+  offersStatus: Type.DATA_STATUS,
   favorites: Type.FAVORITES_OFFERS,
   activeCityId: Type.ID,
 };
 
 const mapStateToProps = (state) => ({
-  offersStatus: getOffersStatus(state),
-  activeCityId: getActiveCityId(state),
-  favorites: getFavoritesOffers(state),
+  offersStatus: OffersSelector.getOffersStatus(state),
+  activeCityId: CitiesSelector.getActiveCityId(state),
+  favorites: OffersSelector.getFavoritesOffers(state),
 });
 
 

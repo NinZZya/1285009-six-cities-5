@@ -13,6 +13,10 @@ export const makeActionCreator = (type) => (payload) => ({
   payload,
 });
 
+export const extend = (a, ...b) => {
+  return Object.assign({}, a, ...b);
+};
+
 export const SortOffers = {
   [SortType.POPULAR]: (offers) => offers,
   [SortType.TOP_RATED_FIRST]: (offers) => offers.slice().sort((a, b) => b.rate - a.rate),

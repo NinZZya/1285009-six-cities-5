@@ -17,33 +17,12 @@ class Map extends PureComponent {
     this._activePin = leaflet.icon({
       iconUrl: `/img/pin-active.svg`,
     });
-
-    this._zoom = 13;
-  }
-
-  _addPins() {
-    const pins = this.props.pins.reduce((items, {id, coords}) => {
-      const pin = leaflet
-        .marker(coords, {
-          icon: id === this.props.activeId ?
-            this._activePin :
-            this._pin,
-        });
-      items.push(pin);
-      return items;
-    }, []);
-
-    if (this._layer) {
-      this._layer.remove();
-    }
-
-    this._layer = leaflet.layerGroup(pins);
-    this._layer.addTo(this._map);
   }
 
   componentDidUpdate(prevProps) {
     const isNeedUpdate = this.props.center.coords !== prevProps.center.coords ||
-      this.props.activeId !== prevProps.activeId;
+      this.props.activeId !== prevProps.activeId ||
+      this.props.pins !== prevProps.pins;
 
     if (isNeedUpdate) {
       this._map.setView(this.props.center.coords);
@@ -55,7 +34,7 @@ class Map extends PureComponent {
     const {center} = this.props;
     this._map = leaflet.map(this._mapRef.current, {
       center: center.coords,
-      zoom: this._zoom,
+      zoom: center.zoom,
       zoomControl: false,
       marker: true,
     });
@@ -78,6 +57,26 @@ class Map extends PureComponent {
       .addTo(this._map);
 
     this._addPins();
+  }
+
+  _addPins() {
+    const pins = this.props.pins.reduce((items, {id, coords}) => {
+      const pin = leaflet
+        .marker(coords, {
+          icon: id === this.props.activeId ?
+            this._activePin :
+            this._pin,
+        });
+      items.push(pin);
+      return items;
+    }, []);
+
+    if (this._layer) {
+      this._layer.remove();
+    }
+
+    this._layer = leaflet.layerGroup(pins);
+    this._layer.addTo(this._map);
   }
 
   render() {

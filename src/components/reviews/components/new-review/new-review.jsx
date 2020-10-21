@@ -5,7 +5,7 @@ import * as Type from '../../../../types';
 import {DataStatus, STARS} from '../../../../const';
 
 
-const MIN_CHARS_COUNT = 5;
+const MIN_CHARS_COUNT = 50;
 
 const FormName = {
   REVIEW: `review`,
@@ -97,7 +97,7 @@ NewReview.propTypes = {
   onFormValuesReset: Type.FUNCTION,
   onSubmitReview: Type.FUNCTION,
   user: Type.USER,
-  reviewsStatus: Type.REVIEWS_STATUS,
+  reviewsStatus: Type.DATA_STATUS,
 };
 
 
