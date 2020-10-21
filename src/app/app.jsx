@@ -6,6 +6,7 @@ import {getUser, getUserStatus} from '../reducer/user/user-selectors';
 import * as Type from '../types';
 import {AppPath} from '../const';
 
+
 const PathToClassName = {
   [AppPath.ROOT]: `page--gray page--main`,
   [AppPath.CITY]: `page--gray page--main`,
@@ -47,6 +48,7 @@ const mapStateToProps = (state) => ({
   userStatus: getUserStatus(state),
   user: getUser(state),
 });
+
 
 export {App};
 export default connect(mapStateToProps)(App);
