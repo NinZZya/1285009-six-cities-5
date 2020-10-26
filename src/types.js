@@ -91,6 +91,7 @@ export const USER = shape({
   id: number,
   name: string,
   email: string,
+  isPro: bool,
 });
 
 export const REVIEW = shape({
