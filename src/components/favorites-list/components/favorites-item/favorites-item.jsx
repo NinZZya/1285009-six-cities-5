@@ -6,7 +6,12 @@ import {AppPath} from '../../../../const';
 
 
 const FavoritesItem = (props) => {
-  const {offers} = props;
+  const {offers = []} = props;
+
+  if (!offers.length) {
+    return <div></div>;
+  }
+
   const city = offers[0].city;
 
   return (
