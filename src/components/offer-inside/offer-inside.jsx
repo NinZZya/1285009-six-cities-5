@@ -2,9 +2,9 @@ import React from 'react';
 import * as Type from '../../types';
 
 
-const OfferInside = ({features = []}) => {
+const renderFeatures = (features) => {
   return (
-    <div className="property__inside">
+    <>
       <h2 className="property__inside-title">What&apos;s inside</h2>
       <ul className="property__inside-list">
         {features.map((feature, index) => {
@@ -15,6 +15,14 @@ const OfferInside = ({features = []}) => {
           );
         })}
       </ul>
+    </>
+  );
+};
+
+const OfferInside = ({features = []}) => {
+  return (
+    <div className="property__inside">
+      {features ? renderFeatures(features) : null}
     </div>
   );
 };
