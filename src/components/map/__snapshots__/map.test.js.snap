@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should Map render correctly Should Map render correctly with pins 1`] = `
+<div
+  id="map"
+  style={
+    Object {
+      "height": "100%",
+    }
+  }
+/>
+`;
+
+exports[`Should Map render correctly Should Map render correctly without pins 1`] = `
+<div
+  id="map"
+  style={
+    Object {
+      "height": "100%",
+    }
+  }
+/>
+`;
