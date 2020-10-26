@@ -16,7 +16,7 @@ const Container = (props) => {
         ``
       }`}
     >
-      {Children.map(children, ((child) => child))}
+      {children ? Children.map(children, ((child) => child)) : null}
     </div>
   );
 };

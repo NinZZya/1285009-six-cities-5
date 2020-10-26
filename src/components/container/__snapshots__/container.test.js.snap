@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should Container render correctly Should Container render correctly class name and children 1`] = `
+<div
+  className="container cities-places__container "
+>
+  <div>
+    Div 1
+  </div>
+  <div>
+    Div 2
+  </div>
+</div>
+`;
+
+exports[`Should Container render correctly Should Container render correctly with type and children 1`] = `
+<div
+  className="container cities__places-container "
+>
+  <div>
+    Div 1
+  </div>
+  <div>
+    Div 2
+  </div>
+</div>
+`;
+
+exports[`Should Container render correctly Should Container render correctly with type, empty and children 1`] = `
+<div
+  className="container cities__places-container cities__places-container--empty"
+>
+  <div>
+    Div 1
+  </div>
+  <div>
+    Div 2
+  </div>
+</div>
+`;
+
+exports[`Should Container render correctly Should Container render correctly without type and children 1`] = `
+<div
+  className="container  "
+>
+  <div>
+    Div 1
+  </div>
+  <div>
+    Div 2
+  </div>
+</div>
+`;
