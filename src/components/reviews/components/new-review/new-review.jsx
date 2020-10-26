@@ -101,4 +101,5 @@ NewReview.propTypes = {
 };
 
 
+export {NewReview};
 export default withFormValues(NewReview);
