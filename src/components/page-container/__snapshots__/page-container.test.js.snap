@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should PageContainer render correctly Should PageContainer render correctly with type and children 1`] = `
+<main
+  className="page__main page__main--index "
+>
+  <div>
+    Div 1
+  </div>
+  <div>
+    Div 2
+  </div>
+</main>
+`;
+
+exports[`Should PageContainer render correctly Should PageContainer render correctly with type, empty and children 1`] = `
+<main
+  className="page__main page__main--index page__main--index-empty"
+>
+  <div>
+    Div 1
+  </div>
+  <div>
+    Div 2
+  </div>
+</main>
+`;
+
+exports[`Should PageContainer render correctly Should PageContainer render correctly without type and children 1`] = `
+<main
+  className="page__main page__main--undefined "
+>
+  <div>
+    Div 1
+  </div>
+  <div>
+    Div 2
+  </div>
+</main>
+`;
