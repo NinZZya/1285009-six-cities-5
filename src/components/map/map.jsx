@@ -91,7 +91,6 @@ Map.propTypes = {
   center: Type.MAP_CENTER,
   pins: Type.MAP_PINS,
   activeId: Type.ID,
-  sortType: Type.SORT,
 };
 
 export default Map;

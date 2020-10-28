@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should FavoritesItem render correctly Should FavoritesItem render correctly when no offers 1`] = `<div />`;
+
+exports[`Should FavoritesItem render correctly Should FavoritesItem render correctly whith offers 1`] = `<div />`;

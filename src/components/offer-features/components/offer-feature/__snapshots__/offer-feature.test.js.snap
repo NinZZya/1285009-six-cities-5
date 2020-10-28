@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should OfferFeature render correctly Should OfferFeature render correctly type adults 1`] = `
+<li
+  className="property__feature property__feature--adults"
+>
+  Max 3 adults
+</li>
+`;
+
+exports[`Should OfferFeature render correctly Should OfferFeature render correctly type bedrooms 1`] = `
+<li
+  className="property__feature property__feature--bedrooms"
+>
+  2 Bedrooms
+</li>
+`;
+
+exports[`Should OfferFeature render correctly Should OfferFeature render correctly type entire 1`] = `
+<li
+  className="property__feature property__feature--entire"
+>
+  Private room
+</li>
+`;

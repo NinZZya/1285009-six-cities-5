@@ -60,4 +60,5 @@ Sort.propTypes = {
 };
 
 
+export {Sort};
 export default withActiveFlag(Sort);

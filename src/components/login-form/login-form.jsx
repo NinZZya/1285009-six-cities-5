@@ -28,20 +28,22 @@ const LoginForm = (props) => {
     getErrorContent(error) :
     null;
 
+  const onLoginFormSubmit = (evt) => {
+    evt.preventDefault();
+    const formData = new FormData(evt.target);
+    const authData = {
+      email: formData.get(`email`),
+      password: formData.get(`password`),
+    };
+    onAuth(authData);
+  };
+
   return (
     <form
       className="login__form form"
       action="#"
       method="post"
-      onSubmit={(evt) => {
-        evt.preventDefault();
-        const formData = new FormData(evt.target);
-        const authData = {
-          email: formData.get(`email`),
-          password: formData.get(`password`),
-        };
-        onAuth(authData);
-      }}
+      onSubmit={onLoginFormSubmit}
     >
       <div className="login__input-wrapper form__input-wrapper">
         <label className="visually-hidden">E-mail</label>

@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should Star render correctly 1`] = `
+Array [
+  <input
+    className="form__rating-input visually-hidden"
+    id="4-stars"
+    name="rating"
+    onChange={[Function]}
+    type="radio"
+    value={4}
+  />,
+  <label
+    className="reviews__rating-label form__rating-label"
+    htmlFor="4-stars"
+    title="good"
+  >
+    <svg
+      className="form__star-image"
+      height="33"
+      width="37"
+    >
+      <use
+        xlinkHref="#icon-star"
+      />
+    </svg>
+  </label>,
+]
+`;
