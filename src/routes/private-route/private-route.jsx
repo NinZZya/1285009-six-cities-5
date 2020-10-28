@@ -1,5 +1,7 @@
 import React, {Children} from 'react';
+import {connect} from 'react-redux';
 import {Route, Redirect} from 'react-router-dom';
+import {getUserStatus} from '../../reducer/user/user-selectors.js';
 import * as Type from '../../types';
 import {AppPath, UserStatus} from '../../const';
 
@@ -33,4 +35,12 @@ PrivateRoute.propTypes = {
 };
 
 
-export default PrivateRoute;
+const mapStateToProps = (state) => {
+  return {
+    userStatus: getUserStatus(state),
+  };
+};
+
+
+export {PrivateRoute};
+export default connect(mapStateToProps)(PrivateRoute);

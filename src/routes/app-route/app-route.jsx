@@ -26,19 +26,11 @@ const AppRoute = (props) => {
       <Header userStatus={userStatus} user={user} />
       <Switch>
         <Route exact path={mainPath} component={MainPage} />
-        <PrivateRoute
-          exact
-          path={AppPath.LOGIN}
-          userStatus={userStatus}
-        >
+        <PrivateRoute exact path={AppPath.LOGIN}>
           <LoginPage />
         </PrivateRoute>
         <Route exact path={offerPath} component={OfferPage} />
-        <PrivateRoute
-          exact
-          path={AppPath.FAVORITES}
-          userStatus={userStatus}
-        >
+        <PrivateRoute exact path={AppPath.FAVORITES}>
           <FavoritesPage />
           <Footer />
         </PrivateRoute>
