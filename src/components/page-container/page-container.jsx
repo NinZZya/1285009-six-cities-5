@@ -14,7 +14,7 @@ const PageContainer = (props) => {
         ``
       }`}
     >
-      {Children.map(children, ((child) => child))}
+      {children ? Children.map(children, ((child) => child)) : children}
     </main>
   );
 };

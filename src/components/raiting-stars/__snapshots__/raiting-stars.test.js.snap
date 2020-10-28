@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should RaitingStars render correctly Should RaitingStars render correctly with type and rate 0 1`] = `
+<div
+  className="rating__stars place-card__stars"
+>
+  <span
+    style={
+      Object {
+        "width": "0%",
+      }
+    }
+  />
+  <span
+    className="visually-hidden"
+  >
+    Rating
+  </span>
+</div>
+`;
+
+exports[`Should RaitingStars render correctly Should RaitingStars render correctly with type and rate 2.5 1`] = `
+<div
+  className="rating__stars place-card__stars"
+>
+  <span
+    style={
+      Object {
+        "width": "50%",
+      }
+    }
+  />
+  <span
+    className="visually-hidden"
+  >
+    Rating
+  </span>
+</div>
+`;
+
+exports[`Should RaitingStars render correctly Should RaitingStars render correctly with type and rate 5 1`] = `
+<div
+  className="rating__stars place-card__stars"
+>
+  <span
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  />
+  <span
+    className="visually-hidden"
+  >
+    Rating
+  </span>
+</div>
+`;
+
+exports[`Should RaitingStars render correctly Should RaitingStars render correctly without type and rate 0 1`] = `
+<div
+  className="rating__stars undefined"
+>
+  <span
+    style={
+      Object {
+        "width": "0%",
+      }
+    }
+  />
+  <span
+    className="visually-hidden"
+  >
+    Rating
+  </span>
+</div>
+`;
+
+exports[`Should RaitingStars render correctly Should RaitingStars render correctly without type and rate 2.5 1`] = `
+<div
+  className="rating__stars undefined"
+>
+  <span
+    style={
+      Object {
+        "width": "50%",
+      }
+    }
+  />
+  <span
+    className="visually-hidden"
+  >
+    Rating
+  </span>
+</div>
+`;
+
+exports[`Should RaitingStars render correctly Should RaitingStars render correctly without type and rate 5 1`] = `
+<div
+  className="rating__stars undefined"
+>
+  <span
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  />
+  <span
+    className="visually-hidden"
+  >
+    Rating
+  </span>
+</div>
+`;

@@ -27,7 +27,7 @@ const OffersList = (props) => {
   const {
     type,
     offers = [],
-    onOfferHover,
+    onOfferHover = () => {},
   } = props;
 
   return (
