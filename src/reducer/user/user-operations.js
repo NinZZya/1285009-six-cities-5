@@ -22,9 +22,5 @@ export const checkAuthAsync = () => (dispatch, getState, api) => {
       dispatch(setUser(user));
       dispatch(changeUserStatus(UserStatus.AUTH));
       dispatch(loadFavoritesOffersAsync());
-    })
-    .catch((error) => {
-      dispatch(setError(error.message));
-      dispatch(changeUserStatus(UserStatus.AUTH_ERROR));
     });
 };
