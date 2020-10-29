@@ -61,6 +61,10 @@ export const MATCH = shape({
   }),
 });
 
+export const HISTORY = shape({
+  push: func,
+});
+
 
 // City types
 
@@ -110,6 +114,7 @@ export const OFFER_USER = shape({
   id: ID,
   name: string,
   avatar: string,
+  isPro: bool,
 });
 
 export const OFFER_IMAGE = string;
