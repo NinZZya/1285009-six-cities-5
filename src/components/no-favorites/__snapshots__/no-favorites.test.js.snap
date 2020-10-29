@@ -1,27 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Should NoFavorites render correctly 1`] = `
-<section
-  className="favorites favorites--empty"
+<div
+  className="favorites__status-wrapper"
 >
-  <h1
-    className="visually-hidden"
+  <b
+    className="favorites__status"
   >
-    Favorites (empty)
-  </h1>
-  <div
-    className="favorites__status-wrapper"
+    Nothing yet saved.
+  </b>
+  <p
+    className="favorites__status-description"
   >
-    <b
-      className="favorites__status"
-    >
-      Nothing yet saved.
-    </b>
-    <p
-      className="favorites__status-description"
-    >
-      Save properties to narrow down search or plan yor future trips.
-    </p>
-  </div>
-</section>
+    Save properties to narrow down search or plan yor future trips.
+  </p>
+</div>
 `;
