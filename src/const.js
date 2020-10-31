@@ -1,4 +1,5 @@
 export const DEFAULT_CITY_ID = 1;
+
 export const MAX_RATE = 5;
 
 export const AppPath = {
