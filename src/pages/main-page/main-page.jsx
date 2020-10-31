@@ -40,7 +40,7 @@ const getCityId = (match) => {
   return DEFAULT_CITY_ID;
 };
 
-const getOffersContent = (renderArgs) => {
+const getOffersContent = (args) => {
   const {
     activeId,
     onActiveIdChange,
@@ -49,7 +49,7 @@ const getOffersContent = (renderArgs) => {
     activeCityId,
     sortType,
     changeOffersSortType,
-  } = renderArgs;
+  } = args;
 
   const activeCity = cities[activeCityId];
 
@@ -93,15 +93,11 @@ const getOffersContent = (renderArgs) => {
 
 const MainPage = (props) => {
   const {
-    activeId,
-    onActiveIdChange,
     activeCityId,
     offersStatus,
     offers,
     cities,
-    sortType,
     chageActiveCityId,
-    changeOffersSortType,
     match,
   } = props;
 
@@ -109,7 +105,7 @@ const MainPage = (props) => {
   const pathCity = cities[pathCityId];
 
   if (!pathCity || pathCityId === -1) {
-    return <Redirect to ={AppPath.NOT_FOUND} />;
+    return <Redirect to={AppPath.NOT_FOUND} />;
   }
 
   if ((pathCityId !== activeCityId) && pathCity) {
@@ -117,16 +113,11 @@ const MainPage = (props) => {
   }
 
   const offersContent = offersStatus === DataStatus.SUCCESS ?
-    getOffersContent(
-        {
-          offers, activeCityId, cities,
-          sortType, changeOffersSortType,
-          activeId, onActiveIdChange,
-        }
-    ) :
+    getOffersContent(props) :
     null;
 
   const isEmpty = !offers.length;
+
   return (
     <PageContainer
       type={ContainerType.PAGE}
@@ -177,7 +168,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   changeOffersSortType: (sortType) => {
     dispatch(OffersAction.changeOffersSortType(sortType));
-  }
+  },
 });
 
 

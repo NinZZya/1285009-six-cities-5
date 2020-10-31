@@ -1,6 +1,9 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import * as UserSelector from '../../reducer/user/user-selectors';
+import * as OffersOperation from '../../reducer/offers/offers-operations';
 import * as Type from '../../types';
-
+import {UserStatus, AppPath} from '../../const';
 
 const BookmarkButtonType = {
   OFFER: `OFFER`,
@@ -25,10 +28,27 @@ const getImageSize = (type) => {
 };
 
 const BookmarkButton = (props) => {
-  const {type, mark} = props;
+  const {
+    type,
+    mark,
+    offer,
+    userStatus = UserStatus.NO_AUTH,
+    history,
+    changeFavoriteOffer,
+  } = props;
 
   const prefix = Prefix[type];
   const imageSize = getImageSize(type);
+
+  const handleBookmarkButtonClik = () => {
+    if (userStatus === UserStatus.NO_AUTH) {
+      history.push(AppPath.LOGIN);
+    }
+
+    const id = offer.id;
+    const state = Number(!offer.isFavorite);
+    changeFavoriteOffer(id, state);
+  };
 
   return (
     <button
@@ -37,8 +57,9 @@ const BookmarkButton = (props) => {
         ``}`
       }
       type="button"
+      onClick={handleBookmarkButtonClik}
     >
-      <svg className={`${prefix}__bookmark-icon`} width={imageSize.width} height={imageSize.height}>
+      <svg className="place-card__bookmark-icon" width={imageSize.width} height={imageSize.height}>
         <use xlinkHref="#icon-bookmark"></use>
       </svg>
       <span className="visually-hidden">To bookmarks</span>
@@ -49,7 +70,23 @@ const BookmarkButton = (props) => {
 BookmarkButton.propTypes = {
   type: Type.TYPE_NAME,
   mark: Type.FLAG,
+  offer: Type.OFFER,
+  userStatus: Type.USER_STATUS,
+  history: Type.HISTORY,
+  changeFavoriteOffer: Type.FUNCTION,
 };
 
+const mapStateToProps = (state) => ({
+  userStatus: UserSelector.getUserStatus(state),
+});
+
+const mapDispatchToPorps = (dispatch) => ({
+  changeFavoriteOffer: (id, state) => {
+    dispatch(OffersOperation.changeFavoriteOfferAsync(id, state));
+  },
+});
+
+
 export {BookmarkButtonType};
-export default BookmarkButton;
+export {BookmarkButton};
+export default connect(mapStateToProps, mapDispatchToPorps)(BookmarkButton);

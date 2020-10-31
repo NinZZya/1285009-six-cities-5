@@ -6,9 +6,13 @@ import App from './app/app';
 import store from './store';
 import history from './history';
 import {loadOffersAsync} from './reducer/offers/offers-operations';
+import {checkAuthAsync} from './reducer/user/user-operations';
 
 
-store.dispatch(loadOffersAsync());
+Promise.all([
+  store.dispatch(loadOffersAsync()),
+  store.dispatch(checkAuthAsync()),
+]);
 
 ReactDOM.render(
     <Provider store={store}>

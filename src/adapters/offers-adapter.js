@@ -1,9 +1,11 @@
 import {adaptCityToClient} from './city-adapter';
 
-const adaptOfferToClient = (offer) => {
+export const adaptOfferToClient = (offer) => {
+  const city = adaptCityToClient(offer);
 
   return {
     id: offer[`id`],
+    city,
     title: offer[`title`],
     type: offer[`type`],
     price: offer[`price`],
@@ -32,11 +34,9 @@ const adaptOfferToClient = (offer) => {
 export const adaptOffersDataToClient = (offers) => {
   const adaptCities = {};
   const adaptOffers = offers.reduce((mapOffers, offer) => {
-    const city = adaptCityToClient(offer);
-    adaptCities[city.id] = city;
-
     const adaptOffer = adaptOfferToClient(offer);
-    adaptOffer.city = city;
+    const city = adaptOffer.city;
+    adaptCities[city.id] = city;
 
     mapOffers[adaptOffer.id] = adaptOffer;
     return mapOffers;

@@ -18,12 +18,11 @@ const ContainerType = {
 
 const FavoritesPage = (props) => {
   const {favorites, offersStatus, activeCityId} = props;
-  const citiesCount = Object.keys(favorites).length;
-
-  const isEmpty = offersStatus === DataStatus.SUCCESS && !citiesCount;
+  const favoritesCount = Object.keys(favorites).length;
+  const isEmpty = offersStatus === DataStatus.SUCCESS && !favoritesCount;
   const emptyContent = isEmpty ? <NoFavorites /> : null;
 
-  const favoritesContent = offersStatus === DataStatus.SUCCESS && citiesCount ?
+  const favoritesContent = offersStatus === DataStatus.SUCCESS && favoritesCount ?
     <FavoritesList favorites={favorites} activeCityId={activeCityId} /> :
     null;
 

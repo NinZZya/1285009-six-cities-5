@@ -17,9 +17,8 @@ import Map from '../../components/map/map';
 import LoadingData from '../../components/loading-data/loading-data';
 import OffersList, {OffersListType} from '../../components/offers-list/offers-list';
 import * as UserSelector from '../../reducer/user/user-selectors';
+import * as OffersOperation from '../../reducer/offers/offers-operations';
 import * as OffersSelector from '../../reducer/offers/offers-selectors';
-import * as OfferSelector from '../../reducer/offer/offer-selectors';
-import * as OfferOperation from '../../reducer/offer/offer-operations';
 import * as Type from '../../types';
 import {AppPath, IdName, DataStatus, UserStatus} from '../../const';
 import RaitingStars from '../../components/raiting-stars/raiting-stars';
@@ -57,15 +56,19 @@ class OfferPage extends PureComponent {
   constructor(props) {
     super(props);
 
+    this._activeOfferId = -1;
+    this._offer = null;
     this._handelSubmitReview = this._handelSubmitReview.bind(this);
   }
 
   componentDidMount() {
     const {
+      loadOffer,
       loadReviews,
       loadNearOffers,
     } = this.props;
 
+    loadOffer(this._activeOfferId);
     loadNearOffers(this._activeOfferId);
     loadReviews(this._activeOfferId);
   }
@@ -88,8 +91,10 @@ class OfferPage extends PureComponent {
 
   _getReviewsContent() {
     const {
-      userStatus, user,
-      reviews, reviewsStatus,
+      userStatus,
+      user,
+      reviewsStatus,
+      reviews,
     } = this.props;
 
     const count = reviews.length;
@@ -110,7 +115,6 @@ class OfferPage extends PureComponent {
         {reviewsContent}
         {isAuth && (
           <NewReview
-            user={user}
             reviewsStatus={reviewsStatus}
             onSubmitReview={this._handelSubmitReview}
           />
@@ -125,12 +129,20 @@ class OfferPage extends PureComponent {
     } = this.props;
 
     const {
-      images, city,
-      isPremium, isFavorite,
-      title, rate, type,
-      bedroomsCount, adultsCount,
-      features, price, host,
-      description, coords,
+      images,
+      city,
+      isPremium,
+      isFavorite,
+      title,
+      rate,
+      type,
+      bedroomsCount,
+      adultsCount,
+      features,
+      price,
+      host,
+      description,
+      coords,
     } = this._offer;
 
     const nearOffers = this.props.nearOffers.slice(0, NEAR_OFFERS_COUNT);
@@ -157,7 +169,11 @@ class OfferPage extends PureComponent {
                 <h1 className="property__name">
                   {title}
                 </h1>
-                <BookmarkButton type={BookmarkButtonType.OFFER} mark={isFavorite} />
+                <BookmarkButton
+                  type={BookmarkButtonType.OFFER}
+                  mark={isFavorite}
+                  offer={this._offer}
+                />
               </div>
               <div className="property__rating rating">
                 <RaitingStars type={TypeName.RAITING_STARS} rate={rate} />
@@ -197,26 +213,27 @@ class OfferPage extends PureComponent {
 
   render() {
     const {
-      offersStatus, getOffer, match,
+      offerStatus,
+      getOffer,
+      match,
     } = this.props;
 
     this._activeOfferId = getOfferId(match);
-    this._offer = offersStatus === DataStatus.SUCCESS ?
+    this._offer = offerStatus === DataStatus.SUCCESS ?
       getOffer(this._activeOfferId) :
       null;
 
-
-    if (this._activeOfferId === -1 || (!this._offer && offersStatus === DataStatus.SUCCESS)) {
+    if (this._activeOfferId === -1 || (!this._offer && offerStatus === DataStatus.SUCCESS)) {
       return <Redirect to={AppPath.NOT_FOUND} />;
     }
 
-    const offerContent = offersStatus === DataStatus.SUCCESS ?
+    const offerContent = offerStatus === DataStatus.SUCCESS ?
       this._getOfferContent() :
       null;
 
     return (
       <PageContainer type={ContainerType.PAGE}>
-        <LoadingData status={offersStatus} />
+        <LoadingData status={offerStatus} />
         {offerContent}
       </PageContainer>
     );
@@ -224,13 +241,14 @@ class OfferPage extends PureComponent {
 }
 
 OfferPage.propTypes = {
-  offersStatus: Type.DATA_STATUS,
+  offerStatus: Type.DATA_STATUS,
   getOffer: Type.FUNCTION,
   nearOffers: Type.LIST_OFFERS,
   nearOffersStatus: Type.DATA_STATUS,
   reviewsStatus: Type.DATA_STATUS,
   reviews: Type.REVIEWS,
   match: Type.MATCH,
+  loadOffer: Type.FUNCTION,
   loadReviews: Type.FUNCTION,
   loadNearOffers: Type.FUNCTION,
   addReview: Type.FUNCTION,
@@ -240,26 +258,29 @@ OfferPage.propTypes = {
 
 
 const mapStateToProps = (state) => ({
-  offersStatus: OffersSelector.getOffersStatus(state),
-  getOffer: (offerId) => OffersSelector.getOffer(state, offerId),
-  nearOffers: OfferSelector.getNearOffers(state),
-  nearOffersStatus: OfferSelector.getNearOffersStatus(state),
-  reviewsStatus: OfferSelector.getOfferReviewsStatus(state),
-  reviews: OfferSelector.getOfferReviews(state),
+  offerStatus: OffersSelector.getOfferStatus(state),
+  getOffer: (id) => OffersSelector.getOffer(state, id),
+  nearOffers: OffersSelector.getNearOffers(state),
+  nearOffersStatus: OffersSelector.getNearOffersStatus(state),
+  reviewsStatus: OffersSelector.getOfferReviewsStatus(state),
+  reviews: OffersSelector.getOfferReviews(state),
   userStatus: UserSelector.getUserStatus(state),
   user: UserSelector.getUser(state),
 });
 
 const mapDispatchToPorps = (dispatch) => ({
+  loadOffer: (id) => {
+    dispatch(OffersOperation.loadOfferAsync(id));
+  },
   loadReviews: (id) => {
-    dispatch(OfferOperation.loadOfferReviewsAsync(id));
+    dispatch(OffersOperation.loadOfferReviewsAsync(id));
   },
   loadNearOffers: (id) => {
-    dispatch(OfferOperation.loadNearOffersAsync(id));
+    dispatch(OffersOperation.loadNearOffersAsync(id));
   },
-  addReview: (offerid, review) => {
-    dispatch(OfferOperation.addOfferReviewAsync(offerid, review));
-  }
+  addReview: (id, review) => {
+    dispatch(OffersOperation.addOfferReviewAsync(id, review));
+  },
 });
 
 

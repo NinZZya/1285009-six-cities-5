@@ -20,8 +20,11 @@ const SubmitCaption = {
 
 const NewReview = (props) => {
   const {
-    form, onFormValuesChange, onFormValuesReset,
-    onSubmitReview, user, reviewsStatus,
+    form,
+    onFormValuesChange,
+    onFormValuesReset,
+    onSubmitReview,
+    reviewsStatus,
   } = props;
 
   const isReviewValid = form[FormName.REVIEW] ?
@@ -38,9 +41,6 @@ const NewReview = (props) => {
   const handelSubmitReview = (evt) => {
     evt.preventDefault();
     onSubmitReview({
-      id: -1,
-      user,
-      date: String(new Date()),
       rate: form[FormName.RATE],
       text: form[FormName.REVIEW],
     });
@@ -96,7 +96,6 @@ NewReview.propTypes = {
   onFormValuesChange: Type.FUNCTION,
   onFormValuesReset: Type.FUNCTION,
   onSubmitReview: Type.FUNCTION,
-  user: Type.USER,
   reviewsStatus: Type.DATA_STATUS,
 };
 

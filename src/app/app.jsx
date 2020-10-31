@@ -25,7 +25,8 @@ const getPage = (path) => {
 const App = (props) => {
   const {userStatus, user} = props;
   const location = useLocation();
-  const page = getPage(location.pathname);
+  const pathname = location ? location.pathname : ``;
+  const page = getPage(pathname);
 
   return (
     <div

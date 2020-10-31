@@ -50,6 +50,8 @@ const getImageSize = (type) => {
 };
 
 const OffersItem = (props) => {
+  const {offer} = props;
+
   const {
     id,
     price,
@@ -59,7 +61,7 @@ const OffersItem = (props) => {
     rate,
     isPremium,
     isFavorite,
-  } = props.offer;
+  } = offer;
 
   const {onOfferHover} = props;
 
@@ -102,7 +104,11 @@ const OffersItem = (props) => {
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <OfferPrice type={TypeName.OFFER_PRICE} price={price} />
-          <BookmarkButton type={BookmarkButtonType.OFFER_ITEM} mark={isFavorite} />
+          <BookmarkButton
+            type={BookmarkButtonType.OFFER_ITEM}
+            mark={isFavorite}
+            offer={offer}
+          />
         </div>
         <div className="place-card__rating rating">
           <RaitingStars type={TypeName.RAITING_STARS} rate={rate} />

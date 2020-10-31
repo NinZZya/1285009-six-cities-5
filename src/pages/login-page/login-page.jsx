@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import PageContainer from '../../components/page-container/page-container';
 import Container from '../../components/container/container';
 import LoginForm from '../../components/login-form/login-form';
-import {authUserAsync} from '../../reducer/user/user-operations';
+import {authAsync} from '../../reducer/user/user-operations';
 import * as UserAction from '../../reducer/user/user-actions';
 import * as UserSelector from '../../reducer/user/user-selectors';
 import * as CitiesSelector from '../../reducer/cities/cities-selectors';
@@ -23,7 +23,7 @@ const LoginPage = (props) => {
     userStatus,
     error,
     cities,
-    autUser,
+    auth,
     changeUserStatus,
   } = props;
 
@@ -38,7 +38,7 @@ const LoginPage = (props) => {
           <LoginForm
             onAuth={(authData) => {
               changeUserStatus(UserStatus.RESPONSE);
-              autUser(authData);
+              auth(authData);
             }}
             error={error}
             userStatus={userStatus}
@@ -61,7 +61,7 @@ LoginPage.propTypes = {
   userStatus: Type.USER_STATUS,
   error: Type.USER_ERROR,
   cities: Type.CITIES,
-  autUser: Type.FUNCTION,
+  auth: Type.FUNCTION,
   changeUserStatus: Type.FUNCTION,
 };
 
@@ -73,8 +73,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  autUser: (authData) => {
-    dispatch(authUserAsync(authData));
+  auth: (authData) => {
+    dispatch(authAsync(authData));
   },
   changeUserStatus: (userStatus) => {
     dispatch(UserAction.changeUserStatus(userStatus));

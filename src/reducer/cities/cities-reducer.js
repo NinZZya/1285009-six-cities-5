@@ -19,11 +19,9 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case CitiesType.UPDATE_CITIES:
-      const updatedCities = extend(state.cities, action.payload);
-
+    case CitiesType.SETE_CITIES:
       return extend(state, {
-        cities: updatedCities,
+        cities: action.payload,
       });
     case CitiesType.CHANGE_ACTIVE_CITY_ID:
       return extend(state, {
