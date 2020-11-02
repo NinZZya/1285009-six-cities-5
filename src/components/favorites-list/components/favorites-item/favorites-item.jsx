@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import OffersList, {OffersListType} from '../../../offers-list/offers-list';
+import OffersList, {OffersListType} from '@/components/offers-list/offers-list';
 import * as Type from '@/types';
 import {AppPath} from '@/const';
 
