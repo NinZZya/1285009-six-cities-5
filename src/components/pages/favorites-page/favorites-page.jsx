@@ -1,14 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import PageContainer from '../../components/page-container/page-container';
-import Container from '../../components/container/container';
-import FavoritesList from '../../components/favorites-list/favorites-list';
-import NoFavorites from '../../components/no-favorites/no-favorites';
-import LoadingData from '../../components/loading-data/loading-data';
-import * as OffersSelector from '../../reducer/offers/offers-selectors';
-import * as CitiesSelector from '../../reducer/cities/cities-selectors';
-import {DataStatus} from '../../const';
-import * as Type from '../../types';
+import PageContainer from '@/components/page-container/page-container';
+import Container from '@/components/container/container';
+import FavoritesList from '@/components/favorites-list/favorites-list';
+import NoFavorites from '@/components/no-favorites/no-favorites';
+import LoadingData from '@/components/loading-data/loading-data';
+import * as OffersSelector from '@/reducer/offers/offers-selectors';
+import * as CitiesSelector from '@/reducer/cities/cities-selectors';
+import {DataStatus} from '@/const';
+import * as Type from '@/types';
 
 
 const ContainerType = {

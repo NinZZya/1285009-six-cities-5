@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {Router} from 'react-router-dom';
-import App from './app/app';
+import App from './components/app/app';
 import store from './store';
 import history from './history';
 import {loadOffersAsync} from './reducer/offers/offers-operations';

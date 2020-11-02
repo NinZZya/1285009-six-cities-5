@@ -1,8 +1,8 @@
 import React from 'react';
 import Star from './components/star/star';
-import withFormValues from '../../../../hocs/with-form-values/with-form-values';
-import * as Type from '../../../../types';
-import {DataStatus, STARS} from '../../../../const';
+import withFormValues from '@/hocs/with-form-values/with-form-values';
+import * as Type from '@/types';
+import {DataStatus, STARS} from '@/const';
 
 
 const MIN_CHARS_COUNT = 50;

@@ -1,27 +1,27 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
-import PageContainer from '../../components/page-container/page-container';
-import Container from '../../components/container/container';
-import CitiesTabs from '../../components/cities-tabs/cities-tabs';
-import Sort from '../../components/sort/sort';
-import OffersList, {OffersListType} from '../../components/offers-list/offers-list';
-import NoOffers from '../../components/no-offers/no-offers';
-import LoadingData from '../../components/loading-data/loading-data';
-import Map from '../../components/map/map';
-import withActiveId from '../../hocs/with-active-id/with-active-id';
-import * as CitiesAction from '../../reducer/cities/cities-actions';
-import * as CitiesSelector from '../../reducer/cities/cities-selectors';
-import * as OffersAction from '../../reducer/offers/offers-actions';
-import * as OffersSelector from '../../reducer/offers/offers-selectors';
-import * as Type from '../../types';
+import PageContainer from '@/components/page-container/page-container';
+import Container from '@/components/container/container';
+import CitiesTabs from '@/components/cities-tabs/cities-tabs';
+import Sort from '@/components/sort/sort';
+import OffersList, {OffersListType} from '@/components/offers-list/offers-list';
+import NoOffers from '@/components/no-offers/no-offers';
+import LoadingData from '@/components/loading-data/loading-data';
+import Map from '@/components/map/map';
+import withActiveId from '@/hocs/with-active-id/with-active-id';
+import * as CitiesAction from '@/reducer/cities/cities-actions';
+import * as CitiesSelector from '@/reducer/cities/cities-selectors';
+import * as OffersAction from '@/reducer/offers/offers-actions';
+import * as OffersSelector from '@/reducer/offers/offers-selectors';
+import * as Type from '@/types';
 import {
   SortType,
   AppPath,
   IdName,
   DataStatus,
   DEFAULT_CITY_ID,
-} from '../../const';
+} from '@/const';
 
 
 const SORTS = Object.values(SortType);

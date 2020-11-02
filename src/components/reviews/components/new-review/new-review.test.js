@@ -1,9 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {NewReview} from './new-review';
-import {user} from '../../../../mocks/users';
-import reviews from '../../../../mocks/reviews';
-import {DataStatus} from '../../../../const';
+import {user} from '@/mocks/users';
+import reviews from '@/mocks/reviews';
+import {DataStatus} from '@/const';
 
 
 const validForm = {

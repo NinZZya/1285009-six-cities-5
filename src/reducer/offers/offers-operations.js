@@ -1,16 +1,16 @@
 import * as OffersAction from './offers-actions';
 import * as OffersSelector from './offers-selectors';
-import * as CitiesAction from '../cities/cities-actions';
-import * as CitiesSelector from '../cities/cities-selectors';
+import * as CitiesAction from '@/reducer/cities/cities-actions';
+import * as CitiesSelector from '@/reducer/cities/cities-selectors';
 import {
   adaptOffersDataToClient,
   adaptOffersToListToClient,
   adaptOfferToClient,
-} from '../../adapters/offers-adapter';
-import {adaptCityToClient} from '../../adapters/city-adapter';
-import {adaptReviewToServer, adaptReviewsToClent} from '../../adapters/review-adapter';
-import {DataStatus} from '../../const';
-import {extend} from '../../utils/utils';
+} from '@/adapters/offers-adapter';
+import {adaptCityToClient} from '@/adapters/city-adapter';
+import {adaptReviewToServer, adaptReviewsToClent} from '@/adapters/review-adapter';
+import {DataStatus} from '@/const';
+import {extend} from '@/utils/utils';
 
 
 export const loadOffersAsync = () => (dispatch, getState, api) => {

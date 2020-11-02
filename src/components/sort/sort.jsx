@@ -1,6 +1,6 @@
 import React from 'react';
-import withActiveFlag from '../../hocs/with-active-flag/with-active-flag';
-import * as Type from '../../types';
+import withActiveFlag from '@/hocs/with-active-flag/with-active-flag';
+import * as Type from '@/types';
 
 
 const Sort = (props) => {

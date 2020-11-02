@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import OfferInside from './offer-inside';
-import offers from '../../mocks/offers';
+import offers from '@/mocks/offers';
 
 const FEATURES = offers[0].features;
 

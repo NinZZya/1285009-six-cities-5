@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import leaflet from 'leaflet';
-import * as Type from '../../types';
+import * as Type from '@/types';
 
 class Map extends PureComponent {
   constructor(props) {

@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import * as UserSelector from '../../reducer/user/user-selectors';
-import * as OffersOperation from '../../reducer/offers/offers-operations';
-import * as Type from '../../types';
-import {UserStatus, AppPath} from '../../const';
+import * as UserSelector from '@/reducer/user/user-selectors';
+import * as OffersOperation from '@/reducer/offers/offers-operations';
+import * as Type from '@/types';
+import {UserStatus, AppPath} from '@/const';
 
 const BookmarkButtonType = {
   OFFER: `OFFER`,
