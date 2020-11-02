@@ -1,7 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import leaflet from 'leaflet';
 import * as Type from '@/types';
-// import {extend} from '@/utils/utils';
 
 
 const PIN = leaflet.icon({
@@ -15,7 +14,8 @@ const ACTIVE_PIN = leaflet.icon({
 
 const Map = (props) => {
   const {center, pins, activeId} = props;
-  const mapRef = useRef();
+  const mapRef = useRef(null);
+  const layerRef = useRef(null);
 
   useEffect(() => {
     mapRef.current = leaflet.map(`map`, {
@@ -41,18 +41,13 @@ const Map = (props) => {
           ),
       ]
     });
-  }, []);
 
-  const layerRef = useRef(null);
-  useEffect(() => {
     layerRef.current = leaflet.layerGroup().addTo(mapRef.current);
   }, []);
 
-  useEffect(() => {
-    mapRef.current.setView(center.coords);
-  }, [center]);
 
   useEffect(() => {
+    mapRef.current.setView(center.coords);
     layerRef.current.clearLayers();
     pins.forEach(({id, coords}) => {
       leaflet.marker(coords, {
@@ -62,7 +57,7 @@ const Map = (props) => {
       })
       .addTo(layerRef.current);
     });
-  }, [pins, activeId]);
+  }, [center, pins, activeId]);
 
   return (
     <div id="map" ref={mapRef} style={{height: `100%`}}></div>
