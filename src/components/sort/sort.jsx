@@ -1,17 +1,19 @@
-import React from 'react';
-import withActiveFlag from '@/hocs/with-active-flag/with-active-flag';
+import React, {useState} from 'react';
 import * as Type from '@/types';
 
 
 const Sort = (props) => {
   const {
     activeSort,
-    isActive,
-    onActiveChange,
     sorts = [],
     onSortClick = () => {},
   } = props;
 
+  const [isActive, setIsActive] = useState(false);
+
+  const onActiveChange = () => {
+    setIsActive(!isActive);
+  };
 
   return (
     <form className="places__sorting" action="#" method="get">
@@ -60,5 +62,4 @@ Sort.propTypes = {
 };
 
 
-export {Sort};
-export default withActiveFlag(Sort);
+export default Sort;
