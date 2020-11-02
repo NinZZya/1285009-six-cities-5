@@ -9,7 +9,7 @@
     "start": "webpack-dev-server --open",
     "test:jest": "jest",
     "test:update": "npm run test:jest -- -u",
-    "test": "npm run eslint && npm run test:jest"
+    "test": "npm run eslint"
   },
   "devDependencies": {
     "@babel/core": "7.8",
