@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import * as Type from '@/types';
 
 
@@ -11,9 +11,9 @@ const Sort = (props) => {
 
   const [isActive, setIsActive] = useState(false);
 
-  const onActiveChange = () => {
+  const onActiveChange = useCallback(() => {
     setIsActive(!isActive);
-  };
+  });
 
   return (
     <form className="places__sorting" action="#" method="get">

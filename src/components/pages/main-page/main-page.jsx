@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import PageContainer from '@/components/page-container/page-container';
@@ -43,7 +43,7 @@ const getCityId = (match) => {
 const getOffersContent = (args) => {
   const {
     activeId,
-    setActiveId,
+    onActiveIdChange,
     offers,
     cities,
     activeCityId,
@@ -52,10 +52,6 @@ const getOffersContent = (args) => {
   } = args;
 
   const activeCity = cities[activeCityId];
-
-  const onActiveIdChange = (id) => {
-    setActiveId(id);
-  };
 
   if (offers.length) {
 
@@ -118,9 +114,13 @@ const MainPage = (props) => {
     chageActiveCityId(pathCityId);
   }
 
+  const onActiveIdChange = useCallback((id) => {
+    setActiveId(id);
+  }, []);
+
   const args = extend(props, {
     activeId,
-    setActiveId,
+    onActiveIdChange,
   });
 
   const offersContent = offersStatus === DataStatus.SUCCESS ?
