@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Review from './review';
-import reviews from '../../../../mocks/reviews';
+import reviews from '@/mocks/reviews';
 
 
 const review = reviews[0];

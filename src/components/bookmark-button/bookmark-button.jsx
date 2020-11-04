@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {connect} from 'react-redux';
-import * as UserSelector from '../../reducer/user/user-selectors';
-import * as OffersOperation from '../../reducer/offers/offers-operations';
-import * as Type from '../../types';
-import {UserStatus, AppPath} from '../../const';
+import * as UserSelector from '@/reducer/user/user-selectors';
+import * as OffersOperation from '@/reducer/offers/offers-operations';
+import history from '@/history';
+import * as Type from '@/types';
+import {UserStatus, AppPath} from '@/const';
 
 const BookmarkButtonType = {
   OFFER: `OFFER`,
@@ -33,14 +34,13 @@ const BookmarkButton = (props) => {
     mark,
     offer,
     userStatus = UserStatus.NO_AUTH,
-    history,
     changeFavoriteOffer,
   } = props;
 
   const prefix = Prefix[type];
   const imageSize = getImageSize(type);
 
-  const handleBookmarkButtonClik = () => {
+  const handleBookmarkButtonClik = useCallback(() => {
     if (userStatus === UserStatus.NO_AUTH) {
       history.push(AppPath.LOGIN);
     }
@@ -48,7 +48,7 @@ const BookmarkButton = (props) => {
     const id = offer.id;
     const state = Number(!offer.isFavorite);
     changeFavoriteOffer(id, state);
-  };
+  }, [userStatus, offer]);
 
   return (
     <button
@@ -72,7 +72,6 @@ BookmarkButton.propTypes = {
   mark: Type.FLAG,
   offer: Type.OFFER,
   userStatus: Type.USER_STATUS,
-  history: Type.HISTORY,
   changeFavoriteOffer: Type.FUNCTION,
 };
 

@@ -1,27 +1,27 @@
-import React from 'react';
+import React, {useState, useCallback} from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
-import PageContainer from '../../components/page-container/page-container';
-import Container from '../../components/container/container';
-import CitiesTabs from '../../components/cities-tabs/cities-tabs';
-import Sort from '../../components/sort/sort';
-import OffersList, {OffersListType} from '../../components/offers-list/offers-list';
-import NoOffers from '../../components/no-offers/no-offers';
-import LoadingData from '../../components/loading-data/loading-data';
-import Map from '../../components/map/map';
-import withActiveId from '../../hocs/with-active-id/with-active-id';
-import * as CitiesAction from '../../reducer/cities/cities-actions';
-import * as CitiesSelector from '../../reducer/cities/cities-selectors';
-import * as OffersAction from '../../reducer/offers/offers-actions';
-import * as OffersSelector from '../../reducer/offers/offers-selectors';
-import * as Type from '../../types';
+import PageContainer from '@/components/page-container/page-container';
+import Container from '@/components/container/container';
+import CitiesTabs from '@/components/cities-tabs/cities-tabs';
+import Sort from '@/components/sort/sort';
+import OffersList, {OffersListType} from '@/components/offers-list/offers-list';
+import NoOffers from '@/components/no-offers/no-offers';
+import LoadingData from '@/components/loading-data/loading-data';
+import Map from '@/components/map/map';
+import * as CitiesAction from '@/reducer/cities/cities-actions';
+import * as CitiesSelector from '@/reducer/cities/cities-selectors';
+import * as OffersAction from '@/reducer/offers/offers-actions';
+import * as OffersSelector from '@/reducer/offers/offers-selectors';
+import * as Type from '@/types';
+import {extend} from '@/utils/utils';
 import {
   SortType,
   AppPath,
   IdName,
   DataStatus,
   DEFAULT_CITY_ID,
-} from '../../const';
+} from '@/const';
 
 
 const SORTS = Object.values(SortType);
@@ -101,6 +101,8 @@ const MainPage = (props) => {
     match,
   } = props;
 
+  const [activeId, setActiveId] = useState();
+
   const pathCityId = getCityId(match);
   const pathCity = cities[pathCityId];
 
@@ -112,8 +114,17 @@ const MainPage = (props) => {
     chageActiveCityId(pathCityId);
   }
 
+  const onActiveIdChange = useCallback((id) => {
+    setActiveId(id);
+  }, []);
+
+  const args = extend(props, {
+    activeId,
+    onActiveIdChange,
+  });
+
   const offersContent = offersStatus === DataStatus.SUCCESS ?
-    getOffersContent(props) :
+    getOffersContent(args) :
     null;
 
   const isEmpty = !offers.length;
@@ -142,8 +153,6 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  activeId: Type.ID,
-  onActiveIdChange: Type.FUNCTION,
   offersStatus: Type.DATA_STATUS,
   offers: Type.LIST_OFFERS,
   cities: Type.CITIES,
@@ -173,6 +182,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 
 export {MainPage};
-export default withActiveId(
-    connect(mapStateToProps, mapDispatchToProps)(MainPage)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

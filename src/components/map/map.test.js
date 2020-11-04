@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Map from './map';
-import offers from '../../mocks/offers';
+import offers from '@/mocks/offers';
 
 const CENTER = offers[0];
 const PINS = offers;

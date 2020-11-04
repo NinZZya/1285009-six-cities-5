@@ -1,10 +1,10 @@
 import React from 'react';
 import {useLocation} from 'react-router-dom';
 import {connect} from 'react-redux';
-import AppRoute from '../routes/app-route/app-route';
-import {getUser, getUserStatus} from '../reducer/user/user-selectors';
-import * as Type from '../types';
-import {AppPath} from '../const';
+import AppRoute from '@/components/routes/app-route/app-route';
+import {getUser, getUserStatus} from '@/reducer/user/user-selectors';
+import * as Type from '@/types';
+import {AppPath} from '@/const';
 
 
 const PathToClassName = {

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Star from './components/star/star';
-import withFormValues from '../../../../hocs/with-form-values/with-form-values';
-import * as Type from '../../../../types';
-import {DataStatus, STARS} from '../../../../const';
+import * as Type from '@/types';
+import {DataStatus, STARS} from '@/const';
+import {extend} from '@/utils/utils';
 
 
 const MIN_CHARS_COUNT = 50;
@@ -20,12 +20,11 @@ const SubmitCaption = {
 
 const NewReview = (props) => {
   const {
-    form,
-    onFormValuesChange,
-    onFormValuesReset,
     onSubmitReview,
     reviewsStatus,
   } = props;
+
+  const [form, setFormValue] = useState({});
 
   const isReviewValid = form[FormName.REVIEW] ?
     form[FormName.REVIEW].length >= MIN_CHARS_COUNT :
@@ -37,6 +36,16 @@ const NewReview = (props) => {
   const submitCaption = reviewsStatus === DataStatus.SENDING ?
     SubmitCaption.SENDING :
     SubmitCaption.SUBMIT;
+
+  const handleFormValuesChange = (evt) => {
+    setFormValue(extend(form, {
+      [evt.target.name]: evt.target.value,
+    }));
+  };
+
+  const onFormValuesReset = () => {
+    setFormValue({});
+  };
 
   const handelSubmitReview = (evt) => {
     evt.preventDefault();
@@ -61,7 +70,7 @@ const NewReview = (props) => {
           <Star
             star={star}
             key={`star-review-${index}`}
-            onStarChange={onFormValuesChange}
+            onStarChange={handleFormValuesChange}
           />))}
       </div>
       <textarea
@@ -69,7 +78,7 @@ const NewReview = (props) => {
         id="review"
         name={FormName.REVIEW}
         placeholder="Tell how was your stay, what you like and what can be improved"
-        onChange={onFormValuesChange}
+        onChange={handleFormValuesChange}
       >
       </textarea>
       <div className="reviews__button-wrapper">
@@ -100,5 +109,4 @@ NewReview.propTypes = {
 };
 
 
-export {NewReview};
-export default withFormValues(NewReview);
+export default NewReview;
