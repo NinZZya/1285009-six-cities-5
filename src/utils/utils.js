@@ -8,6 +8,8 @@ export const dateFormatter = new Intl.DateTimeFormat(`en-us`, {
   month: `long`,
 });
 
+export const convertToReviewDate = (date) => dateFormatter.format(new Date(date));
+
 export const makeActionCreator = (type) => (payload) => ({
   type,
   payload,
