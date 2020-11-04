@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Star from './components/star/star';
-import * as Type from '@/types';
-import {DataStatus, STARS} from '@/const';
+import * as Type from '@/constants/types';
+import {DataStatus, STARS} from '@/constants/const';
 import {extend} from '@/utils/utils';
 
 

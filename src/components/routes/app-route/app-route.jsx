@@ -1,15 +1,15 @@
 import React from 'react';
 import {Switch, Route, Redirect} from 'react-router-dom';
-import Header from '@/components/header/header';
-import Footer from '@/components/footer/footer';
-import MainPage from '@/components/pages/main-page/main-page';
-import LoginPage from '@/components/pages/login-page/login-page';
-import OfferPage from '@/components/pages/offer-page/offer-page';
-import FavoritesPage from '@/components/pages/favorites-page/favorites-page';
-import NotFoundPage from '@/components/pages/not-found-page/not-found-page';
-import PrivateRoute from '@/components/routes/private-route/private-route';
-import * as Type from '@/types';
-import {AppPath, IdName} from '@/const';
+import Header from '@components/header/header';
+import Footer from '@components/footer/footer';
+import MainPage from '@pages/main-page/main-page';
+import LoginPage from '@pages/login-page/login-page';
+import OfferPage from '@pages/offer-page/offer-page';
+import FavoritesPage from '@pages/favorites-page/favorites-page';
+import NotFoundPage from '@pages/not-found-page/not-found-page';
+import PrivateRoute from '@routes/private-route/private-route';
+import * as Type from '@/constants/types';
+import {AppPath, IdName} from '@/constants/const';
 
 
 const AppRoute = (props) => {

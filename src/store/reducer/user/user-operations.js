@@ -1,6 +1,6 @@
 import {changeUserStatus, setUser, setError} from './user-actions';
-import {loadFavoritesOffersAsync} from '@/reducer/offers/offers-operations';
-import {UserStatus} from '@/const';
+import {loadFavoritesOffersAsync} from '@reducer/offers/offers-operations';
+import {UserStatus} from '@/constants/const';
 
 
 export const authAsync = (authData) => (dispatch, getState, api) => {

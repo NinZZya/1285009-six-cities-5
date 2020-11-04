@@ -1,15 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import PageContainer from '@/components/page-container/page-container';
-import Container from '@/components/container/container';
-import LoginForm from '@/components/login-form/login-form';
-import {authAsync} from '@/reducer/user/user-operations';
-import * as UserAction from '@/reducer/user/user-actions';
-import * as UserSelector from '@/reducer/user/user-selectors';
-import * as CitiesSelector from '@/reducer/cities/cities-selectors';
-import * as Type from '@/types';
-import {AppPath, UserStatus} from '@/const';
+import PageContainer from '@components/page-container/page-container';
+import Container from '@components/container/container';
+import LoginForm from '@components/login-form/login-form';
+import {authAsync} from '@reducer/user/user-operations';
+import * as UserAction from '@reducer/user/user-actions';
+import * as UserSelector from '@reducer/user/user-selectors';
+import * as CitiesSelector from '@reducer/cities/cities-selectors';
+import * as Type from '@/constants/types';
+import {AppPath, UserStatus} from '@/constants/const';
 
 
 const ContainerType = {

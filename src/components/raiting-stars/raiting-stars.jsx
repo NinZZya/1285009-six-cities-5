@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Type from '@/types';
+import * as Type from '@/constants/types';
 import {calcRatePercent} from '@/utils/utils';
 
 

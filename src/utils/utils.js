@@ -1,4 +1,4 @@
-import {SortType, MAX_RATE} from "@/const";
+import {SortType, MAX_RATE} from "@/constants/const";
 
 
 export const calcRatePercent = (rate) => rate * 100 / MAX_RATE;

@@ -49,7 +49,11 @@
     "allowSyntheticDefaultImports": false,
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@pages/*": ["src/components/pages/*"],
+      "@routes/*": ["src/components/routes/*"],
+      "@reducer": ["src/store/reducer/*"]
     }
   },
   "exclude": ["node_modules"]

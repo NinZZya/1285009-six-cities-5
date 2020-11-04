@@ -1,7 +1,7 @@
 import React from 'react';
 import RaitingStars from '@/components/raiting-stars/raiting-stars';
-import * as Type from '@/types';
-import {DEFAULT_AVATAR} from '@/const';
+import * as Type from '@/constants/types';
+import {DEFAULT_AVATAR} from '@/constants/const';
 import {convertToReviewDate} from '@/utils/utils';
 
 

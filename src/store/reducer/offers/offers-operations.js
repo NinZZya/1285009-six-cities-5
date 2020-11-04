@@ -1,7 +1,7 @@
 import * as OffersAction from './offers-actions';
 import * as OffersSelector from './offers-selectors';
-import * as CitiesAction from '@/reducer/cities/cities-actions';
-import * as CitiesSelector from '@/reducer/cities/cities-selectors';
+import * as CitiesAction from '@reducer/cities/cities-actions';
+import * as CitiesSelector from '@reducer/cities/cities-selectors';
 import {
   adaptOffersDataToClient,
   adaptOffersToListToClient,
@@ -9,7 +9,7 @@ import {
 } from '@/adapters/offers-adapter';
 import {adaptCityToClient} from '@/adapters/city-adapter';
 import {adaptReviewToServer, adaptReviewsToClent} from '@/adapters/review-adapter';
-import {DataStatus} from '@/const';
+import {DataStatus} from '@/constants/const';
 import {extend} from '@/utils/utils';
 
 

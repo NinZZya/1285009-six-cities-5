@@ -1,4 +1,4 @@
-import NameSpace from '../name-space';
+import NameSpace from '@reducer/name-space';
 
 
 const NAME_SPACE = NameSpace.CITIES;

@@ -1,6 +1,6 @@
 import {createSelector} from 'reselect';
-import NameSpace from '@/reducer/name-space';
-import {getActiveCityId} from '@/reducer/cities/cities-selectors';
+import NameSpace from '@reducer/name-space';
+import {getActiveCityId} from '@reducer/cities/cities-selectors';
 import {SortOffers} from '@/utils/utils';
 
 
@@ -13,7 +13,9 @@ export const getOffers = (state) => Object.values(state[NAME_SPACE].offers);
 export const getOffersMap = (state) => state[NAME_SPACE].offers;
 
 export const getOfferStatus = (state) => state[NAME_SPACE].offerStatus;
+
 export const getOffer = (state, id) => state[NAME_SPACE].offers[id];
+
 export const getOfferReviewsStatus = (state) => state[NAME_SPACE].reviewsStatus;
 export const getOfferReviews = (state) => state[NAME_SPACE].reviews;
 export const getNearOffersStatus = (state) => state[NAME_SPACE].nearOffersStatus;

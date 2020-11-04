@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import * as Type from '@/types';
-import {AppPath, UserStatus} from '@/const';
+import * as Type from '@/constants/types';
+import {AppPath, UserStatus} from '@/constants/const';
 
 
 const Header = ({userStatus = UserStatus.NO_AUTH, user = {}}) => {
