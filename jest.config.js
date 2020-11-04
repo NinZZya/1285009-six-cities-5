@@ -1,6 +1,6 @@
 module.exports = {
   "rootDir": `./src`,
   "moduleNameMapper": {
-    "^@/(.*)$": `<rootDir>/$1`,
+    "^~/(.*)$": `<rootDir>/$1`
   }
 };

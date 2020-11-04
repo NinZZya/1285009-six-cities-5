@@ -1,6 +1,6 @@
 import React from 'react';
 import CitiesTab from './components/cities-tab/cities-tab';
-import * as Type from '@/constants/types';
+import * as Type from '~/constants/types';
 
 
 const CitiesTabs = (props) => {

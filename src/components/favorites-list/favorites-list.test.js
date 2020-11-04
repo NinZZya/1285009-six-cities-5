@@ -2,8 +2,8 @@
 // import {Router} from 'react-router-dom';
 // import renderer from 'react-test-renderer';
 // import FavoritesList from './favorites-list';
-// import history from '../../history';
-// import {favoritesOffers} from '../../mocks/offers';
+// import history from '~/constants/history';
+// import {favoritesOffers} from '~/mocks/offers';
 
 
 // describe(`Should FavoritesList render correctly`, () => {
@@ -33,7 +33,6 @@
 //     expect(tree).toMatchSnapshot();
 //   });
 // });
-
 
 describe(`Simple test`, () => {
   it(`2 + 2 = 4`, () => {

@@ -5,8 +5,8 @@ import {Router} from 'react-router-dom';
 import App from './components/app/app';
 import store from './store/store';
 import history from './constants/history';
-import {loadOffersAsync} from '@reducer/offers/offers-operations';
-import {checkAuthAsync} from '@reducer/user/user-operations';
+import {loadOffersAsync} from './store/reducer/offers/offers-operations';
+import {checkAuthAsync} from './store/reducer/user/user-operations';
 
 
 Promise.all([

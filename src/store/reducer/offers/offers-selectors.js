@@ -1,7 +1,7 @@
 import {createSelector} from 'reselect';
-import NameSpace from '@reducer/name-space';
-import {getActiveCityId} from '@reducer/cities/cities-selectors';
-import {SortOffers} from '@/utils/utils';
+import NameSpace from '~/store/reducer/name-space';
+import {getActiveCityId} from '~/store/reducer/cities/cities-selectors';
+import {SortOffers} from '~/utils/utils';
 
 
 const NAME_SPACE = NameSpace.OFFERS;

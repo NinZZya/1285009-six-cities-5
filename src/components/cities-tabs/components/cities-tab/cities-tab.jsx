@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {AppPath} from '@/constants/const';
-import * as Type from '@/constants/types';
+import {AppPath} from '~/constants/const';
+import * as Type from '~/constants/types';
 
 
 const CitiesTab = ({city, activeCityId}) => {

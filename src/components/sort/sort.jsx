@@ -1,5 +1,5 @@
 import React, {useState, useCallback} from 'react';
-import * as Type from '@/constants/types';
+import * as Type from '~/constants/types';
 
 
 const Sort = (props) => {

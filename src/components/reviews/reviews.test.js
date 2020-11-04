@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Reviews from './reviews';
-import reviews from '@/mocks/reviews';
+import reviews from '~/mocks/reviews';
 
 
 describe(`Should Reviews render correctly`, () => {

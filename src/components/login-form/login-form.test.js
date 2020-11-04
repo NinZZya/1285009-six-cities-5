@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import LoginForm from './login-form';
-import {UserStatus} from '@/const';
+import {UserStatus} from '~/constants/const';
 
 
 const ERROR = `Error`;

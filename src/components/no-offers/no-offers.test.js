@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import NoOffers from './no-offers';
-import cities from '@/mocks/cities';
+import cities from '~/mocks/cities';
 
 
 const CITY = cities[1];

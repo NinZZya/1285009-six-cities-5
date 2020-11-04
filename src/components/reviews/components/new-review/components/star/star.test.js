@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Star from './star';
-import {STARS} from '@/const';
+import {STARS} from '~/constants/const';
 
 const star = STARS[1];
 const testing = () => {};

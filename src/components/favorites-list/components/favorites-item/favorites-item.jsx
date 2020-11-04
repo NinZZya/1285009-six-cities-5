@@ -1,8 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import OffersList, {OffersListType} from '@components/offers-list/offers-list';
-import * as Type from '@/constants/types';
-import {AppPath} from '@/constants/const';
+import OffersList, {OffersListType} from '~/components/offers-list/offers-list';
+import * as Type from '~/constants/types';
+import {AppPath} from '~/constants/const';
 
 
 const FavoritesItem = (props) => {

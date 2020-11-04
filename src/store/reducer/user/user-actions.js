@@ -1,5 +1,5 @@
 import * as UserType from './user-types';
-import {makeActionCreator} from '@/utils/utils';
+import {makeActionCreator} from '~/utils/utils';
 
 
 export const changeUserStatus = makeActionCreator(UserType.CHANGE_USER_STATUS);

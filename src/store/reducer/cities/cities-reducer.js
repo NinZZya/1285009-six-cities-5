@@ -1,6 +1,6 @@
 import * as CitiesType from './cities-type';
-import {extend} from '@/utils/utils';
-import {DEFAULT_CITY_ID} from '@/constants/const';
+import {extend} from '~/utils/utils';
+import {DEFAULT_CITY_ID} from '~/constants/const';
 
 
 const cities = {

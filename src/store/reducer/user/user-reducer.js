@@ -1,6 +1,6 @@
 import * as UserType from './user-types';
-import {extend} from '@/utils/utils';
-import {UserStatus} from '@/constants/const';
+import {extend} from '~/utils/utils';
+import {UserStatus} from '~/constants/const';
 
 
 const initialState = {

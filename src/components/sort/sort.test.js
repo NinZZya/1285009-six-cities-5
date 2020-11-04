@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Sort from './sort';
-import {SortType} from '@/const';
+import {SortType} from '~/constants/const';
 
 
 const testing = () => {};

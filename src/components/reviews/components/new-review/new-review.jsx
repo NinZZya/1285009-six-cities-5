@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import Star from './components/star/star';
-import * as Type from '@/constants/types';
-import {DataStatus, STARS} from '@/constants/const';
-import {extend} from '@/utils/utils';
+import * as Type from '~/constants/types';
+import {DataStatus, STARS} from '~/constants/const';
+import {extend} from '~/utils/utils';
 
 
 const MIN_CHARS_COUNT = 50;

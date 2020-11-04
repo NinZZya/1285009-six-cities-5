@@ -1,8 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import PageContainer from '@components/page-container/page-container';
-import Container from '@components/container/container';
-import {AppPath} from '@/constants/const';
+import PageContainer from '~/components/page-container/page-container';
+import Container from '~/components/container/container';
+import {AppPath} from '~/constants/const';
 
 
 const ContainerType = {

@@ -1,6 +1,6 @@
 import React from 'react';
 import FavoritesItem from './components/favorites-item/favorites-item';
-import * as Type from '@/constants/types';
+import * as Type from '~/constants/types';
 
 const FavoritesList = (props) => {
   const {favorites = {}} = props;
