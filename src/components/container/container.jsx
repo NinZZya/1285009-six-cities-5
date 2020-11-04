@@ -1,6 +1,6 @@
 import React, {Children} from 'react';
-import * as Type from '../../types';
-import {EMPTY_POSTFIX} from '../../const';
+import * as Type from '@/types';
+import {EMPTY_POSTFIX} from '@/const';
 
 
 const Container = (props) => {

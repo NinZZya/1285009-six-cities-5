@@ -1,6 +1,6 @@
 import React from 'react';
-import * as Type from '../../types';
-import {UserStatus} from '../../const';
+import * as Type from '@/types';
+import {UserStatus} from '@/const';
 
 
 const errorStyle = {

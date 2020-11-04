@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import OfferGallery from './offer-gallery';
-import offers from '../../mocks/offers';
+import offers from '@/mocks/offers';
 
 const IMAGES = offers[0].images;
 

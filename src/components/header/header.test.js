@@ -2,9 +2,9 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Router} from 'react-router-dom';
 import Header from './header';
-import history from '../../history';
-import {UserStatus} from '../../const';
-import {user} from '../../mocks/users';
+import history from '@/history';
+import {UserStatus} from '@/const';
+import {user} from '@/mocks/users';
 
 
 describe(`Should Header render correctly`, () => {

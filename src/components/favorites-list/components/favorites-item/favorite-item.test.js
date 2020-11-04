@@ -2,8 +2,8 @@ import React from 'react';
 import {Router} from 'react-router-dom';
 import renderer from 'react-test-renderer';
 import FavoritesItem from './favorites-item';
-import history from '../../../../history';
-import offers from '../../../../mocks/offers';
+import history from '@/history';
+import offers from '@/mocks/offers';
 
 
 describe(`Should FavoritesItem render correctly`, () => {

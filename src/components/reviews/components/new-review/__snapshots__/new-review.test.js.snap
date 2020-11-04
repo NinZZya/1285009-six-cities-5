@@ -501,7 +501,7 @@ exports[`Should NewReview render correctly Should NewReview render correctly wit
     </p>
     <button
       className="reviews__submit form__submit button"
-      disabled={false}
+      disabled={true}
       type="submit"
     >
       Submit
@@ -671,7 +671,7 @@ exports[`Should NewReview render correctly Should NewReview render correctly wit
     </p>
     <button
       className="reviews__submit form__submit button"
-      disabled={false}
+      disabled={true}
       type="submit"
     >
       Sending...

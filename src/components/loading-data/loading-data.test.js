@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import LoadingData from './loading-data';
-import {DataStatus} from '../../const';
+import {DataStatus} from '@/const';
 
 
 describe(`Should LoadingData render correctly`, () => {

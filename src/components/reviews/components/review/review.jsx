@@ -1,8 +1,8 @@
 import React from 'react';
-import RaitingStars from '../../../raiting-stars/raiting-stars';
-import * as Type from '../../../../types';
-import {DEFAULT_AVATAR} from '../../../../const';
-import {dateFormatter} from '../../../../utils/utils';
+import RaitingStars from '@/components/raiting-stars/raiting-stars';
+import * as Type from '@/types';
+import {DEFAULT_AVATAR} from '@/const';
+import {convertToReviewDate} from '@/utils/utils';
 
 
 const RAITING_STARS_TYPE = `reviews__stars`;
@@ -15,7 +15,7 @@ const Review = ({review}) => {
     date,
   } = review;
 
-  const dateCaption = dateFormatter.format(new Date(date));
+  const dateCaption = convertToReviewDate(date);
 
   return (
     <li className="reviews__item">

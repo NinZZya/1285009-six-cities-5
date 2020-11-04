@@ -2,9 +2,9 @@ import React from 'react';
 import {Router} from 'react-router-dom';
 import renderer from 'react-test-renderer';
 import {BookmarkButton} from './bookmark-button';
-import offers from '../../mocks/offers';
-import {UserStatus} from '../../const';
-import history from '../../history';
+import offers from '@/mocks/offers';
+import {UserStatus} from '@/const';
+import history from '@/history';
 
 
 const TYPE = `place-card`;

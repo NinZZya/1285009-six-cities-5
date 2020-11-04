@@ -1,4 +1,4 @@
-import {SortType, MAX_RATE} from "../const";
+import {SortType, MAX_RATE} from "@/const";
 
 
 export const calcRatePercent = (rate) => rate * 100 / MAX_RATE;
@@ -7,6 +7,8 @@ export const dateFormatter = new Intl.DateTimeFormat(`en-us`, {
   year: `numeric`,
   month: `long`,
 });
+
+export const convertToReviewDate = (date) => dateFormatter.format(new Date(date));
 
 export const makeActionCreator = (type) => (payload) => ({
   type,

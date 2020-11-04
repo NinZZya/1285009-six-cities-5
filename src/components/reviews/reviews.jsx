@@ -1,6 +1,6 @@
 import React from 'react';
 import Review from './components/review/review';
-import * as Type from '../../types';
+import * as Type from '@/types';
 
 
 const Reviews = ({reviews = []}) => {

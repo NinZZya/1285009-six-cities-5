@@ -2,8 +2,8 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Router} from 'react-router-dom';
 import CitiesTabs from './cities-tabs';
-import history from '../../history';
-import cities from '../../mocks/cities';
+import history from '@/history';
+import cities from '@/mocks/cities';
 
 
 const ACTIVE_CITY_ID = 1;

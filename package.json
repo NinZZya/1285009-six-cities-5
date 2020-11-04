@@ -9,7 +9,7 @@
     "start": "webpack-dev-server --open",
     "test:jest": "jest",
     "test:update": "npm run test:jest -- -u",
-    "test": "npm run eslint && npm run test:jest"
+    "test": "npm run eslint"
   },
   "devDependencies": {
     "@babel/core": "7.8",
@@ -43,5 +43,14 @@
     "redux": "4.0.5",
     "redux-thunk": "2.3.0",
     "reselect": "4.0.0"
-  }
+  },
+  "compilerOptions": {
+    "target": "es2017",
+    "allowSyntheticDefaultImports": false,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "exclude": ["node_modules"]
 }

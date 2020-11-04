@@ -1,6 +1,6 @@
 import * as OffersType from './offers-types';
-import {extend} from '../../utils/utils';
-import {DataStatus, SortType} from '../../const';
+import {extend} from '@/utils/utils';
+import {DataStatus, SortType} from '@/const';
 
 
 const initialState = {
