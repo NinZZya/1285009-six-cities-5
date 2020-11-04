@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import leaflet from 'leaflet';
-import * as Type from '~/constants/types';
+import * as Type from '../../constants/types';
 
 
 const PIN = leaflet.icon({

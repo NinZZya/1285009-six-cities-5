@@ -1,8 +1,8 @@
 import React from 'react';
-import RaitingStars from '~/components/raiting-stars/raiting-stars';
-import * as Type from '~/constants/types';
-import {DEFAULT_AVATAR} from '~/constants/const';
-import {convertToReviewDate} from '~/utils/utils';
+import RaitingStars from '../../../raiting-stars/raiting-stars';
+import * as Type from '../../../../constants/types';
+import {DEFAULT_AVATAR} from '../../../../constants/const';
+import {convertToReviewDate} from '../../../../utils/utils';
 
 
 const RAITING_STARS_TYPE = `reviews__stars`;

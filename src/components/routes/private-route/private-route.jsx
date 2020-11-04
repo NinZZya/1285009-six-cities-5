@@ -1,9 +1,9 @@
 import React, {Children} from 'react';
 import {connect} from 'react-redux';
 import {Route, Redirect} from 'react-router-dom';
-import {getUserStatus} from '~/store/reducer/user/user-selectors';
-import * as Type from '~/constants/types';
-import {AppPath, UserStatus} from '~/constants/const';
+import {getUserStatus} from '../../../store/reducer/user/user-selectors';
+import * as Type from '../../../constants/types';
+import {AppPath, UserStatus} from '../../../constants/const';
 
 
 const PrivateRoute = (props) => {

@@ -1,6 +1,6 @@
 import React from 'react';
-import {DEFAULT_AVATAR} from '~/constants/const';
-import * as Type from '~/constants/types';
+import {DEFAULT_AVATAR} from '../../constants/const';
+import * as Type from '../../constants/types';
 
 
 const OfferHost = ({host, description}) => {

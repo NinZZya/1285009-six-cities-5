@@ -1,10 +1,10 @@
 import React, {useCallback} from 'react';
 import {connect} from 'react-redux';
-import * as UserSelector from '~/store/reducer/user/user-selectors';
-import * as OffersOperation from '~/store/reducer/offers/offers-operations';
-import history from '~/constants/history';
-import * as Type from '~/constants/types';
-import {UserStatus, AppPath} from '~/constants/const';
+import * as UserSelector from '../../store/reducer/user/user-selectors';
+import * as OffersOperation from '../../store/reducer/offers/offers-operations';
+import history from '../../constants/history';
+import * as Type from '../../constants/types';
+import {UserStatus, AppPath} from '../../constants/const';
 
 const BookmarkButtonType = {
   OFFER: `OFFER`,

@@ -48,17 +48,34 @@ describe(`Testing convertToReviewDate`, () => {
 });
 
 
-const TEST_ACTION_CREATOR_TYPE = `TEST_ACTION_CREATOR_TYPE`;
-const TEST_ACTION_CREATOR = `function(payload){return{type:type,payload:payload};}`;
+const TEST_ACTION_TYPE = `TEST_ACTION_TYPE`;
+const TEST_PAYLOAD = `TEST_PAYLOAD`;
+const SET_TEST_VALUE = `payload=>({type,payload})`;
+
+const TEST_ACTION = {
+  type: TEST_ACTION_TYPE,
+  payload: TEST_PAYLOAD,
+};
 
 describe(`Testing makeActionCreator`, () => {
-  it(`For type ${TEST_ACTION_CREATOR_TYPE} makes ${TEST_ACTION_CREATOR}`, () => {
+  it(`Function makeActionCreator return new function`, () => {
+    const setTestValue = makeActionCreator(TEST_ACTION_TYPE);
+    const isFunction = typeof setTestValue === `function`;
+    expect(isFunction).toBe(true);
+  });
+
+  it(`Function makeActionCreator return ${SET_TEST_VALUE}`, () => {
+    const setTestValue = makeActionCreator(TEST_ACTION_TYPE);
     expect(
-        String(makeActionCreator(TEST_ACTION_CREATOR_TYPE)).replace(/\s+/g, ``)
-    ).toBe(TEST_ACTION_CREATOR);
+        String(setTestValue).replace(/\s/g, ``)
+    ).toBe(SET_TEST_VALUE);
+  });
+
+  it(`Function makeActionCreator with type ${TEST_ACTION_TYPE} and payload ${TEST_PAYLOAD} return ${TEST_ACTION}`, () => {
+    const setTestValue = makeActionCreator(TEST_ACTION_TYPE);
+    expect(setTestValue(TEST_PAYLOAD)).toMatchObject(TEST_ACTION);
   });
 });
-
 
 const objTestA = {
   a: `a`,

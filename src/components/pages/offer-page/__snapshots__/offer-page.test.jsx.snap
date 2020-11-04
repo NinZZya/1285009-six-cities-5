@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should OfferPage render correctly Should OfferPage render correctly error 1`] = `null`;
+
+exports[`Should OfferPage render correctly Should OfferPage render correctly loading and nearOffers loading, and comments loading 1`] = `null`;
+
+exports[`Should OfferPage render correctly Should OfferPage render correctly sucsess and nearOffers error, and comments loading 1`] = `null`;
+
+exports[`Should OfferPage render correctly Should OfferPage render correctly sucsess and nearOffers loading, and comments loading 1`] = `null`;
+
+exports[`Should OfferPage render correctly Should OfferPage render correctly sucsess and nearOffers sucsess, and comments error 1`] = `null`;
+
+exports[`Should OfferPage render correctly Should OfferPage render correctly sucsess and nearOffers sucsess, and comments loading 1`] = `null`;
+
+exports[`Should OfferPage render correctly Should OfferPage render correctly sucsess and nearOffers sucsess, and comments sucsess 1`] = `null`;
+
+exports[`Should OfferPage render correctly Should OfferPage render correctly sucsess and nearOffers sucsess, and comments sucsess, and user auth 1`] = `null`;

@@ -98,6 +98,13 @@ export const USER = shape({
   isPro: bool,
 });
 
+export const OFFER_USER = shape({
+  id: ID,
+  name: string,
+  avatar: string,
+  isPro: bool,
+});
+
 export const REVIEW = shape({
   id: ID,
   user: OFFER_USER,
@@ -109,13 +116,6 @@ export const REVIEW = shape({
 export const FORM = object;
 
 export const REVIEWS = arrayOf(REVIEW);
-
-export const OFFER_USER = shape({
-  id: ID,
-  name: string,
-  avatar: string,
-  isPro: bool,
-});
 
 export const OFFER_IMAGE = string;
 export const OFFER_TITLE = string;

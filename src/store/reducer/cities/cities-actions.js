@@ -1,5 +1,5 @@
 import * as CitiesType from './cities-type';
-import {makeActionCreator} from '~/utils/utils';
+import {makeActionCreator} from '../../../utils/utils';
 
 
 export const setCities = makeActionCreator(CitiesType.SETE_CITIES);
