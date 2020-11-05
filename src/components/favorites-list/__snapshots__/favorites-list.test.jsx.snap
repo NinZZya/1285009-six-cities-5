@@ -50,6 +50,7 @@ exports[`Should FavoritesList render correctly Should FavoritesList render corre
             className="place-card__image-wrapper favorites__image-wrapper"
           >
             <a
+              className="place-card__image-link"
               href="/offer/0"
               onClick={[Function]}
               onMouseOut={[Function]}
@@ -130,6 +131,7 @@ exports[`Should FavoritesList render correctly Should FavoritesList render corre
               className="place-card__name"
             >
               <a
+                className="place-card__name-link"
                 href="/offer/0"
                 onClick={[Function]}
                 onMouseOut={[Function]}
@@ -152,6 +154,7 @@ exports[`Should FavoritesList render correctly Should FavoritesList render corre
             className="place-card__image-wrapper favorites__image-wrapper"
           >
             <a
+              className="place-card__image-link"
               href="/offer/1"
               onClick={[Function]}
               onMouseOut={[Function]}
@@ -232,6 +235,7 @@ exports[`Should FavoritesList render correctly Should FavoritesList render corre
               className="place-card__name"
             >
               <a
+                className="place-card__name-link"
                 href="/offer/1"
                 onClick={[Function]}
                 onMouseOut={[Function]}
@@ -254,6 +258,7 @@ exports[`Should FavoritesList render correctly Should FavoritesList render corre
             className="place-card__image-wrapper favorites__image-wrapper"
           >
             <a
+              className="place-card__image-link"
               href="/offer/2"
               onClick={[Function]}
               onMouseOut={[Function]}
@@ -334,6 +339,7 @@ exports[`Should FavoritesList render correctly Should FavoritesList render corre
               className="place-card__name"
             >
               <a
+                className="place-card__name-link"
                 href="/offer/2"
                 onClick={[Function]}
                 onMouseOut={[Function]}
@@ -356,6 +362,7 @@ exports[`Should FavoritesList render correctly Should FavoritesList render corre
             className="place-card__image-wrapper favorites__image-wrapper"
           >
             <a
+              className="place-card__image-link"
               href="/offer/3"
               onClick={[Function]}
               onMouseOut={[Function]}
@@ -436,6 +443,7 @@ exports[`Should FavoritesList render correctly Should FavoritesList render corre
               className="place-card__name"
             >
               <a
+                className="place-card__name-link"
                 href="/offer/3"
                 onClick={[Function]}
                 onMouseOut={[Function]}
@@ -458,6 +466,7 @@ exports[`Should FavoritesList render correctly Should FavoritesList render corre
             className="place-card__image-wrapper favorites__image-wrapper"
           >
             <a
+              className="place-card__image-link"
               href="/offer/4"
               onClick={[Function]}
               onMouseOut={[Function]}
@@ -538,6 +547,7 @@ exports[`Should FavoritesList render correctly Should FavoritesList render corre
               className="place-card__name"
             >
               <a
+                className="place-card__name-link"
                 href="/offer/4"
                 onClick={[Function]}
                 onMouseOut={[Function]}

@@ -90,6 +90,7 @@ const OffersItem = (props) => {
           to={offerRoute}
           onMouseOver={handleOfferMouseOver}
           onMouseOut={handleOfferMouseOut}
+          className="place-card__image-link"
         >
           <img
             className="place-card__image"
@@ -118,6 +119,7 @@ const OffersItem = (props) => {
             to={`${offerRoute}`}
             onMouseOver={handleOfferMouseOver}
             onMouseOut={handleOfferMouseOut}
+            className="place-card__name-link"
           >
             {title}
           </Link>

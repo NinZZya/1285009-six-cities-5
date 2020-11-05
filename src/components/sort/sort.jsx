@@ -41,8 +41,8 @@ const Sort = (props) => {
             tabIndex="0"
             key={`sort-${index}`}
             onClick={() => {
-              onSortClick(sort);
               onActiveChange();
+              onSortClick(sort);
             }}
           >
             {sort}
@@ -56,7 +56,6 @@ const Sort = (props) => {
 Sort.propTypes = {
   activeSort: Type.SORT,
   isActive: Type.FLAG,
-  onActiveChange: Type.FUNCTION,
   sorts: Type.SORTS,
   onSortClick: Type.FUNCTION,
 };

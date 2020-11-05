@@ -15,6 +15,7 @@ exports[`Should OfferItem render correctly Should OfferItem render correctly whi
     className="place-card__image-wrapper "
   >
     <a
+      className="place-card__image-link"
       href="/offer/0"
       onClick={[Function]}
       onMouseOut={[Function]}
@@ -95,6 +96,7 @@ exports[`Should OfferItem render correctly Should OfferItem render correctly whi
       className="place-card__name"
     >
       <a
+        className="place-card__name-link"
         href="/offer/0"
         onClick={[Function]}
         onMouseOut={[Function]}
@@ -127,6 +129,7 @@ exports[`Should OfferItem render correctly Should OfferItem render correctly whi
     className="place-card__image-wrapper favorites__image-wrapper"
   >
     <a
+      className="place-card__image-link"
       href="/offer/0"
       onClick={[Function]}
       onMouseOut={[Function]}
@@ -207,6 +210,7 @@ exports[`Should OfferItem render correctly Should OfferItem render correctly whi
       className="place-card__name"
     >
       <a
+        className="place-card__name-link"
         href="/offer/0"
         onClick={[Function]}
         onMouseOut={[Function]}
@@ -239,6 +243,7 @@ exports[`Should OfferItem render correctly Should OfferItem render correctly whi
     className="place-card__image-wrapper cities__image-wrapper"
   >
     <a
+      className="place-card__image-link"
       href="/offer/0"
       onClick={[Function]}
       onMouseOut={[Function]}
@@ -319,6 +324,7 @@ exports[`Should OfferItem render correctly Should OfferItem render correctly whi
       className="place-card__name"
     >
       <a
+        className="place-card__name-link"
         href="/offer/0"
         onClick={[Function]}
         onMouseOut={[Function]}
@@ -351,6 +357,7 @@ exports[`Should OfferItem render correctly Should OfferItem render correctly whi
     className="place-card__image-wrapper near-places__image-wrapper"
   >
     <a
+      className="place-card__image-link"
       href="/offer/0"
       onClick={[Function]}
       onMouseOut={[Function]}
@@ -431,6 +438,7 @@ exports[`Should OfferItem render correctly Should OfferItem render correctly whi
       className="place-card__name"
     >
       <a
+        className="place-card__name-link"
         href="/offer/0"
         onClick={[Function]}
         onMouseOut={[Function]}
