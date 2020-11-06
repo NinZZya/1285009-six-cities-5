@@ -1,4 +1,4 @@
-import * as CitiesType from './cities-type';
+import * as CitiesType from './cities-types';
 import {extend} from '../../../utils/utils';
 import {DEFAULT_CITY_ID} from '../../../constants/const';
 
@@ -12,14 +12,14 @@ const cities = {
   6: {id: 6, name: `Dusseldorf`},
 };
 
-const initialState = {
+export const initialState = {
   cities,
   activeId: DEFAULT_CITY_ID,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case CitiesType.SETE_CITIES:
+    case CitiesType.SET_CITIES:
       return extend(state, {
         cities: action.payload,
       });
