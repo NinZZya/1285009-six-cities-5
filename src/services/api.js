@@ -40,6 +40,10 @@ export default class Api {
   }
 
   _onFail(err) {
+    if (!err.response) {
+      throw err;
+    }
+
     const {response} = err;
 
     if (response.status === HttpCode.UNAUTHORIZED) {
@@ -47,7 +51,7 @@ export default class Api {
       throw err;
     }
 
-    throw err;
+    throw response;
   }
 
   getApi() {
