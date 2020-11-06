@@ -29,8 +29,6 @@ export const loadOffersAsync = () => (dispatch, getState, api) => {
         dispatch(OffersAction.setOffers({}));
         dispatch(OffersAction.changeOffersStatus(DataStatus.SUCCESS));
       }
-
-
     })
     .catch(() => {
       dispatch(OffersAction.changeOffersStatus(DataStatus.ERROR));
@@ -50,6 +48,9 @@ export const loadOfferAsync = (id) => (dispatch, getState, api) => {
       offers[offer.id] = offer;
       dispatch(OffersAction.setOffers(offers));
       dispatch(OffersAction.changeOfferStatus(DataStatus.SUCCESS));
+    })
+    .catch(() => {
+      dispatch(OffersAction.changeOfferStatus(DataStatus.ERROR));
     });
 };
 
@@ -63,6 +64,9 @@ export const loadOfferReviewsAsync = (id) => (dispatch, getState, api) => {
 
       dispatch(OffersAction.setOfferReviews(reviews));
       dispatch(OffersAction.changeOfferReviewsStatus(DataStatus.SUCCESS));
+    })
+    .catch(() => {
+      dispatch(OffersAction.changeOfferReviewsStatus(DataStatus.ERROR));
     });
 };
 
@@ -89,6 +93,9 @@ export const loadNearOffersAsync = (id) => (dispatch, getState, api) => {
 
       dispatch(OffersAction.setNearOffers(nearOffers));
       dispatch(OffersAction.changeNearOffersStatus(DataStatus.SUCCESS));
+    })
+    .catch(() => {
+      dispatch(OffersAction.changeNearOffersStatus(DataStatus.ERROR));
     });
 };
 
