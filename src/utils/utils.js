@@ -26,3 +26,4 @@ export const SortOffers = {
   [SortType.HIGH_TO_LOW]: (offers) => offers.slice().sort((a, b) => b.price - a.price),
 };
 
+export const toFirstUpperCase = (word) => word[0].toUpperCase() + word.slice(1);

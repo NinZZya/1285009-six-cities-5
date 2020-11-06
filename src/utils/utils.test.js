@@ -3,7 +3,17 @@ import {
   convertToReviewDate,
   makeActionCreator,
   extend,
+  SortOffers,
+  toFirstUpperCase,
 } from './utils';
+
+import offers, {
+  sortedByRateOffers,
+  sortedFromHightToLowOffers,
+  sortedFromLowToHightOffers,
+} from '../mocks/offers';
+
+import {SortType} from '../constants/const';
 
 
 describe(`Testing calcRatePercent`, () => {
@@ -107,5 +117,40 @@ describe(`Testing extend`, () => {
 
   it(`Object ${objTestA} extends ${objTestB} and ${objTestC} to be ${objTestAB}`, () => {
     expect(extend(objTestA, objTestB, objTestC)).toMatchObject(objTestABC);
+  });
+});
+
+
+describe(`Testing SortOffers`, () => {
+  it(`Sorting offers by ${SortType.POPULAR}`, () => {
+    expect(SortOffers[SortType.POPULAR](offers)).toEqual(offers);
+  });
+
+  it(`Sorting offers by ${SortType.TOP_RATED_FIRST}`, () => {
+    expect(SortOffers[SortType.TOP_RATED_FIRST](offers)).toEqual(sortedByRateOffers);
+  });
+
+  it(`Sorting offers by ${SortType.HIGH_TO_LOW}`, () => {
+    expect(SortOffers[SortType.HIGH_TO_LOW](offers)).toEqual(sortedFromHightToLowOffers);
+  });
+
+  it(`Sorting offers by ${SortType.LOW_TO_HIGH}`, () => {
+    expect(SortOffers[SortType.LOW_TO_HIGH](offers)).toEqual(sortedFromLowToHightOffers);
+  });
+});
+
+const testInWord1 = `a`;
+const testOutWord1 = `A`;
+
+const testInWord2 = `test`;
+const testOutWord2 = `Test`;
+
+describe(`Testing toFirstUpperCase`, () => {
+  it(`Word ${testInWord1} transform to ${testOutWord1}`, () => {
+    expect(toFirstUpperCase(testInWord1)).toEqual(testOutWord1);
+  });
+
+  it(`Word ${testInWord2} transform to ${testOutWord2}`, () => {
+    expect(toFirstUpperCase(testInWord2)).toEqual(testOutWord2);
   });
 });
