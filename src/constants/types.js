@@ -94,6 +94,7 @@ export const RATE = number;
 export const USER = shape({
   id: number,
   name: string,
+  avatar: string,
   email: string,
   isPro: bool,
 });
@@ -157,6 +158,7 @@ export const OFFER = shape({
   isPremium: OFFER_IS_PREMIUM,
   isFavorite: OFFER_IS_FAVORITE,
   coords: COORDS,
+  zoom: number,
 });
 
 export const FAVORITES_OFFERS = shape({
