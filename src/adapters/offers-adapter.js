@@ -1,22 +1,22 @@
 import {adaptCityToClient} from './city-adapter';
+import {toFirstUpperCase} from '../utils/utils';
 
 export const adaptOfferToClient = (offer) => {
-  const city = adaptCityToClient(offer);
-
+  const city = adaptCityToClient(offer.city);
   return {
     id: offer[`id`],
     city,
     title: offer[`title`],
-    type: offer[`type`],
+    type: toFirstUpperCase(offer[`type`]),
     price: offer[`price`],
     rate: offer[`rating`],
     bedroomsCount: offer[`bedrooms`],
     adultsCount: offer[`max_adults`],
     features: offer[`goods`],
     host: {
-      name: offer[`name`],
-      avatar: offer[`avatar_url`],
-      isPro: offer[`is_pro`],
+      name: offer[`host`][`name`],
+      avatar: `/${offer[`host`][`avatar_url`]}`,
+      isPro: offer[`host`][`is_pro`],
     },
     previewImage: offer[`preview_image`],
     images: offer[`images`],
@@ -27,6 +27,7 @@ export const adaptOfferToClient = (offer) => {
       offer[`location`][`latitude`],
       offer[`location`][`longitude`],
     ],
+    zoom: offer[`location`][`zoom`],
   };
 };
 
@@ -49,7 +50,4 @@ export const adaptOffersDataToClient = (offers) => {
 };
 
 
-export const adaptOffersToListToClient = (offers) => {
-  const adaptOffers = offers.map(adaptOfferToClient);
-  return adaptOffers;
-};
+export const adaptOffersToListToClient = (offers) => offers.map(adaptOfferToClient);
