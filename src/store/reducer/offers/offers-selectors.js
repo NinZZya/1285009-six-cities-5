@@ -8,18 +8,19 @@ const NAME_SPACE = NameSpace.OFFERS;
 
 
 export const getOffersStatus = (state) => state[NAME_SPACE].status;
-export const getOffersSortType = (state) => state[NAME_SPACE].sortType;
 export const getOffers = (state) => Object.values(state[NAME_SPACE].offers);
 export const getOffersMap = (state) => state[NAME_SPACE].offers;
+export const getOffersSortType = (state) => state[NAME_SPACE].sortType;
 
 export const getOfferStatus = (state) => state[NAME_SPACE].offerStatus;
-
 export const getOffer = (state, id) => state[NAME_SPACE].offers[id];
 
 export const getOfferReviewsStatus = (state) => state[NAME_SPACE].reviewsStatus;
 export const getOfferReviews = (state) => state[NAME_SPACE].reviews;
+
 export const getNearOffersStatus = (state) => state[NAME_SPACE].nearOffersStatus;
 export const getNearOffers = (state) => state[NAME_SPACE].nearOffers;
+
 export const getFavoritesOffersMap = (state) => state[NAME_SPACE].favorites;
 
 export const getFavoritesOffers = (state) =>{

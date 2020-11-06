@@ -42,7 +42,7 @@ export const loadOfferAsync = (id) => (dispatch, getState, api) => {
   return api.getOffer(id)
     .then((response) => {
       const offer = adaptOfferToClient(response);
-      const city = adaptCityToClient(response);
+      const city = adaptCityToClient(response.city);
 
       offer.city = city;
       const state = getState();

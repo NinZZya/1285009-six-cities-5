@@ -3,7 +3,7 @@ import {extend} from '../../../utils/utils';
 import {DataStatus, SortType} from '../../../constants/const';
 
 
-const initialState = {
+export const initialState = {
   status: DataStatus.LOADING,
   offers: {},
   favorites: {},
