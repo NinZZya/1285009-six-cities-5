@@ -8,7 +8,7 @@ const HttpCode = {
   UNAUTHORIZED: 401
 };
 
-const ApiRoute = {
+export const ApiRoute = {
   OFFERS: `/hotels/`,
   NEAR: `/nearby/`,
   FAVORITES: `/favorite/`,
@@ -48,6 +48,10 @@ export default class Api {
     }
 
     throw err;
+  }
+
+  getApi() {
+    return this._api;
   }
 
   auth(authData) {
