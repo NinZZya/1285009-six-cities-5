@@ -21,7 +21,7 @@ const Map = (props) => {
     mapRef.current = leaflet.map(`map`, {
       center: center.coords,
       zoom: center.zoom,
-      zoomControl: false,
+      zoomControl: true,
       marker: true,
       layers: [
         leaflet

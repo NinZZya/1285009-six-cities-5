@@ -104,7 +104,6 @@ const getOfferContent = (args) => {
 
   const {
     images,
-    city,
     isPremium,
     isFavorite,
     title,
@@ -117,6 +116,7 @@ const getOfferContent = (args) => {
     host,
     description,
     coords,
+    zoom,
   } = offer;
 
   const nearOffers = args.nearOffers.slice(0, NEAR_OFFERS_COUNT);
@@ -127,7 +127,7 @@ const getOfferContent = (args) => {
 
   const center = {
     coords,
-    zoom: city.zoom,
+    zoom,
   };
 
   return (

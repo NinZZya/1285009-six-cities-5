@@ -7,7 +7,7 @@ import {extend} from '../../../../utils/utils';
 
 const MIN_CHARS_COUNT = 50;
 
-const FormName = {
+export const FormName = {
   REVIEW: `review`,
   RATE: `rating`,
 };
