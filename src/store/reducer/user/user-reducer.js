@@ -3,7 +3,7 @@ import {extend} from '../../../utils/utils';
 import {UserStatus} from '../../../constants/const';
 
 
-const initialState = {
+export const initialState = {
   status: UserStatus.NO_AUTH,
   user: {},
   error: ``,
