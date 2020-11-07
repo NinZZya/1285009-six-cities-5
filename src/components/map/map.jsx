@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import leaflet from 'leaflet';
-import * as Type from '@/types';
+import * as Type from '../../constants/types';
 
 
 const PIN = leaflet.icon({
@@ -21,7 +21,7 @@ const Map = (props) => {
     mapRef.current = leaflet.map(`map`, {
       center: center.coords,
       zoom: center.zoom,
-      zoomControl: false,
+      zoomControl: true,
       marker: true,
       layers: [
         leaflet

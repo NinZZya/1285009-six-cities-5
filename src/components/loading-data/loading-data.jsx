@@ -1,8 +1,8 @@
 import React from 'react';
-import Loader from '@/components/loader/loader';
-import Message from '@/components/message/message';
-import * as Type from '@/types';
-import {DataStatus} from '@/const';
+import Loader from '../../components/loader/loader';
+import Message from '../../components/message/message';
+import * as Type from '../../constants/types';
+import {DataStatus} from '../../constants/const';
 
 
 const LoadingData = (props) => {

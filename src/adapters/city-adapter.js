@@ -7,7 +7,7 @@ const CityToId = {
   'Dusseldorf': 6,
 };
 
-export const adaptCityToClient = ({city}) => {
+export const adaptCityToClient = (city) => {
 
   return {
     id: CityToId[city.name],

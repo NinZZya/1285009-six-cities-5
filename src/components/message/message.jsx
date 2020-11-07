@@ -1,6 +1,6 @@
 import React from 'react';
-import * as Type from '@/types';
-import {extend} from '@/utils/utils';
+import * as Type from '../../constants/types';
+import {extend} from '../../utils/utils';
 
 const containerStyle = {
   display: `flex`,

@@ -1,2 +1,0 @@
-export const SETE_CITIES = `SETE_CITIES`;
-export const CHANGE_ACTIVE_CITY_ID = `CHANGE_ACTIVE_CITY_ID`;

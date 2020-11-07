@@ -1,4 +1,4 @@
-import {SortType, MAX_RATE} from "@/const";
+import {SortType, MAX_RATE} from "../constants/const";
 
 
 export const calcRatePercent = (rate) => rate * 100 / MAX_RATE;
@@ -7,6 +7,8 @@ export const dateFormatter = new Intl.DateTimeFormat(`en-us`, {
   year: `numeric`,
   month: `long`,
 });
+
+export const convertToReviewDate = (date) => dateFormatter.format(new Date(date));
 
 export const makeActionCreator = (type) => (payload) => ({
   type,
@@ -24,3 +26,4 @@ export const SortOffers = {
   [SortType.HIGH_TO_LOW]: (offers) => offers.slice().sort((a, b) => b.price - a.price),
 };
 
+export const toFirstUpperCase = (word) => word[0].toUpperCase() + word.slice(1);

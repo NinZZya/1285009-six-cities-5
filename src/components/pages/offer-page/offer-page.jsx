@@ -1,28 +1,28 @@
 import React, {useEffect} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import PageContainer from '@/components/page-container/page-container';
-import Container from '@/components/container/container';
-import OfferGallery from '@/components/offer-gallery/offer-gallery';
-import OfferMark from '@/components/offer-mark/offer-mark';
-import BookmarkButton, {BookmarkButtonType} from '@/components/bookmark-button/bookmark-button';
-import RaitingStars from '@/components/raiting-stars/raiting-stars';
-import OfferFeatures from '@/components/offer-features/offer-features';
-import OfferFeature from '@/components/offer-features/components/offer-feature/offer-feature';
-import OfferPrice from '@/components/offer-price/offer-price';
-import OfferInside from '@/components/offer-inside/offer-inside';
-import OfferHost from '@/components/offer-host/offer-host';
-import Reviews from '@/components/reviews/reviews';
-import NewReview from '@/components/reviews/components/new-review/new-review';
-import Map from '@/components/map/map';
-import LoadingData from '@/components/loading-data/loading-data';
-import OffersList, {OffersListType} from '@/components/offers-list/offers-list';
-import * as UserSelector from '@/reducer/user/user-selectors';
-import * as OffersOperation from '@/reducer/offers/offers-operations';
-import * as OffersSelector from '@/reducer/offers/offers-selectors';
-import * as Type from '@/types';
-import {AppPath, IdName, DataStatus, UserStatus} from '@/const';
-import {extend} from '@/utils/utils';
+import PageContainer from '../../page-container/page-container';
+import Container from '../../container/container';
+import OfferGallery from '../../offer-gallery/offer-gallery';
+import OfferMark from '../../offer-mark/offer-mark';
+import BookmarkButton, {BookmarkButtonType} from '../../bookmark-button/bookmark-button';
+import RaitingStars from '../../raiting-stars/raiting-stars';
+import OfferFeatures from '../../offer-features/offer-features';
+import OfferFeature from '../../offer-features/components/offer-feature/offer-feature';
+import OfferPrice from '../../offer-price/offer-price';
+import OfferInside from '../../offer-inside/offer-inside';
+import OfferHost from '../../offer-host/offer-host';
+import Reviews from '../../reviews/reviews';
+import NewReview from '../../reviews/components/new-review/new-review';
+import Map from '../../map/map';
+import LoadingData from '../../loading-data/loading-data';
+import OffersList, {OffersListType} from '../../offers-list/offers-list';
+import * as UserSelector from '../../../store/reducer/user/user-selectors';
+import * as OffersOperation from '../../../store/reducer/offers/offers-operations';
+import * as OffersSelector from '../../../store/reducer/offers/offers-selectors';
+import * as Type from '../../../constants/types';
+import {AppPath, IdName, DataStatus, UserStatus} from '../../../constants/const';
+import {extend} from '../../../utils/utils';
 
 
 const NEAR_OFFERS_COUNT = 3;
@@ -104,7 +104,6 @@ const getOfferContent = (args) => {
 
   const {
     images,
-    city,
     isPremium,
     isFavorite,
     title,
@@ -117,6 +116,7 @@ const getOfferContent = (args) => {
     host,
     description,
     coords,
+    zoom,
   } = offer;
 
   const nearOffers = args.nearOffers.slice(0, NEAR_OFFERS_COUNT);
@@ -127,7 +127,7 @@ const getOfferContent = (args) => {
 
   const center = {
     coords,
-    zoom: city.zoom,
+    zoom,
   };
 
   return (
@@ -193,7 +193,7 @@ const OfferPage = (props) => {
     offerStatus,
     getOffer,
     addReview,
-    match,
+    match = {path: `/`},
   } = props;
 
   const activeOfferId = getOfferId(match);

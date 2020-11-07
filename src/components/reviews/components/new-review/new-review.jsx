@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import Star from './components/star/star';
-import * as Type from '@/types';
-import {DataStatus, STARS} from '@/const';
-import {extend} from '@/utils/utils';
+import * as Type from '../../../../constants/types';
+import {DataStatus, STARS} from '../../../../constants/const';
+import {extend} from '../../../../utils/utils';
 
 
 const MIN_CHARS_COUNT = 50;
 
-const FormName = {
+export const FormName = {
   REVIEW: `review`,
   RATE: `rating`,
 };
@@ -47,12 +47,16 @@ const NewReview = (props) => {
     setFormValue({});
   };
 
-  const handelSubmitReview = (evt) => {
+  const handleSubmitReview = (evt) => {
     evt.preventDefault();
     onSubmitReview({
       rate: form[FormName.RATE],
       text: form[FormName.REVIEW],
     });
+    handleResetReview(evt);
+  };
+
+  const handleResetReview = (evt) => {
     onFormValuesReset();
     evt.target.reset();
   };
@@ -62,7 +66,7 @@ const NewReview = (props) => {
       className="reviews__form form"
       action="#"
       method="post"
-      onSubmit={handelSubmitReview}
+      onSubmit={handleSubmitReview}
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
@@ -101,9 +105,6 @@ const NewReview = (props) => {
 };
 
 NewReview.propTypes = {
-  form: Type.FORM,
-  onFormValuesChange: Type.FUNCTION,
-  onFormValuesReset: Type.FUNCTION,
   onSubmitReview: Type.FUNCTION,
   reviewsStatus: Type.DATA_STATUS,
 };

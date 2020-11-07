@@ -1,14 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import PageContainer from '@/components/page-container/page-container';
-import Container from '@/components/container/container';
-import FavoritesList from '@/components/favorites-list/favorites-list';
-import NoFavorites from '@/components/no-favorites/no-favorites';
-import LoadingData from '@/components/loading-data/loading-data';
-import * as OffersSelector from '@/reducer/offers/offers-selectors';
-import * as CitiesSelector from '@/reducer/cities/cities-selectors';
-import {DataStatus} from '@/const';
-import * as Type from '@/types';
+import PageContainer from '../../page-container/page-container';
+import Container from '../../container/container';
+import FavoritesList from '../../favorites-list/favorites-list';
+import NoFavorites from '../../no-favorites/no-favorites';
+import LoadingData from '../../loading-data/loading-data';
+import * as OffersSelector from '../../../store/reducer/offers/offers-selectors';
+import {DataStatus} from '../../../constants/const';
+import * as Type from '../../../constants/types';
 
 
 const ContainerType = {
@@ -17,13 +16,13 @@ const ContainerType = {
 };
 
 const FavoritesPage = (props) => {
-  const {favorites, offersStatus, activeCityId} = props;
+  const {favorites = {}, offersStatus} = props;
   const favoritesCount = Object.keys(favorites).length;
   const isEmpty = offersStatus === DataStatus.SUCCESS && !favoritesCount;
   const emptyContent = isEmpty ? <NoFavorites /> : null;
 
   const favoritesContent = offersStatus === DataStatus.SUCCESS && favoritesCount ?
-    <FavoritesList favorites={favorites} activeCityId={activeCityId} /> :
+    <FavoritesList favorites={favorites} /> :
     null;
 
   return (
@@ -46,12 +45,10 @@ const FavoritesPage = (props) => {
 FavoritesPage.propTypes = {
   offersStatus: Type.DATA_STATUS,
   favorites: Type.FAVORITES_OFFERS,
-  activeCityId: Type.ID,
 };
 
 const mapStateToProps = (state) => ({
   offersStatus: OffersSelector.getOffersStatus(state),
-  activeCityId: CitiesSelector.getActiveCityId(state),
   favorites: OffersSelector.getFavoritesOffers(state),
 });
 

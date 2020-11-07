@@ -1,6 +1,6 @@
 import React from 'react';
 import OffersItem from './components/offers-item/offers-item';
-import * as Type from '@/types';
+import * as Type from '../../constants/types';
 
 
 const BASE_CLASS = `places__list`;

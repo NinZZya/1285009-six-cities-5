@@ -1,27 +1,27 @@
 import React, {useState, useCallback} from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
-import PageContainer from '@/components/page-container/page-container';
-import Container from '@/components/container/container';
-import CitiesTabs from '@/components/cities-tabs/cities-tabs';
-import Sort from '@/components/sort/sort';
-import OffersList, {OffersListType} from '@/components/offers-list/offers-list';
-import NoOffers from '@/components/no-offers/no-offers';
-import LoadingData from '@/components/loading-data/loading-data';
-import Map from '@/components/map/map';
-import * as CitiesAction from '@/reducer/cities/cities-actions';
-import * as CitiesSelector from '@/reducer/cities/cities-selectors';
-import * as OffersAction from '@/reducer/offers/offers-actions';
-import * as OffersSelector from '@/reducer/offers/offers-selectors';
-import * as Type from '@/types';
-import {extend} from '@/utils/utils';
+import PageContainer from '../../page-container/page-container';
+import Container from '../../container/container';
+import CitiesTabs from '../../cities-tabs/cities-tabs';
+import Sort from '../../sort/sort';
+import OffersList, {OffersListType} from '../../offers-list/offers-list';
+import NoOffers from '../../no-offers/no-offers';
+import LoadingData from '../../loading-data/loading-data';
+import Map from '../../map/map';
+import * as CitiesAction from '../../../store/reducer/cities/cities-actions';
+import * as CitiesSelector from '../../../store/reducer/cities/cities-selectors';
+import * as OffersAction from '../../../store/reducer/offers/offers-actions';
+import * as OffersSelector from '../../../store/reducer/offers/offers-selectors';
+import * as Type from '../../../constants/types';
+import {extend} from '../../../utils/utils';
 import {
   SortType,
   AppPath,
   IdName,
   DataStatus,
   DEFAULT_CITY_ID,
-} from '@/const';
+} from '../../../constants/const';
 
 
 const SORTS = Object.values(SortType);
@@ -95,10 +95,10 @@ const MainPage = (props) => {
   const {
     activeCityId,
     offersStatus,
-    offers,
+    offers = [],
     cities,
     chageActiveCityId,
-    match,
+    match = {path: `/`},
   } = props;
 
   const [activeId, setActiveId] = useState();

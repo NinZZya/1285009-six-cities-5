@@ -1,12 +1,12 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import RaitingStars from '@/components/raiting-stars/raiting-stars';
-import BookmarkButton, {BookmarkButtonType} from '@/components/bookmark-button/bookmark-button';
-import OfferMark from '@/components/offer-mark/offer-mark';
-import OfferPrice from '@/components/offer-price/offer-price';
-import {OffersListType} from '@/components/offers-list/offers-list';
-import {AppPath} from '@/const';
-import * as Type from '@/types';
+import RaitingStars from '../../../raiting-stars/raiting-stars';
+import BookmarkButton, {BookmarkButtonType} from '../../../bookmark-button/bookmark-button';
+import OfferMark from '../../../offer-mark/offer-mark';
+import OfferPrice from '../../../offer-price/offer-price';
+import {OffersListType} from '../../../offers-list/offers-list';
+import {AppPath} from '../../../../constants/const';
+import * as Type from '../../../../constants/types';
 
 
 const TypeName = {
@@ -90,6 +90,7 @@ const OffersItem = (props) => {
           to={offerRoute}
           onMouseOver={handleOfferMouseOver}
           onMouseOut={handleOfferMouseOut}
+          className="place-card__image-link"
         >
           <img
             className="place-card__image"
@@ -118,6 +119,7 @@ const OffersItem = (props) => {
             to={`${offerRoute}`}
             onMouseOver={handleOfferMouseOver}
             onMouseOut={handleOfferMouseOut}
+            className="place-card__name-link"
           >
             {title}
           </Link>

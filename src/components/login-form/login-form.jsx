@@ -1,6 +1,6 @@
 import React from 'react';
-import * as Type from '@/types';
-import {UserStatus} from '@/const';
+import * as Type from '../../constants/types';
+import {UserStatus} from '../../constants/const';
 
 
 const errorStyle = {
@@ -8,10 +8,15 @@ const errorStyle = {
   fontSize: `12px`,
 };
 
+export const FormName = {
+  EMAIL: `email`,
+  PASSWORD: `password`,
+};
+
 const getErrorContent = (error) => {
   return (
     <p style={errorStyle}>
-      {`ERROR: ${error ? error : `Authorization error`}`}
+      {error}
     </p>
   );
 };
@@ -32,8 +37,8 @@ const LoginForm = (props) => {
     evt.preventDefault();
     const formData = new FormData(evt.target);
     const authData = {
-      email: formData.get(`email`),
-      password: formData.get(`password`),
+      email: formData.get(FormName.EMAIL),
+      password: formData.get(FormName.PASSWORD),
     };
     onAuth(authData);
   };
@@ -50,7 +55,7 @@ const LoginForm = (props) => {
         <input
           className="login__input form__input"
           type="email"
-          name="email"
+          name={FormName.EMAIL}
           placeholder="Email"
           required=""
           disabled={isDisabled}
@@ -62,7 +67,7 @@ const LoginForm = (props) => {
         <input
           className="login__input form__input"
           type="password"
-          name="password"
+          name={FormName.PASSWORD}
           placeholder="Password"
           required=""
           disabled={isDisabled}
