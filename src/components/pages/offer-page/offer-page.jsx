@@ -211,7 +211,7 @@ const OfferPage = (props) => {
         loadNearOffers(activeOfferId);
         loadReviews(activeOfferId);
       },
-      []
+      [activeOfferId]
   );
 
   const handelSubmitReview = (review) => {
