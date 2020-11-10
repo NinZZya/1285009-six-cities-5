@@ -4,8 +4,10 @@ import * as Type from '../../../../constants/types';
 import {DataStatus, STARS} from '../../../../constants/const';
 import {extend} from '../../../../utils/utils';
 
-
-const MIN_CHARS_COUNT = 50;
+const CharCount = {
+  MIN: 50,
+  MAX: 300,
+};
 
 export const FormName = {
   REVIEW: `review`,
@@ -24,10 +26,12 @@ const NewReview = (props) => {
     reviewsStatus,
   } = props;
 
-  const [form, setFormValue] = useState({});
+  const [form, setFormValue] = useState({
+    form: {},
+  });
 
   const isReviewValid = form[FormName.REVIEW] ?
-    form[FormName.REVIEW].length >= MIN_CHARS_COUNT :
+    form[FormName.REVIEW].length >= CharCount.MIN && form[FormName.REVIEW].length <= CharCount.MAX :
     false;
 
 
@@ -89,7 +93,7 @@ const NewReview = (props) => {
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating </span>
           and describe your stay with at least <b className="reviews__text-amount">
-            {`${MIN_CHARS_COUNT} characters`}
+            {`${CharCount.MIN} characters`}
           </b>.
         </p>
         <button
