@@ -16,7 +16,9 @@ export const getOfferStatus = (state) => state[NAME_SPACE].offerStatus;
 export const getOffer = (state, id) => state[NAME_SPACE].offers[id];
 
 export const getOfferReviewsStatus = (state) => state[NAME_SPACE].reviewsStatus;
-export const getOfferReviews = (state) => state[NAME_SPACE].reviews;
+export const getOfferReviews = (state) => state[NAME_SPACE].reviews
+                                                              .slice()
+                                                              .sort((a, b) => b.date - a.date);
 
 export const getNearOffersStatus = (state) => state[NAME_SPACE].nearOffersStatus;
 export const getNearOffers = (state) => state[NAME_SPACE].nearOffers;

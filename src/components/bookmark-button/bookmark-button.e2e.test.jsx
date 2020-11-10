@@ -12,7 +12,7 @@ const USER_STATUS = UserStatus.NO_AUTH;
 configure({adapter: new Adapter()});
 
 it(`Should BookmarkButton was pressed`, () => {
-  const changeFavoriteOffer = jest.fn();
+  const onChangeFavoriteOffer = jest.fn();
 
   const wrapper = shallow(
       <BookmarkButton
@@ -20,11 +20,11 @@ it(`Should BookmarkButton was pressed`, () => {
         type={TYPE}
         userStatus={USER_STATUS}
         offer={OFFER}
-        changeFavoriteOffer={changeFavoriteOffer}
+        onChangeFavoriteOffer={onChangeFavoriteOffer}
       />
   );
 
   const bookmarkButton = wrapper.find(`.button`);
   bookmarkButton.simulate(`click`);
-  expect(changeFavoriteOffer).toHaveBeenCalledTimes(1);
+  expect(onChangeFavoriteOffer).toHaveBeenCalledTimes(1);
 });

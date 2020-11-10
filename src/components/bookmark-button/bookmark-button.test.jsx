@@ -23,7 +23,7 @@ describe(`Should BookmarkButton render correctly`, () => {
               type={TYPE}
               userStatus={USER_STATUS}
               offer={OFFER}
-              changeFavoriteOffer={testing}
+              onChangeFavoriteOffer={testing}
             />
           </Router>
       )

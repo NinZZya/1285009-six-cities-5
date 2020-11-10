@@ -21,8 +21,8 @@ describe(`Should LoginPage render correctly`, () => {
               activeCityId={ACTIVE_CITY_ID}
               userStatus={UserStatus.NO_AUTH}
               cities={cities}
-              auth={testing}
-              changeUserStatus={testing}
+              onAuth={testing}
+              onChangeUserStatus={testing}
             />
           </Router>
       )
@@ -40,8 +40,8 @@ describe(`Should LoginPage render correctly`, () => {
               userStatus={UserStatus.AUTH_ERROR}
               error={ERROR}
               cities={cities}
-              auth={testing}
-              changeUserStatus={testing}
+              onAuth={testing}
+              onChangeUserStatus={testing}
             />
           </Router>
       )
@@ -58,8 +58,8 @@ describe(`Should LoginPage render correctly`, () => {
               activeCityId={ACTIVE_CITY_ID}
               userStatus={UserStatus.AUTH}
               cities={cities}
-              auth={testing}
-              changeUserStatus={testing}
+              onAuth={testing}
+              onChangeUserStatus={testing}
             />
           </Router>
       )

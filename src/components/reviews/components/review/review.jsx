@@ -2,7 +2,7 @@ import React from 'react';
 import RaitingStars from '../../../raiting-stars/raiting-stars';
 import * as Type from '../../../../constants/types';
 import {DEFAULT_AVATAR} from '../../../../constants/const';
-import {convertToReviewDate} from '../../../../utils/utils';
+import {convertToReviewDate, convertToReviewDateTime} from '../../../../utils/utils';
 
 
 const RAITING_STARS_TYPE = `reviews__stars`;
@@ -16,6 +16,7 @@ const Review = ({review}) => {
   } = review;
 
   const dateCaption = convertToReviewDate(date);
+  const dateTime = convertToReviewDateTime(date);
 
   return (
     <li className="reviews__item">
@@ -41,7 +42,7 @@ const Review = ({review}) => {
         <p className="reviews__text">
           {text}
         </p>
-        <time className="reviews__time" dateTime={date}>
+        <time className="reviews__time" dateTime={dateTime}>
           {dateCaption}
         </time>
       </div>

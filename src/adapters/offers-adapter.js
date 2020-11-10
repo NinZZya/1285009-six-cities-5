@@ -9,7 +9,7 @@ export const adaptOfferToClient = (offer) => {
     title: offer[`title`],
     type: toFirstUpperCase(offer[`type`]),
     price: offer[`price`],
-    rate: offer[`rating`],
+    rate: Math.round(offer[`rating`]),
     bedroomsCount: offer[`bedrooms`],
     adultsCount: offer[`max_adults`],
     features: offer[`goods`],

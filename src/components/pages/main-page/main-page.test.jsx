@@ -23,8 +23,8 @@ describe(`Should MainPage render correctly`, () => {
               cities={cities}
               activeCityId={ACTIVE_CITY_ID}
               sortType={SortType.POPULAR}
-              chageActiveCityId={testing}
-              changeOffersSortType={testing}
+              onChageActiveCityId={testing}
+              onChangeOffersSortType={testing}
             />
           </Router>
       )
@@ -42,8 +42,8 @@ describe(`Should MainPage render correctly`, () => {
               cities={cities}
               activeCityId={ACTIVE_CITY_ID}
               sortType={SortType.POPULAR}
-              chageActiveCityId={testing}
-              changeOffersSortType={testing}
+              onChageActiveCityId={testing}
+              onChangeOffersSortType={testing}
             />
           </Router>
       )
@@ -63,8 +63,8 @@ describe(`Should MainPage render correctly`, () => {
                 cities={cities}
                 activeCityId={ACTIVE_CITY_ID}
                 sortType={SortType.POPULAR}
-                chageActiveCityId={testing}
-                changeOffersSortType={testing}
+                onChageActiveCityId={testing}
+                onChangeOffersSortType={testing}
               />
             </Router>
           </Provider>

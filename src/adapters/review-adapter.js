@@ -14,7 +14,7 @@ export const adaptReviewToClent = (review) => {
       avatar: review[`user`][`avatar_url`],
       isPro: review[`user`][`is_pro`],
     },
-    date: review[`date`],
+    date: new Date(review[`date`]),
     rate: review[`rating`],
     text: review[`comment`],
   };

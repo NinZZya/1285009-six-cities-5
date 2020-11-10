@@ -9,6 +9,7 @@ export const dateFormatter = new Intl.DateTimeFormat(`en-us`, {
 });
 
 export const convertToReviewDate = (date) => dateFormatter.format(new Date(date));
+export const convertToReviewDateTime = (date) => date.toISOString().split(`T`)[0];
 
 export const makeActionCreator = (type) => (payload) => ({
   type,

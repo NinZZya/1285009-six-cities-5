@@ -48,7 +48,7 @@ const getOffersContent = (args) => {
     cities,
     activeCityId,
     sortType,
-    changeOffersSortType,
+    onChangeOffersSortType,
   } = args;
 
   const activeCity = cities[activeCityId];
@@ -66,7 +66,7 @@ const getOffersContent = (args) => {
             activeSort={sortType}
             sorts={SORTS}
             onSortClick={(type) => {
-              changeOffersSortType(type);
+              onChangeOffersSortType(type);
             }}
           />
           <OffersList
@@ -97,11 +97,11 @@ const MainPage = (props) => {
     offersStatus,
     offers = [],
     cities,
-    chageActiveCityId,
+    onChageActiveCityId,
     match = {path: `/`},
   } = props;
 
-  const [activeId, setActiveId] = useState();
+  const [activeId, setActiveId] = useState(null);
 
   const pathCityId = getCityId(match);
   const pathCity = cities[pathCityId];
@@ -111,7 +111,7 @@ const MainPage = (props) => {
   }
 
   if ((pathCityId !== activeCityId) && pathCity) {
-    chageActiveCityId(pathCityId);
+    onChageActiveCityId(pathCityId);
   }
 
   const onActiveIdChange = useCallback((id) => {
@@ -158,8 +158,8 @@ MainPage.propTypes = {
   cities: Type.CITIES,
   activeCityId: Type.ID,
   sortType: Type.SORT,
-  chageActiveCityId: Type.FUNCTION,
-  changeOffersSortType: Type.FUNCTION,
+  onChageActiveCityId: Type.FUNCTION,
+  onChangeOffersSortType: Type.FUNCTION,
   match: Type.MATCH,
 };
 
@@ -172,10 +172,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  chageActiveCityId: (cityId) => {
+  onChageActiveCityId: (cityId) => {
     dispatch(CitiesAction.changeActiveCityId(cityId));
   },
-  changeOffersSortType: (sortType) => {
+  onChangeOffersSortType: (sortType) => {
     dispatch(OffersAction.changeOffersSortType(sortType));
   },
 });
