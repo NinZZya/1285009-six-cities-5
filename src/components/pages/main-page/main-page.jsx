@@ -101,7 +101,7 @@ const MainPage = (props) => {
     match = {path: `/`},
   } = props;
 
-  const [activeId, setActiveId] = useState();
+  const [activeId, setActiveId] = useState(null);
 
   const pathCityId = getCityId(match);
   const pathCity = cities[pathCityId];

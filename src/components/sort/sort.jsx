@@ -13,7 +13,7 @@ const Sort = (props) => {
 
   const onActiveChange = useCallback(() => {
     setIsActive(!isActive);
-  });
+  }, [isActive]);
 
   return (
     <form className="places__sorting" action="#" method="get">
