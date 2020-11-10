@@ -9,6 +9,7 @@ import {
   array,
   object,
   oneOfType,
+  instanceOf,
 } from 'prop-types';
 import {SortType, DataStatus, UserStatus} from './const';
 
@@ -109,7 +110,7 @@ export const OFFER_USER = shape({
 export const REVIEW = shape({
   id: ID,
   user: OFFER_USER,
-  date: string,
+  date: instanceOf(Date),
   rate: RATE,
   text: string,
 });

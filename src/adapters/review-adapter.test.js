@@ -21,7 +21,7 @@ const CLIENT = {
     avatar: `/img/avatar.svg`,
     isPro: true,
   },
-  date: `2019-11-26`,
+  date: new Date(`2019-11-26`),
   rate: 2,
   text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
 };
