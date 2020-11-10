@@ -23,8 +23,8 @@ const LoginPage = (props) => {
     userStatus,
     error = ``,
     cities,
-    auth,
-    changeUserStatus,
+    onAuth,
+    onChangeUserStatus,
   } = props;
 
   const city = cities[activeCityId];
@@ -37,8 +37,8 @@ const LoginPage = (props) => {
           <h1 className="login__title">Sign in</h1>
           <LoginForm
             onAuth={(authData) => {
-              changeUserStatus(UserStatus.RESPONSE);
-              auth(authData);
+              onChangeUserStatus(UserStatus.RESPONSE);
+              onAuth(authData);
             }}
             error={error}
             userStatus={userStatus}
@@ -61,8 +61,8 @@ LoginPage.propTypes = {
   userStatus: Type.USER_STATUS,
   error: Type.USER_ERROR,
   cities: Type.CITIES,
-  auth: Type.FUNCTION,
-  changeUserStatus: Type.FUNCTION,
+  onAuth: Type.FUNCTION,
+  onChangeUserStatus: Type.FUNCTION,
 };
 
 const mapStateToProps = (state) => ({
@@ -73,10 +73,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  auth: (authData) => {
+  onAuth: (authData) => {
     dispatch(authAsync(authData));
   },
-  changeUserStatus: (userStatus) => {
+  onChangeUserStatus: (userStatus) => {
     dispatch(UserAction.changeUserStatus(userStatus));
   },
 });

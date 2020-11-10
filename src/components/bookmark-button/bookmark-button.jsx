@@ -34,7 +34,7 @@ const BookmarkButton = (props) => {
     mark,
     offer,
     userStatus = UserStatus.NO_AUTH,
-    changeFavoriteOffer,
+    onChangeFavoriteOffer,
   } = props;
 
   const prefix = Prefix[type];
@@ -47,7 +47,7 @@ const BookmarkButton = (props) => {
 
     const id = offer.id;
     const state = Number(!offer.isFavorite);
-    changeFavoriteOffer(id, state);
+    onChangeFavoriteOffer(id, state);
   }, [userStatus, offer]);
 
   return (
@@ -72,7 +72,7 @@ BookmarkButton.propTypes = {
   mark: Type.FLAG,
   offer: Type.OFFER,
   userStatus: Type.USER_STATUS,
-  changeFavoriteOffer: Type.FUNCTION,
+  onChangeFavoriteOffer: Type.FUNCTION,
 };
 
 const mapStateToProps = (state) => ({
@@ -80,7 +80,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToPorps = (dispatch) => ({
-  changeFavoriteOffer: (id, state) => {
+  onChangeFavoriteOffer: (id, state) => {
     dispatch(OffersOperation.changeFavoriteOfferAsync(id, state));
   },
 });

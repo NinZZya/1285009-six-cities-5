@@ -187,18 +187,18 @@ const getOfferContent = (args) => {
 
 const OfferPage = (props) => {
   const {
-    loadOffer,
-    loadReviews,
-    loadNearOffers,
+    onLoadOffer,
+    onLoadReviews,
+    onLoadNearOffers,
     offerStatus,
-    getOffer,
-    addReview,
+    onGetOffer,
+    onAddReview,
     match = {path: `/`},
   } = props;
 
   const activeOfferId = getOfferId(match);
   const offer = offerStatus === DataStatus.SUCCESS ?
-    getOffer(activeOfferId) :
+    onGetOffer(activeOfferId) :
     null;
 
   if (activeOfferId === -1 || (!offer && offerStatus === DataStatus.SUCCESS)) {
@@ -207,15 +207,15 @@ const OfferPage = (props) => {
 
   useEffect(
       () => {
-        loadOffer(activeOfferId);
-        loadNearOffers(activeOfferId);
-        loadReviews(activeOfferId);
+        onLoadOffer(activeOfferId);
+        onLoadNearOffers(activeOfferId);
+        onLoadReviews(activeOfferId);
       },
       [activeOfferId]
   );
 
   const handelSubmitReview = (review) => {
-    addReview(activeOfferId, review);
+    onAddReview(activeOfferId, review);
   };
 
   const args = extend(props, {
@@ -237,16 +237,16 @@ const OfferPage = (props) => {
 
 OfferPage.propTypes = {
   offerStatus: Type.DATA_STATUS,
-  getOffer: Type.FUNCTION,
+  onGetOffer: Type.FUNCTION,
   nearOffers: Type.LIST_OFFERS,
   nearOffersStatus: Type.DATA_STATUS,
   reviewsStatus: Type.DATA_STATUS,
   reviews: Type.REVIEWS,
   match: Type.MATCH,
-  loadOffer: Type.FUNCTION,
-  loadReviews: Type.FUNCTION,
-  loadNearOffers: Type.FUNCTION,
-  addReview: Type.FUNCTION,
+  onLoadOffer: Type.FUNCTION,
+  onLoadReviews: Type.FUNCTION,
+  onLoadNearOffers: Type.FUNCTION,
+  onAddReview: Type.FUNCTION,
   userStatus: Type.USER_STATUS,
   user: Type.USER,
 };
@@ -254,7 +254,7 @@ OfferPage.propTypes = {
 
 const mapStateToProps = (state) => ({
   offerStatus: OffersSelector.getOfferStatus(state),
-  getOffer: (id) => OffersSelector.getOffer(state, id),
+  onGetOffer: (id) => OffersSelector.getOffer(state, id),
   nearOffers: OffersSelector.getNearOffers(state),
   nearOffersStatus: OffersSelector.getNearOffersStatus(state),
   reviewsStatus: OffersSelector.getOfferReviewsStatus(state),
@@ -264,16 +264,16 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToPorps = (dispatch) => ({
-  loadOffer: (id) => {
+  onLoadOffer: (id) => {
     dispatch(OffersOperation.loadOfferAsync(id));
   },
-  loadReviews: (id) => {
+  onLoadReviews: (id) => {
     dispatch(OffersOperation.loadOfferReviewsAsync(id));
   },
-  loadNearOffers: (id) => {
+  onLoadNearOffers: (id) => {
     dispatch(OffersOperation.loadNearOffersAsync(id));
   },
-  addReview: (id, review) => {
+  onAddReview: (id, review) => {
     dispatch(OffersOperation.addOfferReviewAsync(id, review));
   },
 });
